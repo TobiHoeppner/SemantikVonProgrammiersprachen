@@ -1,11 +1,8 @@
 \section{Vorlesung 1 - 17.04.}
-\subsection{Begriffserklärung}
-\subsection{Was sind Programmiersprachen?}\label{•}\\
+\subsection{Was sind Programmiersprachen?}
 Programmiersprachen sind künstliche, formale Ausdruckssprachen zur Kommunikation zwischen Mensch und Maschine.\\
-
 \marginnote{Memo technischer Begriff -> z.b. ADD reg1 reg2}[4cm]
-
-Beim Studium von Sprachen unterscheidet man 3 Ebenen(Aspekte):
+Beim Studium von Sprachen unterscheidet man 3 Ebenen(Aspekte):\\
 \begin{compactitem}
 	\item Syntax einschließlich lexikalischer Struktur (Themen des Übersetzerbaus)\\
 	\begin{compactitem}
@@ -58,27 +55,27 @@ Um alle drei Formalisierungsmethoden zu betrachten nutzen wir die Referenzsprach
 \begin{compactitem}
 	\item Elementare Einheiten\\
 	\begin{lstlisting}
-# ganze Zahlen
+// ganze Zahlen
 Z::= 0 |1|...|MAX|-1|-2|...|MIN #ZAHL (endlicher Ausschnitt der ganzen Zahlen MIN+1 .. MAX)
-# Wahrheitswerte BOOL
+// Wahrheitswerte BOOL
 W::= TRUE | FALSE
-# Konstanten KON
+// Konstanten KON
 K::= Z | W
-# Bezeichner bzw. Variablen mit Indizes
+// Bezeichner bzw. Variablen mit Indizes
 T::= a|b|...|z|a1|a2|...|zi
-# Operatoren
+// Operatoren
 OP::= + | - | * | / | mod
-# boolesche Operatoren
-BOP::= < | > | = | ≥ | ≤ | ≠
+// boolesche Operatoren
+BOP::= < | > | = | !> | !< | !=
 	\end{lstlisting}
 	\item Zusätzliche Einheiten (induktiv)\\
 	Die Indizes sind dazu da das Vorkommen von Symbolen in der Struktur eindeutig zu beschreiben.\\
 	\begin{lstlisting}
-# Terme TERM
-T::= Z | I | T1 OP T2 | read, für T1,T2 in TERM
-# boolesche Terme BT
+// Terme TERM
+T::= Z  |  I  |  T1 OP T2 | read, für T1,T2 in TERM
+// boolesche Terme BT
 B::= W | T1 BOP T2 | read | not B
-# Befehle (Zustandstransformation) COM
+// Befehle (Zustandstransformation) COM
 C::= skip | I := T | C1;C | if B then C1 else C2 | while B do C |  output T | output B
 	\end{lstlisting}
 \end{compactitem}
@@ -96,7 +93,9 @@ while B do C1; C2
 \end{lstlisting}
 % beide Bäume zeichnen!
 \begin{lstlisting}
-while B do C1; C2
+while B do 
+	C1; 
+	C2;
 \end{lstlisting}
 
 
