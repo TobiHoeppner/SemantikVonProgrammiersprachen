@@ -43,7 +43,7 @@ showstringspaces=false,
 rulecolor= \color{gray},
 emph=[1]%
 {%  
-    then%
+    then, not%
 },
 emphstyle=[1]{\color{darkblue}\bfseries},
 emph=[2]%
@@ -88,22 +88,47 @@ literate=%
 \begin{document} 
 \maketitle 
 \section*{Aufgabe 1}
-Ändern Sie die Syntax von WHILE, indem Sie INTEGER- und REALZahlen unterscheiden.
+Ändern Sie die Syntax von WHILE, indem Sie INTEGER- und REALZahlen unterscheiden.\\
+In der Vorlesung wurden die ganzen Zahlen wie folgt definiert:
 \begin{lstlisting}
-foo:= bar
+// ganze Zahlen (endlicher Ausschnitt der ganzen Zahlen MIN+1 .. MAX)
+Z::= 0 | 1 |...| MAX | -1 | -2 |...| MIN 
+\end{lstlisting}
+Gleitkommazahlen können in WHILE so abgebildet werden:
+\begin{lstlisting}
+// reelle Zahlen
+R::= MAX |...| 2/1 | 1/1 | 1/2 |...| 0 |...| -1/2 | -1/1 | -2/1 |...| MIN 
+\end{lstlisting}
+Jedoch ist hier die Null, sowie MAX und MIN doppelt definiert. Eine bessere Lösung ist demnach folgende:
+\begin{lstlisting}
+// ganze Zahlen (endlicher Ausschnitt der ganzen Zahlen MIN+1 .. MAX)
+Z::= 1 | 2 |...| MAX | -1 | -2 |...| MIN 
+// reelle Zahlen
+R::= Z/Z | 0 
+\end{lstlisting}
+Die Definition der reellen Zahlen muss zur Vollständigkeit in die Konstanten und Terme eingetragen werden.
+\begin{lstlisting}
+K::= Z | R | W
+T::= Z | R | I | T1 OP T2 | read, für T1, T2 in TERM
 \end{lstlisting}
 \section*{Aufgabe 2}
-Definieren Sie für eine geeignete Erweiterung der Sprache WHILE eine konkrete Syntax, die eindeutig ist.
+Definieren Sie für eine geeignete Erweiterung der Sprache WHILE eine konkrete Syntax, die eindeutig ist.\\
+Zusätzlich zum If-Else wäre Switch:
 \begin{lstlisting}
-foo:= bar
+C::= switch T: case B: do C 
+\end{lstlisting}
+Eine weitere wirklich sinnvolle Erweiterung wäre das Programm. Es besteht aus einem oder mehren Befehlen. Weil die Menge der Befehle bereits ausreichend definiert ist sieht diese Erweiterung ziemlich unspektakulär aus:
+\begin{lstlisting}
+//Programm
+P::= C 
 \end{lstlisting}
 \section*{Aufgabe 3}
 Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die die genannten Fehlerquellen:
 \begin{compactenum}
-\item Bereichsüberschreitungen
-\item Division durch Null
-\item Berechnung von read bei leerer Eingabedatei
-\item Typkonflikte
+\item [\textbf{Bereichsüberschreitungen}] Man verlässt z.B. den definierten Bereich der ganzen Zahlen, also MIN-1 oder MAX+1. 
+\item [\textbf{Division durch Null}] 
+\item [\textbf{Berechnung von read bei leerer Eingabedatei}] Wenn read eine leere Eingabedatei erhält, dann wird read entweder als skip oder Identitätsfunktion ausgeführt.
+\item [\textbf{Typkonflikte}] Eine Zahl mit dem Rückgabewert von read addieren, wenn in der Datei ein Wahrheitswert drin steht. Es muss zunächst geprüft werden, ob der Typ von T1 mit dem Typ von T2 kompatibel ist. Darüber hinaus muss die Operation auf T1 und T2 definiert sein.
 \end{compactenum}
 behandelt.
 \end{document}
