@@ -44,9 +44,9 @@ In dieser Vorlesung werden drei Formalisierungsmethoden für die Semantik von Pr
 	Man stützt die Bedeutung auf die Funktionsweise technischer und abstrakte Maschinen ab. Dazu macht man die Maschine so einfach wie möglich und erkläre die Wirkung der Befehle auf die Maschine. Diese Semantik ist ähnlich ähnliche wie die denotationelle Semantik (mathematische Notation), jedoch wirklich näher an der Maschine
 	\item [\textbf{denotationelle Semantik}] \emph{(McCarthy 1962)}:
 	Formales erfassen durch mathematische Notation. Weitgehende Abstraktion vom Zustandsraum mit einer direkten Zuordnung von syntaktischen Komponenten zu mathematischen Objekten (Semantik).
-	\item [\textbf{axiomatische Semantik}] \emph{(z.B. Hoare)}:
+	\item [\textbf{axiomatische Semantik}] \emph{(Hoare 1969)}:
 	Veränderung/Transformation von Bedingungen/Prädikaten auf dem Zustandsraum (einer abstrakten Maschine).
-	Das geschieht mit mathematischen Formeln. z.B.: Hoareformel: {Q}P{R}
+	Das geschieht mit mathematischen Formeln. z.B.: Hoareformel: $\{Q\}P\{R\}$
 \end{compactitem}
 
 \subsection{Referenzsprache}
@@ -63,7 +63,7 @@ W::= TRUE | FALSE
 // Konstanten KON
 K::= Z | W
 // Bezeichner bzw. Variablen mit Indizes
-T::= a|b|...|z|a1|a2|...|zi
+I::= a|b|...|z|a1|a2|...|zi
 // Operatoren
 OP::= + | - | * | / | mod
 // boolesche Operatoren
@@ -77,7 +77,7 @@ T::= Z  |  I  |  T1 OP T2 | read, für T1,T2 in TERM
 // boolesche Terme BT
 B::= W | T1 BOP T2 | read | not B
 // Befehle (Zustandstransformation) COM
-C::= skip | I := T | C1;C | if B then C1 else C2 | while B do C |  output T | output B
+C::= skip | I := T | C1; C | if B then C1 else C2 | while B do C |  output T | output B
 	\end{lstlisting}
 \end{compactitem}
 Warum braucht man für so eine Sprache eine formale Semantik?!\\
