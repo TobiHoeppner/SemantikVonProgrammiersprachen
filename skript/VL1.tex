@@ -70,7 +70,7 @@ OP::= + | - | * | / | mod
 BOP::= < | > | = | !> | !< | !=
 	\end{lstlisting}
 	\item [Zusätzliche Einheiten] \emph{(induktiv)}
-	Die Indizes sind dazu da das Vorkommen von Symbolen in der Struktur eindeutig zu beschreiben.
+	\marginnote{\small{Die Indizes sind dazu da das Vorkommen von Symbolen in der Struktur \emph{eindeutig} zu beschreiben.}}[1cm]
 	\begin{lstlisting}
 // Terme TERM
 T::= Z  |  I  |  T1 OP T2 | read, für T1,T2 in TERM
@@ -88,14 +88,34 @@ Ich möchte maschinell arbeiten, aber es gibt Unterspezifikationen, unklar ist d
 \item Rekursion
 \end{compactitem}
 
-\subsubsection*{Syntax ist mehrdeutig?!}
+\subsubsection*{WHILE ist mehrdeutig?}
+Ja, das zeigt folgendes Beispiel:
 \begin{lstlisting}
 while B do C1; C2
 \end{lstlisting}
-% beide Bäume zeichnen!
+wo beide Syntaxbäume gültig sind.\\
+\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
+\node [node]{while}
+	child{node [node]{B}}
+	child{node [node]{;}
+		child{ node [node]{C1}}
+		child{ node [node]{C2}}
+	};
+\end{tikzpicture}
+und
+\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
+\node [node]{;}
+	child{node [node]{while}
+		child{ node [node]{B}}
+		child{ node [node]{C1}}
+	}
+	child{node [node]{C2}};
+\end{tikzpicture}
+\\
+Um dies zu verhindern werden untergeordnete Befehle eingerückt oder geklammert.
 \begin{lstlisting}
 while B do 
-	C1; 
-	C2;
+	C1;
+	C2
 \end{lstlisting}
 

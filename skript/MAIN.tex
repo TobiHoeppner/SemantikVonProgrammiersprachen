@@ -24,6 +24,17 @@
 \usepackage{float}
 \usepackage[flushleft]{threeparttable}
 \usepackage{marginnote}
+%
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzset{
+  treenode/.style = {align=center, inner sep=1pt, text centered,font=\sffamily},
+  node/.style = {treenode, font=\sffamily\bfseries, text width=1.5em},
+  arn_r/.style = {treenode, circle, red, draw=red, 
+    text width=1.5em, very thick},% arbre rouge noir, noeud rouge
+  arn_x/.style = {treenode, rectangle, draw=black,
+    minimum width=0.5em, minimum height=0.5em}% arbre rouge noir, nil
+}
 
 % Custom Codecaptions
 \DeclareCaptionFont{white}{\color{white}}
@@ -91,6 +102,7 @@ literate=%
 % Doku: http://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes
 \newgeometry{top=2.5cm, bottom=2.5cm, outer=4cm, inner=2cm, heightrounded, marginparwidth=3.4cm, marginparsep=0.6cm}
 \include{vl1}
-\include{demo}  
+\include{vl2}
+%\include{demo} % frequently used patterns
 
 \end{document}
