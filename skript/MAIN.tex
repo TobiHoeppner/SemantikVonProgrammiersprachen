@@ -24,6 +24,30 @@
 \usepackage{float}
 \usepackage[flushleft]{threeparttable}
 \usepackage{marginnote}
+% http://latextutorials.co.uk/documentation/theorems-and-definitions/
+\usepackage{amsthm}
+\newtheoremstyle{defn}  % follow `plain` defaults but change HEADSPACE.
+  {\topsep}   % ABOVESPACE
+  {\topsep}   % BELOWSPACE
+  {\itshape}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {.}         % HEADPUNCT
+  {\newline}  % HEADSPACE. `plain` default: {5pt plus 1pt minus 1pt}
+  {}          % CUSTOM-HEAD-SPEC
+\theoremstyle{defn}
+% Theorem Styles
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Vorschlag}
+\newtheorem{corollary}[theorem]{Folge}
+% Definition Styles
+\theoremstyle{defn}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exap}{Beispiel}[section]
+\theoremstyle{rem}
+\newtheorem{rem}{Bemerkung}
+
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
