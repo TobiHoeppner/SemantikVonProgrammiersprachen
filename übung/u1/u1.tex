@@ -111,24 +111,70 @@ Die Definition der reellen Zahlen muss zur Vollständigkeit in die Konstanten un
 K::= Z | R | W
 T::= Z | R | I | T1 OP T2 | read, für T1, T2 in TERM
 \end{lstlisting}
+
+\textbf{von Hinnerk:}
+Imho sind das so nur die rationalen Zahlen, da es ja reelle Zahlen gibt, die nicht als Bruch darstellbar sind (z.b $\sqrt{2}$).
+Daher würde ich etwas wie das folgende vorschlagen:\\
+\begin{itemize}
+	\item[(i)] \textbf{Elementare Einheiten}\\
+\begin{tabular}{l l}
+			$ZIF::=0|1|...|9|0Z|1ZIF|...|9ZIF$ &Ziffern\\
+			$GA::=ZIF|-ZIF$&Ganzzahliger Anteil\\
+			$R::=G.Z$&REAL\\
+			$Z::= 0|1|\cdots|Max|-1|-2|\cdots|Min$& ZAHL$={Min,...,Max}$\\
+			$W::=\underline{true}|\underline{false}$& BOOL$={wahr,falsch}$\\
+			$K::=Z|W$& KON$=$ZAHL$\cup$BOOL\\
+			$I::=a|b|\cdots|z|a_1|\cdots|z_1|\cdots|\cdots$& Id$=$Bezeichner\\
+			$OP::=+|-|*|\%|\underline{mod}$& OP (arithmetische OP) \\
+			$BOP::=<|\leq|\geq|=|\neq|>$& BOP (Vergleichsops)\\
+\end{tabular}
+\item[(ii)]\textbf{Zusammengesetzte Einheiten}\\
+	\begin{tabular}{l l}
+		$T::=Z|I|R|T_1\, \underline{OP}\, T_2|\underline{read}$, für $T_1,T_2\in TERM$& TERM\\
+		$B::=W|\underline{not} \,B|T_1\, \underline{BOP}\, T_2|\underline{read}$, für $T_1,T_2\in BT$& BT	boolscher Ausdruck\\
+		$C::= \underline{skip}|I:=T|C_1;C_2|\underline{if}\,  B\, \underline{then}\,  C_1\,  \underline{else}\,  C_2|\underline{while}\, B\, \underline{do}\, C|\underline{output}\,  T|\underline{output}\,  B$& COM\\
+%		$P::=C$\\
+\end{tabular}
+\end{itemize}
+
+\textbf{PS:} Die Verwendung des Formats ''meines`` Skripts ist nicht als Affront gedacht, sondern resultiert daraus, dass ich zu faul war, es in Tobis Format zu transferieren.
+
+
 \section*{Aufgabe 2}
 Definieren Sie für eine geeignete Erweiterung der Sprache WHILE eine konkrete Syntax, die eindeutig ist.\\
 Zusätzlich zum If-Else wäre Switch:
 \begin{lstlisting}
 C::= switch T: case B: do C 
 \end{lstlisting}
+\textbf{Anmerkung Hinnerk:}
+Sehr gute Idee, aber ich glaube das reicht formal so noch nicht. Daher folgender Vorschlag:\\
+\begin{lstlisting}
+CASE::= case B -> do C | CASE:CASE | skip
+C::=skip|I:=T|C_1;C_2| if B then C_1 else C_2| while B do C| output T| output B| switch T: CASE
+\end{lstlisting}
+Formal muss alles aufgeführt sein (nitpicking, ich weiß), aber in deiner Ursprünglichen form ist es im Prinzip nur ein if (sogar ohne else). Man muss es so bauen, dass man es durch einsetzen zu jedem gewünschten Ausdruck expandieren kann. Bei mir kann es so wie bei dir sein (-> statt : hab ich nur gemacht, damit es deutlich ist, dass da ein Unterschied ist).
+CASE kann so aber entweder ein case sein, oder beliebig viele (durch CASE:CASE) und das skip erspart ggf. notwendige Fehlerbehandlung, wenn kein case matcht (denke ich jedenfalls).
+
 Eine weitere wirklich sinnvolle Erweiterung wäre das Programm. Es besteht aus einem oder mehren Befehlen. Weil die Menge der Befehle bereits ausreichend definiert ist sieht diese Erweiterung ziemlich unspektakulär aus:
 \begin{lstlisting}
 //Programm
 P::= C 
 \end{lstlisting}
+\textbf{Anmerkung Hinnerk:} trivial, aber iirc war das im letzten Jahr eine korrekte möglichkeit
 \section*{Aufgabe 3}
 Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die die genannten Fehlerquellen:
+\textbf{Anmerkung Hinnerk:} Ich denke es soll die Fehlerbehandlung definiert werden und nicht beschrieben werden, wie sich der Fehler äußert
 \begin{compactenum}
 \item [\textbf{Bereichsüberschreitungen}] Man verlässt z.B. den definierten Bereich der ganzen Zahlen, also MIN-1 oder MAX+1. 
+	\textbf{Hinnerk:} Nachfolger von MAX_INT ist MIN_INT, Vorgänger von MIN_INT ist MAX_INT. Ergebnis ist, dass man damit das aus z.B. C gewohnte Integer-Overflow-Verhalten bekommt.
 \item [\textbf{Division durch Null}] 
+	\textbf{Hinnerk:} Da Division durch Null nicht definiert ist, wird ein Fehler geworfen und die Programmausführung abgebrochen.
 \item [\textbf{Berechnung von read bei leerer Eingabedatei}] Wenn read eine leere Eingabedatei erhält, dann wird read entweder als skip oder Identitätsfunktion ausgeführt.
+	\textbf{Hinnerk Anmerkung:} So hat man aber immernoch uninitialisierte Werte in den Variablen, was imho zu undefiniertem Verhalten führt. Daher schlage ich folgendes vor:
+	\textbf{Hinnerk:} Im Falle einer leeren Eingabedatei liest \lstinline{read} für $B$ \lstinline{false} und für $Z$ \lstinline{0}.
 \item [\textbf{Typkonflikte}] Eine Zahl mit dem Rückgabewert von read addieren, wenn in der Datei ein Wahrheitswert drin steht. Es muss zunächst geprüft werden, ob der Typ von T1 mit dem Typ von T2 kompatibel ist. Darüber hinaus muss die Operation auf T1 und T2 definiert sein.
+	\textbf{Hinnerk:} Im Falle von \lstinline{read} gibt es keine Typfehler, da Variablen in WHILE nicht getypt sind.
+	Ansonsten sehe ich zwei Möglichkeiten: wird ein $B$ erwartet, aber ein $T$ oder ein $Z$ gelesen, wird $0$ als $false$ und alles andere als $true$ verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
 \end{compactenum}
 behandelt.
 \end{document}
