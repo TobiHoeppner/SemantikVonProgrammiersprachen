@@ -76,13 +76,14 @@
 \lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
 \chead{}
 \rhead{\@date \\ \thepage \ von \pageref{LastPage} }
-\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
+\cfoot{}
+%\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
 
 \renewcommand{\maketitle}{}
 \newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
 \renewcommand{\familydefault}{\sfdefault}
  
-\author{Florian Späth, Hinnerk van Bruinehsen, Tobias Höppner}
+\author{Florian Ritzel, Hinnerk van Bruinehsen, Tobias Höppner}
 \title{SvP - Übung 01. }
 \date{Sommersemester 2014}
 
@@ -149,12 +150,12 @@ T::= Z | R | I | T1 OP T2 | read, für T1, T2 in TERM
 %\textbf{PS:} Die Verwendung des Formats ''meines`` Skripts ist nicht als Affront gedacht, sondern resultiert daraus, dass ich zu faul war, es in Tobis Format zu transferieren. (Tobi: wayne)
 \section*{Aufgabe 2}
 Definieren Sie für eine geeignete Erweiterung der Sprache WHILE eine konkrete Syntax, die eindeutig ist.\\
-Zusätzlich zum If-Else wäre Switch ganz praktisch:
+Zusätzlich zum \lstinline!if else! wäre \lstinline!switch! ganz praktisch:
 \begin{lstlisting}
 C::= switch T: CASE // dazu kommen die anderen Definitionen aus der VL.
 CASE::= CASE CASE | case B do C | default C
 \end{lstlisting}
-Man könnte beim \lstinline!CASE! noch ein einfaches \lstinline!skip! einfügen. Dann hat man ebenfalls das Standardverhalten von C, wenn kein \lstinline!Default! angegeben wurde.
+Man könnte beim \lstinline!CASE! noch ein einfaches \lstinline!skip! einfügen. Dann hat man ebenfalls das Standardverhalten von C, wenn kein \lstinline!default! angegeben wurde.\\
 %\textbf{Anmerkung Hinnerk:}
 %Sehr gute Idee, aber ich glaube das reicht formal so noch nicht. Daher folgender Vorschlag:\\
 %\begin{lstlisting}
@@ -183,7 +184,7 @@ Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die
 	Da Division durch Null nicht definiert ist, wird ein Fehler geworfen und die Programmausführung abgebrochen.\\
 \item [\textbf{Berechnung von read bei leerer Eingabedatei}] %Wenn read eine leere Eingabedatei erhält, dann wird read entweder als skip oder Identitätsfunktion ausgeführt.
 %	\\ \textbf{Hinnerk Anmerkung:} So hat man aber immernoch uninitialisierte Werte in den Variablen, was imho zu undefiniertem Verhalten führt. Daher schlage ich folgendes vor:
-	Im Falle einer leeren Eingabedatei liest \lstinline!read! für \lstinline!B! \lstinline!false! und für \lstinline!Z! \lstinline!0!.
+	Im Falle einer leeren Eingabedatei liest \lstinline!read! für \lstinline!B! \lstinline!false! und für \lstinline!Z! \lstinline!0!.\\
 \item [\textbf{Typkonflikte}] Es muss zunächst geprüft werden, ob der Typ von \lstinline!T1! mit dem Typ von \lstinline!T2! kompatibel ist. Darüber hinaus muss die Operation \lstinline!OP! auf \lstinline!T1! und \lstinline!T2! definiert sein.\\
 Weitere Möglichkeiten: wird ein \lstinline!B! erwartet, aber ein \lstinline!T! oder ein \lstinline!Z! gelesen, wird \lstinline!0! als \lstinline!FALSE! und alles andere als \lstinline!TRUE! verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
 \end{compactenum}
