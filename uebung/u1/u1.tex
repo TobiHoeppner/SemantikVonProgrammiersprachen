@@ -25,45 +25,46 @@
 \definecolor{darkblue}{rgb}{0,0,.6}
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \definecolor{darkred}{rgb}{0.5,0,0}
-\lstset{language=C, 
-basicstyle=\LSTfont,
-commentstyle=\color{darkgreen}, 
-keywordstyle=\color{darkblue}\bfseries, 
-breaklines=true,
-tabsize=2,
-xleftmargin=\fboxsep,
-xrightmargin=-\fboxsep,
-numbers=left,
-numberstyle=\tiny\color{gray},
-stepnumber=1,
-numbersep=5pt,
-frame=bt,
-stringstyle=\color{darkred},
-showstringspaces=false,
-rulecolor= \color{gray},
-emph=[1]%
-{%  
-    then, not%
-},
-emphstyle=[1]{\color{darkblue}\bfseries},
-emph=[2]%
-{%  Datatypes
-    %
-},
-emphstyle=[2]{\color{darkblue}\bfseries},
-emph=[3]%
-{%  
-    %
-},
-emphstyle=[3]{\color{darkred}\bfseries},
-literate=%
-{Ö}{{\"O}}1
-{Ä}{{\"A}}1
-{Ü}{{\"U}}1
-{ß}{{\ss}}2
-{ü}{{\"u}}1
-{ä}{{\"a}}1
-{ö}{{\"o}}1
+\lstset{%
+	language=C, 
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen}, 
+	keywordstyle=\color{darkblue}\bfseries, 
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%  
+	    then, not%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%  
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
 }
 \providecommand{\tabularnewline}{\\}
 
@@ -72,17 +73,17 @@ literate=%
 \usepackage{lastpage}
 \makeatletter
 
-\lhead{\textbf{\@title} \\ \@author}
+\lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
 \chead{}
-\rhead{\@date \\ \thepage \ von \pageref{LastPage}}
-\cfoot{}
+\rhead{\@date \\ \thepage \ von \pageref{LastPage} }
+\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
 
 \renewcommand{\maketitle}{}
 \newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
 \renewcommand{\familydefault}{\sfdefault}
  
-\author{Tobias Höppner}
-\title{SvP - Übung 01}
+\author{Florian Späth, Hinnerk van Bruinehsen, Tobias Höppner}
+\title{SvP - Übung 01. }
 \date{Sommersemester 2014}
 
 \begin{document} 
@@ -118,76 +119,72 @@ K::= Z | R | W
 T::= Z | R | I | T1 OP T2 | read, für T1, T2 in TERM
 \end{lstlisting}
 
-\textbf{von Hinnerk:}
-Imho sind das so nur die rationalen Zahlen, da es ja reelle Zahlen gibt, die nicht als Bruch darstellbar sind (z.b $\sqrt{2}$).
-Daher würde ich etwas wie das folgende vorschlagen:\\
-\textbf{von Tobi:}
-Ja, wesentlicher Punkt! ;) Ich habe meine irrationalen Zahlen auskommentiert. Bei deiner Lösung bist aus meiner Sicht etwas durcheinander gekommen. So wie ich das sehe könnte man bei dir auch sagen GA = Z. Bei deiner Lösung ist es möglich 0.-1 zu erzeugen. Hinter dem Komma dürfen nur natürliche Zahlen stehen.\\ 
-\begin{itemize}
-	\item[(i)] \textbf{Elementare Einheiten}\\
-\begin{tabular}{l l}
-			$ZIF::=0|1|...|9|0Z|1ZIF|...|9ZIF$ &Ziffern\\
-			$GA::=ZIF|-ZIF$&Ganzzahliger Anteil\\
-			$R::=GA.Z$&REAL\\
-			$Z::= 0|1|\cdots|Max|-1|-2|\cdots|Min$& ZAHL$={Min,...,Max}$\\
-			$W::=\underline{true}|\underline{false}$& BOOL$={wahr,falsch}$\\
-			$K::=Z|W$& KON$=$ZAHL$\cup$BOOL\\
-			$I::=a|b|\cdots|z|a_1|\cdots|z_1|\cdots|\cdots$& Id$=$Bezeichner\\
-			$OP::=+|-|*|\%|\underline{mod}$& OP (arithmetische OP) \\
-			$BOP::=<|\leq|\geq|=|\neq|>$& BOP (Vergleichsops)\\
-\end{tabular}
-\item[(ii)]\textbf{Zusammengesetzte Einheiten}\\
-	\begin{tabular}{l l}
-		$T::=Z|I|R|T_1\, \underline{OP}\, T_2|\underline{read}$, für $T_1,T_2\in TERM$& TERM\\
-		$B::=W|\underline{not} \,B|T_1\, \underline{BOP}\, T_2|\underline{read}$, für $T_1,T_2\in BT$& BT	boolscher Ausdruck\\
-		$C::= \underline{skip}|I:=T|C_1;C_2|\underline{if}\,  B\, \underline{then}\,  C_1\,  \underline{else}\,  C_2|\underline{while}\, B\, \underline{do}\, C|\underline{output}\,  T|\underline{output}\,  B$& COM\\
-%		$P::=C$\\
-\end{tabular}
-\end{itemize}
-
-\textbf{PS:} Die Verwendung des Formats ''meines`` Skripts ist nicht als Affront gedacht, sondern resultiert daraus, dass ich zu faul war, es in Tobis Format zu transferieren. (Tobi: wayne)
-
-
+%\textbf{von Hinnerk:}
+%Imho sind das so nur die rationalen Zahlen, da es ja reelle Zahlen gibt, die nicht als Bruch darstellbar sind (z.b $\sqrt{2}$).
+%Daher würde ich etwas wie das folgende vorschlagen:\\
+%\textbf{von Tobi:}
+%Ja, wesentlicher Punkt! ;) Ich habe meine irrationalen Zahlen auskommentiert. Bei deiner Lösung bist aus meiner Sicht etwas durcheinander gekommen. So wie ich das sehe könnte man bei dir auch sagen GA = Z. Bei deiner Lösung ist es möglich 0.-1 zu erzeugen. Hinter dem Komma dürfen nur natürliche Zahlen stehen.\\ 
+%\begin{itemize}
+%	\item[(i)] \textbf{Elementare Einheiten}\\
+%\begin{tabular}{l l}
+%			$ZIF::=0|1|...|9|0Z|1ZIF|...|9ZIF$ &Ziffern\\
+%			$GA::=ZIF|-ZIF$&Ganzzahliger Anteil\\
+%			$R::=GA.Z$&REAL\\
+%			$Z::= 0|1|\cdots|Max|-1|-2|\cdots|Min$& ZAHL$={Min,...,Max}$\\
+%			$W::=\underline{true}|\underline{false}$& BOOL$={wahr,falsch}$\\
+%			$K::=Z|W$& KON$=$ZAHL$\cup$BOOL\\
+%			$I::=a|b|\cdots|z|a_1|\cdots|z_1|\cdots|\cdots$& Id$=$Bezeichner\\
+%			$OP::=+|-|*|\%|\underline{mod}$& OP (arithmetische OP) \\
+%			$BOP::=<|\leq|\geq|=|\neq|>$& BOP (Vergleichsops)\\
+%\end{tabular}
+%\item[(ii)]\textbf{Zusammengesetzte Einheiten}\\
+%	\begin{tabular}{l l}
+%		$T::=Z|I|R|T_1\, \underline{OP}\, T_2|\underline{read}$, für $T_1,T_2\in TERM$& TERM\\
+%		$B::=W|\underline{not} \,B|T_1\, \underline{BOP}\, T_2|\underline{read}$, für $T_1,T_2\in BT$& BT	boolscher Ausdruck\\
+%		$C::= \underline{skip}|I:=T|C_1;C_2|\underline{if}\,  B\, \underline{then}\,  C_1\,  \underline{else}\,  C_2|\underline{while}\, B\, \underline{do}\, C|\underline{output}\,  T|\underline{output}\,  B$& COM\\
+%%		$P::=C$\\
+%\end{tabular}
+%\end{itemize}
+%
+%\textbf{PS:} Die Verwendung des Formats ''meines`` Skripts ist nicht als Affront gedacht, sondern resultiert daraus, dass ich zu faul war, es in Tobis Format zu transferieren. (Tobi: wayne)
 \section*{Aufgabe 2}
 Definieren Sie für eine geeignete Erweiterung der Sprache WHILE eine konkrete Syntax, die eindeutig ist.\\
-Zusätzlich zum If-Else wäre Switch:
+Zusätzlich zum If-Else wäre Switch ganz praktisch:
 \begin{lstlisting}
-C::= switch T: CASE
+C::= switch T: CASE // dazu kommen die anderen Definitionen aus der VL.
 CASE::= CASE CASE | case B do C | default C
 \end{lstlisting}
-\textbf{Anmerkung Hinnerk:}
-Sehr gute Idee, aber ich glaube das reicht formal so noch nicht. Daher folgender Vorschlag:\\
-\begin{lstlisting}
-CASE::= case B -> do C | CASE:CASE | skip
-C::=skip|I:=T|C_1;C_2| if B then C_1 else C_2| while B do C| output T| output B| switch T: CASE
-\end{lstlisting}
-Formal muss alles aufgeführt sein (nitpicking, ich weiß), aber in deiner Ursprünglichen form ist es im Prinzip nur ein if (sogar ohne else). Man muss es so bauen, dass man es durch einsetzen zu jedem gewünschten Ausdruck expandieren kann. Bei mir kann es so wie bei dir sein (-> statt : hab ich nur gemacht, damit es deutlich ist, dass da ein Unterschied ist).
-CASE kann so aber entweder ein case sein, oder beliebig viele (durch CASE:CASE) und das skip erspart ggf. notwendige Fehlerbehandlung, wenn kein case matcht (denke ich jedenfalls).\\
-\textbf{von Tobi:}
-Verstehe, bei genauerem überlegen würde ich aus dem skip ein default C machen.\\
-
-Eine weitere wirklich sinnvolle Erweiterung wäre das Programm. Es besteht aus einem oder mehren Befehlen. Weil die Menge der Befehle bereits ausreichend definiert ist sieht diese Erweiterung ziemlich unspektakulär aus:
+Man könnte beim \lstinline!CASE! noch ein einfaches \lstinline!skip! einfügen. Dann hat man ebenfalls das Standardverhalten von C, wenn kein \lstinline!Default! angegeben wurde.
+%\textbf{Anmerkung Hinnerk:}
+%Sehr gute Idee, aber ich glaube das reicht formal so noch nicht. Daher folgender Vorschlag:\\
+%\begin{lstlisting}
+%CASE::= case B -> do C | CASE:CASE | skip
+%C::=skip|I:=T|C_1;C_2| if B then C_1 else C_2| while B do C| output T| output B| switch T: CASE
+%\end{lstlisting}
+%Formal muss alles aufgeführt sein (nitpicking, ich weiß), aber in deiner Ursprünglichen form ist es im Prinzip nur ein if (sogar ohne else). Man muss es so bauen, dass man es durch einsetzen zu jedem gewünschten Ausdruck expandieren kann. Bei mir kann es so wie bei dir sein (-> statt : hab ich nur gemacht, damit es deutlich ist, dass da ein Unterschied ist).
+%CASE kann so aber entweder ein case sein, oder beliebig viele (durch CASE:CASE) und das skip erspart ggf. notwendige Fehlerbehandlung, wenn kein case matcht (denke ich jedenfalls).\\
+%\textbf{von Tobi:}
+%Verstehe, bei genauerem überlegen würde ich aus dem skip ein default C machen.\\
+Eine weitere (, triviale, aber) wirklich(!) sinnvolle Erweiterung wäre das \emph{Programm}. Es besteht aus einem oder mehren Befehlen. Weil die Menge der Befehle bereits ausreichend definiert ist sieht diese Erweiterung ziemlich unspektakulär aus:
 \begin{lstlisting}
 //Programm
 P::= C 
 \end{lstlisting}
-\textbf{Anmerkung Hinnerk:} trivial, aber iirc war das im letzten Jahr eine korrekte möglichkeit
+%\textbf{Anmerkung Hinnerk:} trivial, aber iirc war das im letzten Jahr eine korrekte möglichkeit
 \section*{Aufgabe 3}
-Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die die genannten Fehlerquellen:\\
-\textbf{Anmerkung Hinnerk:} Ich denke es soll die Fehlerbehandlung definiert werden und nicht beschrieben werden, wie sich der Fehler äußert\\
-\textbf{Anmerkung Tobi:} Ja, dachte ich auch, nur dazu muss man die Fehlerquelle (informell) spezifizieren. (So behält man sich die Chance vor, das man seine eigene informelle Spezifikation erfüllt hat)\\
+Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die die genannten Fehlerquellen behandelt.\\
+%\textbf{Anmerkung Hinnerk:} Ich denke es soll die Fehlerbehandlung definiert werden und nicht beschrieben werden, wie sich der Fehler äußert\\
+%\textbf{Anmerkung Tobi:} Ja, dachte ich auch, nur dazu muss man die Fehlerquelle (informell) spezifizieren. (So behält man sich die Chance vor, das man seine eigene informelle Spezifikation erfüllt hat)\\
 \begin{compactenum}
-\item [\textbf{Bereichsüberschreitungen}] 1. Man verlässt z.B. den definierten Bereich der ganzen Zahlen, also MIN-1 oder MAX+1: 
-	\\ \textbf{Hinnerk:} Nachfolger von MAX ist MIN, Vorgänger von MIN ist MAX. Ergebnis ist, dass man damit das aus z.B. C gewohnte Integer-Overflow-Verhalten bekommt.
-	\\ 2. Über das Ende einer Zeile (einer Datei) hinaus lesen:
-\item [\textbf{Division durch Null}] Wenn T1 / T2 ein Ausdruck ist, darf T2 keine 0 sein.
-	\\ \textbf{Hinnerk:} Da Division durch Null nicht definiert ist, wird ein Fehler geworfen und die Programmausführung abgebrochen.
-\item [\textbf{Berechnung von read bei leerer Eingabedatei}] Wenn read eine leere Eingabedatei erhält, dann wird read entweder als skip oder Identitätsfunktion ausgeführt.
-	\\ \textbf{Hinnerk Anmerkung:} So hat man aber immernoch uninitialisierte Werte in den Variablen, was imho zu undefiniertem Verhalten führt. Daher schlage ich folgendes vor:
-	\\ \textbf{Hinnerk:} Im Falle einer leeren Eingabedatei liest \lstinline{read} für $B$ \lstinline{false} und für $Z$ \lstinline{0}.
-\item [\textbf{Typkonflikte}] Eine Zahl mit dem Rückgabewert von read addieren, wenn in der Datei ein Wahrheitswert drin steht. Es muss zunächst geprüft werden, ob der Typ von T1 mit dem Typ von T2 kompatibel ist. Darüber hinaus muss die Operation auf T1 und T2 definiert sein.
-	\\ \textbf{Hinnerk:} Im Falle von \lstinline{read} gibt es keine Typfehler, da Variablen in WHILE nicht getypt sind.
-	Ansonsten sehe ich zwei Möglichkeiten: wird ein $B$ erwartet, aber ein $T$ oder ein $Z$ gelesen, wird $0$ als $false$ und alles andere als $true$ verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
+\item [\textbf{Bereichsüberschreitungen}] Zwei Fälle: \\\textbf{1.} Man verlässt z.B. den definierten Bereich der ganzen Zahlen, also \lstinline!MIN-1! oder \lstinline!MAX+1!:\\
+	Nachfolger von \lstinline!MAX! ist \lstinline!MIN!, Vorgänger von \lstinline!MIN! ist \lstinline!MAX!. Ergebnis ist, dass man damit das aus z.B. C gewohnte Integer-Overflow-Verhalten bekommt.
+	\\ \textbf{2.} Über das Ende einer Zeile oder einer Datei hinaus lesen:\\ \lstinline!read! sollte \lstinline!\r\n! für Zeilen oder \lstinline!EOF! für Dateien erkennen und je nach Spezifikation nach Parsen dieser Flags beendet werden. Existieren diese Steuerzeichen nicht, so muss read abbrechen. Abbruchbedingungen müssen in diesem Fall genauer spezifiziert werden. Das Verhalten beim Abbruch könnte ähnlich dem einer leeren Eingabedatei sein oder \lstinline!read! gibt im Fehlerfall eine \lstinline!-1! zurück.\\	
+\item [\textbf{Division durch Null}] Wenn \lstinline!OP! in \lstinline!T1 OP T2! die Division ist, dann darf \lstinline!T2! keine Null sein.\\
+	Da Division durch Null nicht definiert ist, wird ein Fehler geworfen und die Programmausführung abgebrochen.\\
+\item [\textbf{Berechnung von read bei leerer Eingabedatei}] %Wenn read eine leere Eingabedatei erhält, dann wird read entweder als skip oder Identitätsfunktion ausgeführt.
+%	\\ \textbf{Hinnerk Anmerkung:} So hat man aber immernoch uninitialisierte Werte in den Variablen, was imho zu undefiniertem Verhalten führt. Daher schlage ich folgendes vor:
+	Im Falle einer leeren Eingabedatei liest \lstinline!read! für \lstinline!B! \lstinline!false! und für \lstinline!Z! \lstinline!0!.
+\item [\textbf{Typkonflikte}] Es muss zunächst geprüft werden, ob der Typ von \lstinline!T1! mit dem Typ von \lstinline!T2! kompatibel ist. Darüber hinaus muss die Operation \lstinline!OP! auf \lstinline!T1! und \lstinline!T2! definiert sein.\\
+Weitere Möglichkeiten: wird ein \lstinline!B! erwartet, aber ein \lstinline!T! oder ein \lstinline!Z! gelesen, wird \lstinline!0! als \lstinline!FALSE! und alles andere als \lstinline!TRUE! verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
 \end{compactenum}
-behandelt.
 \end{document}
