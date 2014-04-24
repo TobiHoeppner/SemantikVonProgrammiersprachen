@@ -1,2 +1,118 @@
 \section{Vorlesung 2 - 24.04.}
-\subsection{weit0r!}
+\subsection{Operationelle Symantik am Beispiel der Terme}
+\emph{(Inhalt ist nicht im Lehrbuch!)}
+%notes:
+% auf höhe interpreter gfx!
+\marginnote{\textbf{AST:} abstract syntaxtree}[1cm]
+
+Es ist wichtig die Struktur von einer Sprache zu kennen, erst dann kann man eine korrekte Interpretation anfertigen!\\
+Grundsätzlich gibt es zwei Methoden:
+\begin{compactitem}
+	\item[Übersetzer] Zu jedem Programm ein äquivalentes Maschinenprogramm erstellen.
+	% gfx:übersetzer einfügen!
+		
+	\item[Interpreter]
+	%gfx:interpreter einfügen!
+\end{compactitem}
+\subsubsection{Terme der Sprache WHILE}
+\begin{lstlisting}
+// Terme TERM
+T::= Z  |  I  |  T1 OP T2 | read, für T1,T2 in TERM
+\end{lstlisting}
+
+\subsubsection{Beispiel: AST}
+Der Ausdruck
+\begin{lstlisting}
+3 + read - x 
+\end{lstlisting}
+wird zu:\\
+\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
+\node [node]{-}
+	child{node [node]{+}
+		child{ node [node]{3}}
+		child{ node [node]{read}}
+	}
+	child{node [node]{x}};
+\end{tikzpicture}
+
+\subsubsection{Informelle Semantik}
+Interpretation nur möglich, wenn Speicher und Eingabe vorgelegt sind.\\
+Annahme: wir bekommen alles als AST und wir bekommen eine Eingabe, die auch von der Maschine unterstützt wird!
+\begin{compactitem}
+	\item[Übersetzer] 
+		\textbf{Idee:} depth-first-left-to-right-postorder Traversierung des AST
+		Unser Beispiel:\\
+		\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
+		\node [node]{-}
+			child{node [node]{+}
+				child{ node [node]{3}}
+				child{ node [node]{read}}
+			}
+			child{node [node]{x}};
+		\end{tikzpicture}
+		wird übersetzt zu:\\
+	\begin{lstlisting}
+PUSH 3
+READ
+ADD
+LOAD x
+SUB
+		\end{lstlisting}
+		Zustandsveränderungen:\\
+		aktueller Zustand (siehe Bild Architektur!):
+%e -> epsilon
+<e|S|8.5. ...> -PUSH 3> <3.|S|8.5. ...> -READ> <-8.3-e|S|5. ...> -ADD> <3+(-8).e|S|5. ...> -LOAD x> <2.-5.e|S| ...5> -SUB> <-7.e|S|5...>
+
+Semantik eines Terms T zu geg. Speicher S und Eingabe E ist die Spitze des Wertekellers(STACK) nach Ausführung von trans T auf <e|S|E>, falls diese Ausführung fehlerfrei läuft, sonst Fehler!\\
+	\item[Interpreter] (abstrakte Maschine beinhaltet eine Komponente (Kontrollkeller), in der ASTs in einem Keller gespeichert werden können.)
+	\begin{compactitem}
+		\item Kontrollkeller
+		\item Zustand der abstrakten Maschine hat Komponenten
+			\begin{compactitem}
+			%TODO mathe gedöns einfügen!
+				\item Wertekeller W ($\in ZAHL*$)
+				\item Speicher S ($S \in [ID \rightarrow Zahl]$)
+				\item Kontrollkeller K ($ \in (AST \cup OP)*$)
+				\item Eingabe E ($\in ZAHL*$)
+			\end{compactitem}
+	\end{compactitem}
+		Zur Formalisierung der Semantik über die abstrakte Maschine mit dem Zustandsraum Z durch Angabe von:
+		\begin{compactitem}
+			\item[(i)] einem Anfangszustand $Z_{T,S,E}$ für jeden Term $T$, Speicher $S$ und Eingabe $E$.
+			\item[(ii)] eine Zustandsüberführungsfunktion $\Delta : Z \rightarrow Z$ (partiell)
+			\item[(iii)] Erklärung der Semantik über Iteration von $\Delta$		
+		\end{compactitem}
+		für Terme aus WHILE:\\
+			\begin{compactitem}
+			% e -> epsilon!
+				\item[(i)]	$Z_{T_0,S_0,E_0} := <e|S_0|T_0.e|E_0>$
+				\item[(ii)] $\Delta$ per Induktion über die Struktur der Kontrollkellerspitze\\
+					$\Delta <W|S|n.K|E> = <n.W|S|K|E>$ für alle $n \in ZAHL, W,S,E$ wie oben.\\
+					$\Delta <W|S|x.K|E> = <s(x).W|S|K|E>$ für alle $x \in ID$\\
+					$\Delta <W|S|read.K|n.E> = <n.W|S|K|E>$ für alle $n \in ZAHL$\\
+					$\Delta <W|S|T_1 OP T_2.K|E> = <W|S|T_1.T_2.OP.K|E>$ \\
+					$\Delta <n_2.n_1.W|S|OP.K|E> = <n_1 OP n_2.W|S|K|E>$ $n_1, n_2 \in ZAHL$ falls $n_1 OP n_2$ definiert ist.\\			
+				\item[(iii)] Die Semantik eines (beliebigen) Terms T im Bezug auf einem Speicher S und eine Eingabe E ist $n \in ZAHL$, wenn $\Delta^k Z_{T,S,E} = <n.e|S|e|E'>$ für beliebige $E' \in Zahl*$, undefiniert sonst!\\ 		
+			\end{compactitem}		
+\end{compactitem}
+
+\subsubsection*{Architektur der abst. Maschine}
+% gfx architektur!
+
+\subsubsection*{Befehlssatz}
+\begin{lstlisting}
+// Stack und Speicher Operationen
+READ 		// nimm Zahl von Eingabe, lege auf Stack, rücke Zeiger um eins weiter
+LOAD x		// nimm Inhalt aus Speicher mit symbolischer Adresse x und lege auf Stack
+PUSH n		// für jede Zahl aus N lege n auf Stack
+(STORE x) // belegt Speicher mit der symbolischer Adresse x 
+(GOTO n) 	// bedingter Sprung
+// arithmetische Operationen
+ADD
+MULT
+SUB
+\end{lstlisting}
+
+
+
+

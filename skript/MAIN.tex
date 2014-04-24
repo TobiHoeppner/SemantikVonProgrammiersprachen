@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-\usepackage{MyriadPro}
+%\usepackage{MyriadPro}
 \usepackage[scaled]{beramono}
 \newcommand\Small{\fontsize{10.5}{10.5}\selectfont}
 \newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-20}\lsstyle}
@@ -75,48 +75,50 @@
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white,font={bf,footnotesize}}
 
 % Code Listing Style
+%TODO MATHESCAPE für Indizes!
 \definecolor{darkblue}{rgb}{0,0,.6}
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \definecolor{darkred}{rgb}{0.5,0,0}
-\lstset{language=C, 
-basicstyle=\LSTfont,
-commentstyle=\color{darkgreen}, 
-keywordstyle=\color{darkblue}\bfseries, 
-breaklines=true,
-tabsize=2,
-xleftmargin=\fboxsep,
-xrightmargin=-\fboxsep,
-numbers=left,
-numberstyle=\tiny\color{gray},
-stepnumber=1,
-numbersep=5pt,
-frame=bt,
-stringstyle=\color{darkred},
-showstringspaces=false,
-rulecolor= \color{gray},
-emph=[1]%
-{%  
-    then%
-},
-emphstyle=[1]{\color{darkblue}\bfseries},
-emph=[2]%
-{%  Datatypes
-    %
-},
-emphstyle=[2]{\color{darkblue}\bfseries},
-emph=[3]%
-{%  
-    %
-},
-emphstyle=[3]{\color{darkred}\bfseries},
-literate=%
-{Ö}{{\"O}}1
-{Ä}{{\"A}}1
-{Ü}{{\"U}}1
-{ß}{{\ss}}2
-{ü}{{\"u}}1
-{ä}{{\"a}}1
-{ö}{{\"o}}1
+\lstset{%
+	language=C, 
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen}, 
+	keywordstyle=\color{darkblue}\bfseries, 
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%  
+	    then%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%  
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
 }
 
 \renewcommand{\familydefault}{\sfdefault}
