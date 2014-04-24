@@ -60,12 +60,10 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \tikzset{
-  treenode/.style = {align=center, inner sep=1pt, text centered,font=\sffamily},
-  node/.style = {treenode, font=\sffamily\bfseries, text width=1.5em},
-  arn_r/.style = {treenode, circle, red, draw=red, 
-    text width=1.5em, very thick},% arbre rouge noir, noeud rouge
-  arn_x/.style = {treenode, rectangle, draw=black,
-    minimum width=0.5em, minimum height=0.5em}% arbre rouge noir, nil
+	treenode/.style = {align=center, inner sep=1pt, text centered,font=\sffamily},
+	node/.style = {treenode, font=\sffamily\bfseries, text width=1.5em},
+	circ/.style = {treenode, circle, draw=black, text width=1.5em},
+	rect/.style = {treenode, rectangle, draw=black, text width=1.5em, minimum width=0.5em, minimum height=0.5em}
 }
 
 % Custom Codecaptions

@@ -10,7 +10,12 @@ Grundsätzlich gibt es zwei Methoden:
 \begin{compactitem}
 	\item[Übersetzer] Zu jedem Programm ein äquivalentes Maschinenprogramm erstellen.
 	% gfx:übersetzer einfügen!
-		
+\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
+\node [cric](prog){Programm}
+\node [rect](comp){Übersetzer (syntaxanalyse)}
+\node [cric](prog){Programm}
+
+\end{tikzpicture}		
 	\item[Interpreter]
 	%gfx:interpreter einfügen!
 \end{compactitem}
