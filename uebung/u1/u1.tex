@@ -187,13 +187,15 @@ Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die
 %	\\ \textbf{Hinnerk Anmerkung:} So hat man aber immernoch uninitialisierte Werte in den Variablen, was imho zu undefiniertem Verhalten führt. Daher schlage ich folgendes vor:
 	Im Falle einer leeren Eingabedatei liest \lstinline!read! für \lstinline!B! \lstinline!false! und für \lstinline!Z! \lstinline!0!.\\
 \item [\textbf{Typkonflikte}] Es muss zunächst geprüft werden, ob der Typ von \lstinline!T1! mit dem Typ von \lstinline!T2! kompatibel ist. Darüber hinaus muss die Operation \lstinline!OP! auf \lstinline!T1! und \lstinline!T2! definiert sein.\\
-Weitere Möglichkeiten: wird ein \lstinline!B! erwartet, aber ein \lstinline!T! oder ein \lstinline!Z! gelesen, wird \lstinline!0! als \lstinline!FALSE! und alles andere als \lstinline!TRUE! verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
+Weitere Möglichkeiten: wird ein \lstinline!B! erwartet, aber ein \lstinline!T! oder ein \lstinline!Z! gelesen, wird \lstinline!0! als \lstinline!FALSE! und alles andere als \lstinline!TRUE! verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.\\
 \end{compactenum}
-\textbf{MUSTERLÖSUNG AUS DEM TUTORIUM:}
-\begin{compactenum}
+
+\textbf{MUSTERLÖSUNG AUS DEM TUTORIUM:}\\
+\begin{compactitem}
 	\item [\textbf{Bereichsüberschreitungen}] Fehler werfen, Überlauf, oder Typ erweitern.
 	\item [\textbf{Division durch Null}] NaN, infinity, Fehler
 	\item [\textbf{Berechnung von read bei leerer Eingabedatei}] 0, False, Fehler, EOF
 	\item [\textbf{Typkonflikte}] Fehler, implizite Casts, irgendwas ausrechnen (42!!!)
 \end{compactitem}
+
 \end{document}
