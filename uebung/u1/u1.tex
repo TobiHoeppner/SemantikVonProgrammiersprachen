@@ -119,7 +119,8 @@ Die Definition der reellen Zahlen muss zur Vollständigkeit in die Konstanten un
 K::= Z | R | W
 T::= Z | R | I | T1 OP T2 | read, für T1, T2 in TERM
 \end{lstlisting}
-
+\textbf{MUSTERLÖSUNG AUS DEM TUTORIUM:}
+siehe oben.\\
 %\textbf{von Hinnerk:}
 %Imho sind das so nur die rationalen Zahlen, da es ja reelle Zahlen gibt, die nicht als Bruch darstellbar sind (z.b $\sqrt{2}$).
 %Daher würde ich etwas wie das folgende vorschlagen:\\
@@ -188,4 +189,11 @@ Formulieren Sie informell eine Präzisierung der angegebenen WHILE-Semantik, die
 \item [\textbf{Typkonflikte}] Es muss zunächst geprüft werden, ob der Typ von \lstinline!T1! mit dem Typ von \lstinline!T2! kompatibel ist. Darüber hinaus muss die Operation \lstinline!OP! auf \lstinline!T1! und \lstinline!T2! definiert sein.\\
 Weitere Möglichkeiten: wird ein \lstinline!B! erwartet, aber ein \lstinline!T! oder ein \lstinline!Z! gelesen, wird \lstinline!0! als \lstinline!FALSE! und alles andere als \lstinline!TRUE! verstanden (analog zur C Semantik). Alternativ führt jeder Typfehler zu einem Fehler und das Programm wird an der Stelle des Fehlers abgebrochen.
 \end{compactenum}
+\textbf{MUSTERLÖSUNG AUS DEM TUTORIUM:}
+\begin{compactenum}
+	\item [\textbf{Bereichsüberschreitungen}] Fehler werfen, Überlauf, oder Typ erweitern.
+	\item [\textbf{Division durch Null}] NaN, infinity, Fehler
+	\item [\textbf{Berechnung von read bei leerer Eingabedatei}] 0, False, Fehler, EOF
+	\item [\textbf{Typkonflikte}] Fehler, implizite Casts, irgendwas ausrechnen (42!!!)
+\end{compactitem}
 \end{document}
