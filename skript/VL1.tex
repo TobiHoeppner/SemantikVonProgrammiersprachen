@@ -56,7 +56,7 @@ Um alle drei Formalisierungsmethoden zu betrachten nutzen wir die Referenzsprach
 \emph{(Wie ist die Sprache grammatikalisch aufgebaut?!)}
 \begin{compactitem}
 	\item [Elementare Einheiten] \emph{}
-	\begin{lstlisting}
+	\begin{lstlisting}[mathescape]
 // ganze Zahlen (endlicher Ausschnitt der ganzen Zahlen MIN+1 .. MAX)
 Z::= 0 |1|...|MAX|-1|-2|...|MIN 
 // Wahrheitswerte BOOL
@@ -64,7 +64,7 @@ W::= TRUE | FALSE
 // Konstanten KON
 K::= Z | W
 // Bezeichner bzw. Variablen mit Indizes
-I::= a|b|...|z|a1|a2|...|zi
+I::= a|b|...|z|a$_1$|a$_2$|...|z$_i$
 // Operatoren
 OP::= + | - | * | / | mod
 // boolesche Operatoren
@@ -72,13 +72,13 @@ BOP::= < | > | = | !> | !< | !=
 	\end{lstlisting}
 	\item [Zusätzliche Einheiten] \emph{(induktiv)}
 	\marginnote{\small{Die Indizes sind dazu da das Vorkommen von Symbolen in der Struktur \emph{eindeutig} zu beschreiben.}}[1cm]
-	\begin{lstlisting}
+	\begin{lstlisting}[mathescape]
 // Terme TERM
-T::= Z  |  I  |  T1 OP T2 | read, für T1,T2 in TERM
+T::= Z  |  I  |  T$_1$ OP T$_2$ | READ, für T$_1$,T$_2$ in TERM
 // boolesche Terme BT
-B::= W | T1 BOP T2 | read | not B
+B::= W | T$_1$ BOP T$_2$ | read | not B
 // Befehle (Zustandstransformation) COM
-C::= skip | I := T | C1; C | if B then C1 else C2 | while B do C |  output T | output B
+C::= skip | I := T | C$_1$; C | if B then C$_1$ else C$_2$ | while B do C |  output T | output B
 	\end{lstlisting}
 \end{compactitem}
 Warum braucht man für so eine Sprache eine formale Semantik?!\\
@@ -91,8 +91,8 @@ Ich möchte maschinell arbeiten, aber es gibt Unterspezifikationen, unklar ist d
 
 \subsubsection*{WHILE ist mehrdeutig?}
 Ja, das zeigt folgendes Beispiel:
-\begin{lstlisting}
-while B do C1; C2
+\begin{lstlisting}[mathescape]
+while B do C$_1$; C$_2$
 \end{lstlisting}
 wo beide Syntaxbäume gültig sind.\\
 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm}] 
@@ -114,9 +114,9 @@ und
 \end{tikzpicture}
 \\
 Um dies zu verhindern werden untergeordnete Befehle eingerückt oder geklammert.
-\begin{lstlisting}
+\begin{lstlisting}[mathescape]
 while B do 
-	C1;
-	C2
+	C$_1$;
+	C$_2$
 \end{lstlisting}
 
