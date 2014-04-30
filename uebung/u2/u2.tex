@@ -97,7 +97,9 @@ D &::= 0 | 1 \\
 T &::= N | T_1 \underline{OP}  T_2 | \underline{read}
 \end{align*}
 \section*{Aufgabe 1}
-Erklären Sie eine informelle Semantik für Binärzahlen $N$ und Terme $T$ unter der Annahme, dass bei zusammengesetzten Termen der rechte Teilterm vor dem linken ausgewertet wird.
+Erklären Sie eine informelle Semantik für Binärzahlen $N$ und Terme $T$ unter der Annahme, dass bei zusammengesetzten Termen der rechte Teilterm vor dem linken ausgewertet wird.\\
+\textbf{Anmerk. v. Tobi:} \emph{LOL?! Die Lösung steht doch über der Aufgabe?!}\\
+\textbf{Antwort von Tobi:} Eine informelle Semantik ist eine allgemeine und umgangssprachliche Erklärung der vorliegenden Grammatik. In diesem Fall können Binärzahlen $N$ von Rechts nach Links aus Nullen und Einsen erzeugt werden. Die Operationen Addition ($+$) und Subtraktion ($-$) sind auf Terme definiert. Ein Term besteht entweder aus einer einzelnen Binärzahl $N$, zwei Binärzahlen verbunden durch eine Operation oder durch auslesen des zuletzt gespeicherten Elements aus dem Keller ($\underline{read}$).\\
 \section*{Aufgabe 2}
 Formalisieren Sie Ihre Semantik aus Aufgabe 1 durch Angabe eines Übersetzers, der Terme in Maschinenprogramme einer einfachen Kellermaschine mit dem Befehlssatz
 \begin{lstlisting}
@@ -108,8 +110,26 @@ Add
 Sub
 Double
 \end{lstlisting}
-und dem Zustandsraum $STACK \times EINGABE$ übersetzt.
+und dem Zustandsraum $STACK \times EINGABE$ übersetzt.\\
+\textbf{Anmerk. v. Tobi:} \emph{Warum kommt da jetzt doch eine weitere Operation hinzu?! GRML... und WTF READ?! Wäre da POP nicht besser gewesen?!}\\
+\textbf{Antwort von Tobi:} Eine einfache Kellermaschine besteht aus einem Keller $K$ und einer Eingabe $E$:\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=240px]{../../gfx/einfacheKellermaschine.png}
+	\caption{Einfacher Kellerautomat}\label{gfx:ekeller}
+\end{figure}
+\textbf{Anmerk. v. Tobi:} \emph{Kontrolle in Abb. \ref{gfx:ekeller} ist eventuell ungünstig gewählt, bitte mal prüfen und ggf. mit DIA ändern.}\\
+Der Grundzustand $Z$ der Kellermaschine besteht also aus $<E_0|K_0>$. Für den Befehlssatz lassen sich folgende Zustandsveränderungsfunktion $\Delta$ definieren:
+\begin{align*}
+<\text{\lstinline!Push 0!}.\epsilon|\epsilon> &= <\epsilon|0.\epsilon>\\
+<\text{\lstinline!Push 1!}.\epsilon|\epsilon> &= <\epsilon|1.\epsilon>\\
+<\text{\lstinline!Read!}.\epsilon|x.\epsilon> &= <\epsilon|\epsilon>\\
+<\text{\lstinline!Add!}.\epsilon|y.x.\epsilon> &= <\epsilon|y+x.\epsilon>\\
+<\text{\lstinline!Sub!}.\epsilon|y.x.\epsilon> &= <\epsilon|y-x.\epsilon>\\
+<\text{\lstinline!Double!}.\epsilon|x.\epsilon> &= <\epsilon|x+x.\epsilon>\\
+\end{align*}
+Die Ergebnisse der Operationen (\lstinline!Add, Sub, Double!) liegen nach Ausführung des Befehls an erster Stelle auf dem Stack. Wenn eine Operation zwei Operanden verwendet wird das erste und das darunter liegende zweite Element verwendet.\\
+\textbf{Anmerk. v. Tobi:} \emph{Das ist meine grobe Idee, da fehlt vermutlich noch ein Ausgabezustand in $<E_0|K_0>$, also eher etwas wie $<A_0|E_0|K_0>$.\\ ich sehe gerade das ich die Reihenfolge von Stack und Eingabe vertauscht habe, sollte aber kein großes Problem sein, bei mir steht einfach die Eingabe an erster Stelle.}\\
 \section*{Aufgabe 3}
-Formalisieren Sie Ihre Semantik aus Aufgabe 1 durch Angabe eines Interpreters bzgl. einer abstrakten Maschine mit dem Zustandsraum\\
-$STACK \times KONTROLLE \times EINGABE$
+Formalisieren Sie Ihre Semantik aus Aufgabe 1 durch Angabe eines Interpreters bzgl. einer abstrakten Maschine mit dem Zustandsraum: $STACK \times KONTROLLE \times EINGABE$.\\
 \end{document}
