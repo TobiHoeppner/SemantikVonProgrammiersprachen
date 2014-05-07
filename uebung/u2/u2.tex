@@ -132,4 +132,19 @@ Die Ergebnisse der Operationen (\lstinline!Add, Sub, Double!) liegen nach Ausfü
 \textbf{Anmerk. v. Tobi:} \emph{Das ist meine grobe Idee, da fehlt vermutlich noch ein Ausgabezustand in $<E_0|K_0>$, also eher etwas wie $<A_0|E_0|K_0>$.\\ ich sehe gerade das ich die Reihenfolge von Stack und Eingabe vertauscht habe, sollte aber kein großes Problem sein, bei mir steht einfach die Eingabe an erster Stelle.}\\
 \section*{Aufgabe 3}
 Formalisieren Sie Ihre Semantik aus Aufgabe 1 durch Angabe eines Interpreters bzgl. einer abstrakten Maschine mit dem Zustandsraum: $STACK \times KONTROLLE \times EINGABE$.\\
+
+\begin{itemize}
+	\item \textbf{Anfangszustand:}\\
+		$Z_{T,S,E} = \langle\epsilon|S|T.\epsilon|E\rangle$\\
+	\item \textbf{Zustandsüberführungsfunktion $\Delta$:}\\
+		$\Delta$ induktiv über die Struktur der Kontrollkellerspitze:\\
+		$\Delta (W|S|n.K|E) := \langle n.W|S¦K¦E\rangle$ für $n \in N$\\
+		$\Delta (W|S|\underline{read}.K|n.E) := \langle n.W|S¦K¦E\rangle$ für $n \in N$\\
+		$\Delta (W|S|T_1 \underline{OP} T_2.K|E) := \langle W|S¦T_1.T_2.\underline{OP}.K¦E\rangle$\\
+		$\Delta (n_2.n_1.W|S|\underline{OP}.K|E) := \langle \underline{n_1\underline{OP}n_2}.W|S¦K¦E\rangle$ für $n_1,n_2 \in N$\\
+
+		%TODO: prüfen ob evtl auch noch nötig ist:
+		$\Delta (W|S|ND.K|E) := \langle W|S¦N.N.+.D.+K¦E\rangle$ (baut aus binären NDs die entsprechende Dezimalzahl)\\
+
+\end{itemize}
 \end{document}
