@@ -1,0 +1,138 @@
+\documentclass[ngerman,a4paper]{report}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{MyriadPro}
+%\usepackage[scaled]{beramono}
+\newcommand\Small{\fontsize{10.5}{10.5}\selectfont}
+\newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-20}\lsstyle}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{listings}
+\usepackage{stmaryrd}
+\usepackage{paralist}
+\usepackage{array}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Code Listing Style
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\lstset{%
+	language=C, 
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen}, 
+	keywordstyle=\color{darkblue}\bfseries, 
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%  
+	    then, not%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%  
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+\providecommand{\tabularnewline}{\\}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\makeatletter
+
+\lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
+\chead{}
+\rhead{\@date \\ \thepage \ von \pageref{LastPage} }
+
+\renewcommand{\maketitle}{}
+\newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
+\renewcommand{\familydefault}{\sfdefault}
+ 
+\author{Florian Ritzel, Hinnerk van Bruinehsen, Tobias Höppner}
+\title{SvP - Übung 02. }
+\date{Sommersemester 2014}
+
+\begin{document} 
+\maketitle 
+\section*{Aufgabe 1}
+Die Syntax von WHILE sei um die Regel\\
+$C::= repeat\ C\ until\ B$\\
+erweitert. Ergänzen Sie die operationelle Semantik von WHILE, so dass diese zusätzliche Anweisungsform angemessen behandelt wird.\\\\\\
+$\Delta\langle W|S|repeat\ C\ until\ B.K|E|A\rangle = \langle W|S|C.while\ (not\ B)\ do\ C.K|E|A\rangle$\\\\
+C soll mindestens einmal ausgeführt werden. Danach verhält sich die repeat-Schleife genau wie die while-Schleife.
+
+\section*{Aufgabe 2}
+
+Erweitern Sie die Syntax von \emph{WHILE}, so dass in den boolschen Ausdrücken auch die boolschen Operatoren \textit{and} und \textit{or} vorkommen dürfen. Geben Sie für diese Erweiterung eine operationelle Semantik an, die eine nicht-strikte Semantik von \textit{and} und \textit{or} festlegt.\\\\\\
+$B::=W|not\ B|\ T_1\ BOP\ T_2| B_1\ and\  B_2| B_1\ or\ B_2| read$\\\\
+\textbf{and:}\\\\
+$\Delta\langle W|S|B_1\ and\ B_2.K|E|A\rangle = \langle W|S|B_1 and.B_2.K|E|A\rangle$\\
+$\Delta\langle true.W|S|and.B_2.K|E|A\rangle = \langle W|S|B_2.K|E|A\rangle$\\
+$\Delta\langle false.W|S|and.B_2.K|E|A\rangle = \langle false.W|S|K|E|A\rangle$\\\\
+\textbf{or:}\\\\
+$\Delta\langle W|S|B_1\ or\ B_2.K|E|A\rangle = \langle W|S|B_1.or.B_2.K|E|A\rangle$\\
+$\Delta\langle false.W|S|or.B_2.K|E|A\rangle = \langle W|S|B_2.K|E|A\rangle$\\
+$\Delta\langle true.W|S|or.B_2.K|E|A\rangle = \langle true.W|S|K|E|A\rangle$\\
+
+\section*{Aufgabe 3}
+Formulieren Sie informell eine Präzisierung der angegebenen \emph{WHILE}-Semantik, die die genannten Fehlerquellen behandelt.\\\\\\
+\textbf{Bereichsüberschreitung:}\\
+Der gültige Wertebereich wird verlassen, Min/Max werden also unter- bzw. überschritten. Ergebnis ist ein gewöhnlicher Overflow, da der Nachfolger von Max Min ist und der Vorgänger von Min Max.\\\\
+\textbf{Division durch Null:}\\
+Division durch Null ist nicht definiert, also wird ein Fehler geworfen und das Programm abgebrochen.\\\\
+\textbf{Berechnung von read bei leerer Eingabedatei:}\\
+Im Falle einer leeren Eingabe liest read für B false und für Z 0.\\\\
+\textbf{Typkonflikte} (drei Möglichkeiten):\\\\
+\textbf{1.}
+Kompatibilitätsprüfung von T1 und T2 und Überprüfung ob die Operation OP für T1 und T2 definiert ist. Ist eines davon nicht der Fall wird das Programm abgebrochen.\\\\
+\textbf{2.}
+Wird ein B erwartet, aber ein T oder ein Z gelesen, wird = als \textit{false} und alles andere als \textit{true} verstanden.\\\\
+\textbf{3.} Jeder Typfehler führt zu einem Fehler und das PRogramm wird an der Stelle abgebrochen.
+
+\section*{Aufgabe 4}
+Implementieren Sie in einer Sprache Ihrer Wahl\\
+
+- den Zustandsraum der WSKEA-Maschine,\\
+
+- eine Funktion anfang, die zu einem WHILE-Programm und einer Eingabe
+
+den Anfangszustand ergibt, und\\
+
+- die Zustandsüberfüuhrungsfunktion delta.\\\\
+!!under construction!!
+\end{document}
