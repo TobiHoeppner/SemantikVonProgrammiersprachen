@@ -98,8 +98,8 @@ C::= repeat C until B
 \end{lstlisting}
 erweitert. Ergänzen Sie die operationelle Semantik von WHILE, so dass diese zusätzliche Anweisungsform angemessen behandelt wird.\\
 
-$\Delta\langle W|S|\underline{repeat}\ C\ \underline{until}\ B.K|E|A\rangle = \langle W|S|C.while\ B\ do\ C.K|E|A\rangle$\\
-C wird mindestens einmal ausgeführt, anschliessend verhält sich die \glqq repeat C until B\grqq -Schleife identisch zu \glqq while B do C \grqq .\\
+$\Delta\langle W|S|\underline{repeat}\ C\ \underline{until}\ B.K|E|A\rangle = \langle W|S|C.\underline{while}\ (\underline{not}\\ B)\ \underline{do}\ C.K|E|A\rangle$\\
+C wird mindestens einmal ausgeführt, anschliessend verhält sich die \glqq repeat C until B\grqq -Schleife identisch zu \glqq while $\neg$B do C \grqq .\\
 
 \section*{Aufgabe 2}
 Erweitern Sie die Syntax von WHILE, so dass in den boolschen Ausdrücken auch die boolschen Operatoren \textit{and} und \textit{or} vorkommen dürfen. Geben Sie für diese Erweiterung eine operationelle Semantik an, die eine nicht-strikte Semantik von \textit{and} und \textit{or} festlegt.\\
