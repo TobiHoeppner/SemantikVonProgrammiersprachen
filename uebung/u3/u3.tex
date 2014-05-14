@@ -140,9 +140,83 @@ Implementieren Sie in einer Sprache Ihrer Wahl
 \end{itemize}
 
 Lösung in \textbf{Whitespace} ;-) :
+\begin{lstlisting}[escapechar=\%]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\end{lstlisting}
 \newpage
-Lösungsidee in \textbf{Python}:\\
+Lösungsidee in \textbf{Python}:
 \lstinputlisting[language=Python]{py/wskea/main.py}
+\newpage
+Ausgabe:
+\begin{lstlisting}
+run 0: [['x', 42], [], ['output', '=', 1, 1, 'not', True, 'add', 'read', 'read', 'skip', 'assign'], [1, 1], []]
+run 1: [[], [(42, 'x')], ['output', '=', 1, 1, 'not', True, 'add', 'read', 'read', 'skip'], [1, 1], []]
+run 2: [[], [(42, 'x')], ['output', '=', 1, 1, 'not', True, 'add', 'read', 'read'], [1, 1], []]
+run 3: [[1], [(42, 'x')], ['output', '=', 1, 1, 'not', True, 'add', 'read'], [1], []]
+run 4: [[1, 1], [(42, 'x')], ['output', '=', 1, 1, 'not', True, 'add'], [], []]
+run 5: [[2], [(42, 'x')], ['output', '=', 1, 1, 'not', True], [], []]
+run 6: [[2, True], [(42, 'x')], ['output', '=', 1, 1, 'not'], [], []]
+run 7: [[2, False], [(42, 'x')], ['output', '=', 1, 1], [], []]
+run 8: [[2, False, 1], [(42, 'x')], ['output', '=', 1], [], []]
+run 9: [[2, False, 1, 1], [(42, 'x')], ['output', '='], [], []]
+run 10: [[2, False, True], [(42, 'x')], ['output'], [], []]
+run 11: [[2, False], [(42, 'x')], [], [], [True]]
+success after 12 iterations !
+\end{lstlisting}
 Kommentar zur Lösung:\\
-Die Lösung nutzt einige Annehmlichkeiten von Python: Listen und Typen.
+Die Lösung nutzt einige Annehmlichkeiten von Python: Listen und Typen. Trotzdem sind nicht alle Konstrukte implementiert. Bisher habe ich noch keine Idee, wie ich $I, C, T, \underline{BOP}, \underline{OP}$ in Python repräsentiere, daher sind einige Ausdrücke in diesem Programm nicht ausführbar. Damit wird es sehr schwierig Strukturen wie \lstinline!if B then C1 else C2! oder \lstinline!while B do C! zu implementieren und damit die Aufgabe nicht vollständig bearbeitet.
 \end{document}
