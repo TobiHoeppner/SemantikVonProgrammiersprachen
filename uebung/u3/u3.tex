@@ -98,11 +98,38 @@ C::= repeat C until B
 \end{lstlisting}
 erweitert. Ergänzen Sie die operationelle Semantik von WHILE, so dass diese zusätzliche Anweisungsform angemessen behandelt wird.\\
 
+$\Delta\langle W|S|\underline{repeat}\ C\ \underline{until}\ B.K|E|A\rangle = \langle W|S|C.while\ B\ do\ C.K|E|A\rangle$\\
+C wird mindestens einmal ausgeführt, anschliessend verhält sich die \glqq repeat C until B\grqq -Schleife identisch zu \glqq while B do C \grqq .\\
+
 \section*{Aufgabe 2}
 Erweitern Sie die Syntax von WHILE, so dass in den boolschen Ausdrücken auch die boolschen Operatoren \textit{and} und \textit{or} vorkommen dürfen. Geben Sie für diese Erweiterung eine operationelle Semantik an, die eine nicht-strikte Semantik von \textit{and} und \textit{or} festlegt.\\
 
+$B::=W| \underline{not}\ B| T_1\ BOP\ T_2| B_1\ \underline{and}\  B_2| B_1\ \underline{or}\ B_2| \underline{read}$\\
+
+\textbf{And:}\\
+$\Delta\langle W|S|B_1\ \underline{and}\ B_2.K|E|A\rangle = \langle W|S|B_1.\underline{and}.B_2.K|E|A\rangle$\\
+$\Delta\langle \underline{true}.W|S|\underline{and}.B_2.K|E|A\rangle = \langle W|S|B_2.K|E|A\rangle$\\
+$\Delta\langle \underline{false}.W|S|\underline{and}.B_2.K|E|A\rangle = \langle \underline{false}.W|S|K|E|A\rangle$\\
+
+\textbf{Or:}\\
+$\Delta\langle W|S|B_1\ \underline{or}\ B_2.K|E|A\rangle = \langle W|S|B_1.\underline{or}.B_2.K|E|A\rangle$\\
+$\Delta\langle \underline{false}.W|S|\underline{or}.B_2.K|E|A\rangle = \langle W|S|B_2.K|E|A\rangle$\\
+$\Delta\langle \underline{true}.W|S|\underline{or}.B_2.K|E|A\rangle = \langle \underline{true}.W|S|K|E|A\rangle$\\
+
 \section*{Aufgabe 3}
 Erweitern Sie die WSKEA-Maschine um eine Komponente $N$ für Nachrichten (Texte), in der kurze, sinnvolle Meldungen eingetragen werden, wenn es keinen Folgezustand gibt, oder wenn die Ausführung korrekt terminiert.\\
+
+Grundsätzlich identisch zur WSKEA-Maschine\\
+
+Grundzustand der WSKEAN-Maschine ist: $\langle W|S|K|E|A|\epsilon\rangle$\\
+
+Falls das Programm korrekt terminiert gilt: $\Delta\langle W|S|\epsilon|E|A|\epsilon\rangle = \langle W|S|\epsilon|E|A|\text{\glqq Terminiert\grqq} \rangle$\\
+
+In einem Fehlerzustand gibt die Maschine eine informative Fehlermeldung zurück. Ein Beispiel wäre:\\
+
+$\Delta\langle 0.n.W|S|/.K|E|A|\epsilon\rangle = \langle W|S|K|E|A|\text{\glqq Fehler: Division durch 0\grqq}\rangle$\\
+
+Die Darstellung weiterer Fehlerzustände ist analog dazu.
 
 \section*{Aufgabe 4 \text{(freiwillig)}}
 Implementieren Sie in einer Sprache Ihrer Wahl
@@ -111,4 +138,6 @@ Implementieren Sie in einer Sprache Ihrer Wahl
 	\item eine Funktion \texttt{anfang}, die zu einem WHILE-Programm und einer Eingabe den Anfangszustand ergibt, und
 	\item die Zustandsüberführungsfunktion \texttt{delta}.
 \end{itemize}
+
+Lösung in \textbf{Whitespace} ;-) :
 \end{document}
