@@ -1,0 +1,83 @@
+\section{Vorlesung 3 - 08.05.}
+\marginnote{\small\emph{(Mitschrift von HvB, da Autor im Urlaub.)}}[0cm]
+%\chapter{3. VL}
+\subsection{Operationelle Semantik - allgemeines}
+Methodik einer \underline{Formalisierung} (Interpreter) der Semantik einer Programmiersprache $\mathcal{P}$\\
+Zur operationellen Semantik gehören insbesondere 3 Angaben:\\
+\begin{enumerate}
+	\item Definition des Zustandsraums einer abstrakten Maschine - möglichst \underline{einfach}: $\mathcal{Z}$
+	\item Definition einer (partiellen) Zustandsüberführungsfunktion $\Delta:\mathcal{Z}\rightarrow \mathcal{Z}$
+	\item Definition eines Anfangszustands $\mathcal{Z}_{P,E}$ zu jedem Programm $P$ und Eingabe $E$
+\end{enumerate}
+%\begin{itemize}
+%\item Interpreter auf einer abstrakten Maschine\\
+%\begin{lstlisting}
+%      ---------|
+%Prog->|abstr   |
+%      |        |->Ausgabe
+%Eing->|Maschine|
+%      ---------
+%\end{lstlisting}
+%$\mathcal{O}.\mathcal{P}\rightarrow[\mathcal{E}\rightarrow\mathcal{A}]$
+%\item Formale operationelle Semantik von WHILE
+%\item Allgmeine Vorgehensweise:\\
+%	Mindestens drei Angaben:\\
+%	\begin{enumerate}
+%	\item Definition des Zustandsraums $\mathcal{Z}$
+%	\item Zu jedem $P\in\mathcal{P}$ und $E \in \mathcal{E}$ definiere den Anfangszustand $z_{P,E} \in \mathcal{Z}$
+%	\item Definition der Zustandsüberführungsfunktion $\Delta:\mathcal{Z}\rightarrow\mathcal{Z}$
+%	\end{enumerate}
+Aus 1.-3. ergibt sich die operationelle Semantik $\mathcal{O}$  von $\mathcal{P}$ wie folgt:\\
+$\mathcal{O}:\mathcal{P}\rightarrow[\mathcal{E}\rightarrow \mathcal{A}\cup \{Fehler\}]$\\
+
+$\mathcal{O}(P)(E)=\left\lbrace\begin{array}{l c} A&\text{, falls }\exists k\in\mathbb{N} \text{ mit } \Delta^k(Z_{P,E}=\Delta^{k+1}(Z_{P,E})\text{ und }A\text{ die Ausgabekomponente von }Z\text{ ist}\\
+\text{Fehler,}& \text{falls es ein }k\in\mathbb{N}\text{ gibt mit }\Delta^k(Z_{P,E}) \text{ nicht definiert}\\
+\text{undefiniert,}&\text{ sonst.}\\
+\end{array}\right.$
+
+%\end{itemize}
+\subsection{Operationelle Semantik von WHILE}
+\begin{enumerate}
+	\item \textbf{Der Zustandsraum $\mathcal{Z}$ ist das kartesische Produkt $\mathcal{W}\times\mathcal{S}\times\mathcal{K}\times\mathcal{E}\times\mathcal{A}$} mit:\\
+		\begin{itemize}
+			\item Ein Wertekeller $W\in\mathcal{W}$ ist eine Folge von Konstanten, d.h.\\ $\mathcal{W}=KON^*$
+			\item Ein Speicher $S\in\mathcal{S}$ ist eine Funktion von Bezeichnern nach $ZAHL \cup \lbrace frei\rbrace$, d.h.\\ $\mathcal{S}=[ID\rightarrow ZAHL]$
+			\item Ein Kontrollkeller $K\in\mathcal{K}$ ist ein Folge von AST's \footnote{AST = abstract syntax tree} bzw. Kontrollsymbolen, d.h.\\ $\mathcal{K}=\left(TERM \cup BT \cup COM \cup OP \cup BOP \cup \{\underline{if},\underline{while},\underline{assign}\}\right)^*$
+			\item Die Ein- und Ausgabe ist $e\in\mathcal{E}$ bzw $A\in\mathcal{A}$ ist jeweils eine Folge von Konstanten, d.h.\\ $\mathcal{E} = KON^*$ bzw. $\mathcal{A} = KON^*$
+		\end{itemize}
+%\item Anfangszustand zu $P\in\mathcal{P}$ und $E\in\mathcal{E}$ lautet $Z_{P,E}:=\langle\epsilon|S_0|P.\epsilon|E|\epsilon\rangle$, wobei $\epsilon$ die leere Folge bezeichnet, $S_0:Id\rightarrow[ZAHL\cup\{frei\}]$ mit $S_0(x)=frei$, für alle $x\in ID$ und $\bar{a}=a_1,\cdots,a_n)$ ist $a.\bar{a}=(a_1,a_1,\cdots,a_n)$ und $\bar{a}.a=(a_1,\cdots,a_n)$\\
+	\item \textbf{Induktion über den Aufbau der Kontrollkellerspitze}
+%\item $\Delta :\mathcal{Z}\rightarrow\mathcal{Z}$ durch strukturelle Induktion über den Aufbau von $P$ (Spitze des Kontrollkellers),\begin{itemize}
+		\begin{itemize}
+			\item[a.] TERM - $T:= Z|I|T_1\ \underline{OP}\ T_2|\underline{read}$\\
+	$\Delta\langle W|S|n.K|E|A\rangle=\langle n.W|S|K|E|A\rangle$ für alle $n\in ZAHL$\\
+	$\Delta\langle W|S|x.K|E|A\rangle = \langle S(x).W|S|K|E|A\langle$ für alle $x\in ID$ mit $S(x)\neq frei$\\
+	$\Delta\langle W|S|\underline{read}.K|n.E|A\rangle = \langle n.W|S|K|E|A\langle$ für alle $n\in ZAHL$\\
+	$\Delta\langle W|S|T_1 \underline{OP}\ T_2.K|E|A\rangle = \langle W|S|T_1.T_2.\underline{OP}.K|E|A\rangle$\\
+	$\Delta\langle n_2.n_1.W|S|\underline{OP}.K|E|A\rangle = \langle \underline{(n_1\ \underline{OP}\ n_2)}.W|S|K|E|A\rangle$, falls $\underline{n_1\ \underline{OP}\ n_2}$ nicht aus dem darstellbaren Zahlenbereich herausführt\\
+	\item[b.] Boolsche Terme (ähnlich)
+	\item[c.] COM  - $C:=\underline{skip}|I:=T|C_1;C_2|\underline{if}\ B\ \underline{then}\ C_1\ \underline{else}\ C_2|\underline{while}\ B\  \underline{do}\ C| \underline{output}\ T|\underline{output}\ B$\\
+	$\Delta\langle W|S|skip.K|E|A\rangle = \langle W|S|K|E|A\langle$\\
+	$\Delta\langle W|S|I:=T.K|E|A\rangle = \langle W|S|T.assign.I.K|E|A\rangle$\\
+$\Delta\langle n.W|S|assign.I.K|E|A\rangle = \langle W|S[n/I]|K|E|A\rangle$, wobei $n\in ZAHL$ und $S[n/I](x) = \left\lbrace\begin{array}{l l}
+n,&\text{falls }I =x\\
+	S(x)& sonst\\
+\end{array}\right.$
+	$\Delta\langle W|S|C_1;C_2.K|E|A\rangle = \langle W|S|C_1.C_2.K|E|A\rangle$
+	$\Delta\langle W|S|\underline{if}\ B\ \underline{then}\ C_1\ \underline{else}\ C_2.K|E|A\rangle = \langle W|S|B.\underline{if}.C_1.C_2.K|E|A\rangle$\\
+	$\Delta\langle \underline{true}.W|S|\underline{if}.C_1.C_2.K|E|A\rangle = \langle W|S|C_1.K|E|A|\rangle$\\
+	$\Delta\langle \underline{false}.W|S|\underline{if}.C_1.C_2.K|E|A\rangle = \langle W|S|C_2.K|E|A|\rangle$\\
+	$\Delta\langle W|S|\underline{while}\ B\ \underline{do}\ C.K|E|A\rangle = \langle W|S|B.\underline{while}.B.C.K|E|A\rangle$\\
+	$\Delta\langle \underline{true}.W|S|\underline{while}.B.C.K|E|A\rangle = \langle W|S|C.B.\underline{while}.B.C.K|E|A\rangle$\\
+	$\Delta\langle \underline{false}.W|S|\underline{while}.B.C.K|E|A\rangle = \langle W|S|K|E|A\rangle$\\
+
+	$\Delta\langle W|S|\underline{output}\ T.K|E|A\rangle = \langle W|S|T.\underline{output}.K|E|A\rangle$\\
+	$\Delta\langle n.W|S|\underline{output}.K|E|A\rangle = \langle W|S|K|E|n.A\rangle$\\
+
+	\end{itemize}
+
+\end{enumerate}
+
+
+
+
