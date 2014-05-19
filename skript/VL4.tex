@@ -1,17 +1,16 @@
 \section{Vorlesung 4 - 15.05.}
 \subsection{Reduktionssemantik}
-\marginnote{\small\emph{Church-Rosser gilt nicht bei Nebenwirkungen!}}[4cm]
+\marginnote{\small\emph{Church-Rosser gilt nicht bei Nebenwirkungen!}}[5cm]
 
 Ausprägungen der \underline{operationellen Semantik} zu einfacheren Argumentation (Beweisführung) über Programmeigenschaften.\\
 \textbf{Idee:} Reduktion von Ausdrücken, Termen, Programmen und Anweisungen (usw.) auf einfachere aber semantisch äquivalenten Termen (usw.).\\
-\textbf{Beispiel:} Einfache arithmetische Ausdrücke über den natürlichen Zahlen und +, *.\\
-Einzelschrittreduktion: $(4+2)*(7-5) \Rightarrow 6 * (7-5) \Rightarrow 6 * 2 \Rightarrow 12$\\
-allgemeine Form: $A_1 \underline{OP} A_2 \Rightarrow A'_1 \underline{OP} A'_2 \text{ falls } A_1 \Rightarrow A'_1 \text{ und } A_2 \Rightarrow A'_2$\\
-Axiom: $n_1 OP n_2 \Rightarrow \underline{n_1 \underline{OP} n_2}$\\
-alternative Schreibweise: $A_1 \Rightarrow A'_1, A_2 \Rightarrow A'_2$ 
-% darunter: $A_1 \underline{OP} A_2 \Rightarrow A'_1 \underline{OP} A'_2$
-
-Konfluenz: (Church-Rosser Eigenschaft, Diamant)\\
+\textbf{Beispiel:} Einfache arithmetische Ausdrücke über den natürlichen Zahlen und +, *.
+\begin{compactitem}
+	\item[\textbf{Einzelschrittreduktion:}] $(4+2)*(7-5) \Rightarrow 6 * (7-5) \Rightarrow 6 * 2 \Rightarrow 12$
+	\item[\textbf{allgemeine Form:}] $A_1\;\underline{OP}\;A_2 \Rightarrow A'_1\;\underline{OP}\;A'_2 \text{ falls } A_1 \Rightarrow A'_1 \text{ und } A_2 \Rightarrow A'_2$
+	\item[\textbf{Axiom:}] $n_1\;OP\;n_2 \Rightarrow \underline{n_1\;\underline{OP}\;n_2}$
+	\item[\textbf{Alternative Schreibweise(Winskel):}] $\frac {A_1 \Rightarrow A'_1, A_2 \Rightarrow A'_2} {A_1\;\underline{OP}\;A_2 \Rightarrow A'_1\;\underline{OP}\;A'_2}$
+	\item[\textbf{Konfluenz:}] (Church-Rosser Eigenschaft, Diamant)\\
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
   thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
   \node[main node] (1) {$A$};
@@ -24,6 +23,7 @@ Konfluenz: (Church-Rosser Eigenschaft, Diamant)\\
     (2) edge node [right] {$*$} (3)
     (4) edge node [left] {$*$} (3);
 \end{tikzpicture}
+\end{compactitem}
 
 % Diagramm stellt einen Diamanten dar. Die Knoten sind von oben nach Unten mit doppelpfeilen verbunden und an den Kanten steht ein *
 anderes Beispiel: $\lambda$-Kalkül. $(\lambda x.M) A \xrightarrow{\beta}  \$ M$ falls...
@@ -38,25 +38,25 @@ Induktiv über den Aufbau der Syntax:
 	\begin{compactitem}
 		\item[\textbf{a}] $(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}$ für $\times \in$JD, $(s,e,a) \in \mathcal{Z}$
 		\item[\textbf{b}] $\underline{\text{read}} \Rightarrow (n, (s,e,a)), \text{ falls } n \in$ ZAHL.
-		\item[\textbf{c}] $(T_1 \underline{OP} T_2, z) \Rightarrow (n \underline{OP} T_2, z')$, falls $(T_1, z) \xRightarrow{*}(n,z')$
-		\item[\textbf{d}] $(n \underline{OP} T_1, z) \Rightarrow (n \underline{OP} m, z')$, falls $(T, z) \xRightarrow{*}(m,z')$
-		\item[\textbf{e}] $(n \underline{OP} n, z) \Rightarrow (\underline{n \underline{OP} m}, z)$, falls $\underline{n \underline{OP} m} \in$ ZAHL.
+		\item[\textbf{c}] $(T_1\;\underline{OP}\;T_2, z) \Rightarrow (n\;\underline{OP}\;T_2, z')$, falls $(T_1, z) \xRightarrow{*}(n,z')$
+		\item[\textbf{d}] $(n\;\underline{OP}\;T_1, z) \Rightarrow (n\;\underline{OP}\;m, z')$, falls $(T, z) \xRightarrow{*}(m,z')$
+		\item[\textbf{e}] $(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z)$, falls $\underline{n\;\underline{OP}\;m} \in$ ZAHL.
 	\end{compactitem}	
 	\item \textbf{BT} analog.
 	\item \textbf{COM}: keine Reduktionsregel für $\underline{skip}$ (Normalform)
 	\begin{compactitem}
 		\item[\textbf{a}] $(I:=T,(s,e,a)) \Rightarrow (\underline{skip}, (s[n/I],e',a))$, falls $(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))$
-		\item[\textbf{b}] $\underline{output} T, (s,e,a)\Rightarrow (\underline{skip}, (s,e',a.n))$, falls $(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))$
-		\item[\textbf{c}] $\underline{output} B, (s,e,a)\Rightarrow (\underline{skip}, (s,e',a.b))$, falls $(B, (s,e,a))\xRightarrow{*}(b,(s,e',a))$
+		\item[\textbf{b}] $\underline{output}\;T, (s,e,a)\Rightarrow (\underline{skip}, (s,e',a.n))$, falls $(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))$
+		\item[\textbf{c}] $\underline{output}\;B, (s,e,a)\Rightarrow (\underline{skip}, (s,e',a.b))$, falls $(B, (s,e,a))\xRightarrow{*}(b,(s,e',a))$
 		\item[\textbf{d}] $(C_1;C_2, z)\Rightarrow (C_2,z)$, falls $(C_1, z)\xRightarrow{*}(\underline{skip},z')$
-		\item[\textbf{e}] $(\underline{if} B \underline{then} C_1 \underline{else} C_2, z) \Rightarrow (C_1, z')$, falls $(B,z)\xRightarrow{*}(\underline{true}, z')$
-		\item[\textbf{f}] $(\underline{if} B \underline{then} C_1 \underline{else} C_2, z) \Rightarrow (C_2, z')$, falls $(B,z)\xRightarrow{*}(\underline{false}, z')$
-		\item[\textbf{g}] $(\underline{while}B\underline{do}C, z) \Rightarrow (C;\underline{while}B\underline{do}C, z')$, falls $(B,z) \xRightarrow{*} (\underline{true}, z')$
-		\item[\textbf{h}] $(\underline{while}B\underline{do}C, z) \Rightarrow (\underline{skip}, z')$, falls $(B,z) \xRightarrow{*} (\underline{false}, z')$
+		\item[\textbf{e}] $(\underline{if}\;B\;\underline{then}\;C_1\;\underline{else}\;C_2, z) \Rightarrow (C_1, z')$, falls $(B,z)\xRightarrow{*}(\underline{true}, z')$
+		\item[\textbf{f}] $(\underline{if}\;B\;\underline{then}\;C_1\;\underline{else}\;C_2, z) \Rightarrow (C_2, z')$, falls $(B,z)\xRightarrow{*}(\underline{false}, z')$
+		\item[\textbf{g}] $(\underline{while}\;B\;\underline{do}\;C, z) \Rightarrow (C;\underline{while}\;B\;\underline{do}\;C, z')$, falls $(B,z) \xRightarrow{*} (\underline{true}, z')$
+		\item[\textbf{h}] $(\underline{while}\;B\;\underline{do}\;C, z) \Rightarrow (\underline{skip}, z')$, falls $(B,z) \xRightarrow{*} (\underline{false}, z')$
 	\end{compactitem}
 \end{enumerate}
 \subsection{Reduktionssemantik (schematisch)}
-$\underline{eval}(P)(E)=\left\lbrace\begin{array}{l l} A\text{,}&\text{falls } (P,(S_0,E,\mathcal{E}))\xRightarrow{*}(\underline{skip},(S,E',A))\text{ mit bel. } S \in \phi \text{ und } E', A \in \text{KON}^*\\
+$\underline{eval}(P)(E)=\left\lbrace\begin{array}{l l} A\text{,}&\text{falls } (P,(S_0,E,\mathcal{E}))\xRightarrow{*}(\underline{skip},(S,E',A))\text{ mit bel. } S \in \rho \text{ und } E', A \in \text{KON}^*\\
 \text{\underline{Fehler}}\text{,}&\text{falls }  (P,(S_0, E, \mathcal{E}))\xRightarrow{*}(C,(S,E',A)) \text{ mit bel. } C \in \text{ COM und } E', A \in \text{KON}^*\\& \text{ und } C \neq \underline{skip} \text{ und } (C, (S, E', A))\text{ lässt sich nicht mehr mit } \Rightarrow \text{reduzieren}\\
 \text{undefiniert,}&\text{ sonst.}\\
 \end{array}\right.$\\
