@@ -36,11 +36,11 @@ Induktiv über den Aufbau der Syntax:
 \begin{enumerate}
 	\item \textbf{Terme}: Keine Reduktionsregel für $(n,z)$, d.h. Normalform für $n \in$ ZAHL
 	\begin{compactitem}
-		\item[\textbf{a}] $(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}$ für $\times \in$JD, $(s,e,a) \in \mathcal{Z}$
+		\item[\textbf{a}] $(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}$ für $x \in ID$, $(s,e,a) \in \mathcal{Z}$
 		\item[\textbf{b}] $\underline{\text{read}} \Rightarrow (n, (s,e,a)), \text{ falls } n \in$ ZAHL.
 		\item[\textbf{c}] $(T_1\;\underline{OP}\;T_2, z) \Rightarrow (n\;\underline{OP}\;T_2, z')$, falls $(T_1, z) \xRightarrow{*}(n,z')$
 		\item[\textbf{d}] $(n\;\underline{OP}\;T_1, z) \Rightarrow (n\;\underline{OP}\;m, z')$, falls $(T, z) \xRightarrow{*}(m,z')$
-		\item[\textbf{e}] $(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z)$, falls $\underline{n\;\underline{OP}\;m} \in$ ZAHL.
+		\item[\textbf{e}] $(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z')$, falls $\underline{n\;\underline{OP}\;m} \in$ ZAHL.
 	\end{compactitem}	
 	\item \textbf{BT} analog.
 	\item \textbf{COM}: keine Reduktionsregel für $\underline{skip}$ (Normalform)
