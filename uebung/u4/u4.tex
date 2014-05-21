@@ -96,7 +96,7 @@ Zeigen Sie für folgendes Programm $P$
 x := 5; y := 2; output (x - (y + read))
 \end{lstlisting}
 dass sowohl die operationelle Semantik als auch die Reduktionssemantik bei Eingabe $E = (4)$ die Ausgabe $A = (-1)$ bestimmt.\\
-\textbf{Lösungsidee von Tobi:}
+%\textbf{Lösungsidee von Tobi:}
 Wir betrachten die entsprechenden Regeln (aus der Vorlesung) aus beiden Semantiken.\\
 Für die operationelle Semantik:
 \begin{align}
@@ -104,14 +104,14 @@ Für die operationelle Semantik:
 \Delta\langle n.W|S|assign.I.K|E|A\rangle &= \langle W|S[n/I]|K|E|A\rangle\text{, wobei }n\in ZAHL\text{ und } \notag\\&\quad\quad S[n/I](x) = \left\lbrace\begin{array}{l l}
 n,&\text{falls }I =x\notag\\
 	S(x)& \text{sonst}\notag\\
-\end{array}\right.\tag{OS1b}\\
+\end{array}\right.\tag{OS1b}\\\notag \\
 \Delta\langle W|S|\underline{read}.K|n.E|A\rangle &= \langle n.W|S|K|E|A\rangle\text{ für alle }n\in ZAHL\tag{OS2}\\
 \Delta\langle W|S|\underline{output}\ T.K|E|A\rangle &= \langle W|S|T.\underline{output}.K|E|A\rangle\tag{OS3a}\\
 \Delta\langle n.W|S|\underline{output}.K|E|A\rangle &= \langle W|S|K|E|n.A\rangle\tag{OS3b}\\
 \Delta\langle W|S|T_1\;\underline{OP}\;T_2.K|E|A\rangle &= \langle W|S|T_1.T_2.\underline{OP}.K|E|A\rangle\tag{OS4a}\\
 \Delta\langle n_2.n_1.W|S|\underline{OP}.K|E|A\rangle &= \langle \underline{(n_1\;\underline{OP}\;n_2)}.W|S|K|E|A\rangle\text{, falls }\underline{n_1\ \underline{OP}\ n_2}\notag\\&\text{ nicht aus dem darstellbaren Zahlenbereich herausführt}\tag{OS4b}\\\notag
 \end{align}
-und für die Reduktionssemantik diese  Regeln:
+und für die Reduktionssemantik diese Regeln:
 \begin{align}
 (x,(s,e,a)) &\Rightarrow (s(x), (s,e,a))&\text{, falls }s(x) \neq \text{\underline{frei}}\text{ für }x \in ID, (s,e,a) \in \mathcal{Z}\tag{RS1a}\\
 (I:=T,(s,e,a)) &\Rightarrow (\underline{skip}, (s[n/I],e',a))&\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))\tag{RS1b}\\
@@ -121,9 +121,11 @@ und für die Reduktionssemantik diese  Regeln:
 \underline{read} &\Rightarrow (n, (s,e,a))&\text{, falls } n \in\text{ ZAHL}\tag{RS3}\\
 \underline{output}\;T, (s,e,a) &\Rightarrow (\underline{skip}, (s,e',a.n))&\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))\tag{RS4}\\\notag
 \end{align}
-Durch simulieren der Kellerspitze können wir so alle Regeln Schritt für Schritt für die operationelle Semantik anwenden:\\
+Durch auflösen der Klammern erhalten wir folgendes Programm im Kontrollkeller\\
+$K= \{x := 5; y := 2; y + \underline{read}.x.-.\underline{output}\}$,\\ damit können wir die Kellerspitze simulieren und so die Regeln Schritt für Schritt in folgender Reihenfolge für die operationelle Semantik anwenden:\\
 OS1a, OS1b, OS1a, OS1b, OS4a, OS2, OS4b, OS4a, OS3a, OS3b\\
-Durch induktives anwenden der Regeln für die Reduktionssemantik erhalten wir:\\
+\\
+Durch induktives anwenden der Regeln für die Reduktionssemantik erhalten das Ergebnis nach anwenden der Regel in dieser Reihenfolge:\\
 RS1b, RS1b, RS3, RS2b, RS2c, RS4\\
 
 \section*{Aufgabe 2}
@@ -144,10 +146,10 @@ $z=\langle W|L.K|E|A\rangle$ mit $L \in LA$
 \Delta\langle W|\underline{true}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\tag{OS1}\\
 \Delta\langle W|\underline{false}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\tag{OS2}\\
 \Delta\langle W|\underline{not}\  L.K|E|A\rangle &:= \langle W|L.\underline{not}\ .K|E|A\rangle\tag{OS3a}\\
-\Delta\langle l.W|\underline{not}\ .K|E|A\rangle &:= \langle \neg l.W|K|E|A\rangle\text{, für alle }l\in \{\underline{true},\underline{false}\}\notag\\&\quad\quad\text{wobei }\neg l = \left\lbrace\begin{array}{l l}\underline{false}& \text{falls } b=\underline{true}\\\underline{true}& \text{falls } b=\underline{false}\\\end{array}\right.\tag{OS3b}\\
+\Delta\langle l.W|\underline{not}\ .K|E|A\rangle &:= \langle \neg l.W|K|E|A\rangle\text{, für alle }l\in \{\underline{true},\underline{false}\}\notag\\&\quad\quad\text{wobei }\neg l = \left\lbrace\begin{array}{l l}\underline{false}& \text{falls } b=\underline{true}\\\underline{true}& \text{falls } b=\underline{false}\\\end{array}\right.\tag{OS3b}\\\notag \\
 \Delta\langle W|LA_1\ \underline{LOP}\ LA_2.K|E|A\rangle &:= \langle W|LA_1.LA_2.\underline{LOP}.K|E|A\rangle\tag{OS4}\\
 \Delta\langle l_2.l_1W|\underline{OR}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{true}\text{ oder }l_2=\underline{true}\tag{OS5a}\\
-\Delta\langle l_2.l_1.W|\underline{OR}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ und }l_2=\underline{false}\tag{OS5b}\\
+\Delta\langle l_2.l_1.W|\underline{OR}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ und }l_2=\underline{false}\tag{OS5b}\\\notag \\
 \Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{true}\text{ und }l_2=\underline{true}\tag{OS6a}\\
 \Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ und }l_2=\underline{false}\tag{OS6b}\\
 \Delta\langle l_2.l_1W|\underline{AND}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ oder }l_2=\underline{false}\tag{OS6c}\\\notag
@@ -175,13 +177,13 @@ True OR Not (False AND False)
 $z_0=\langle W|\text{\lstinline!False AND False.Not.True.OR!}|E|A\rangle$
 \begin{align*}
 z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle \\
-&\Rightarrow \langle \epsilon|\text{\lstinline!False.False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!False.False!}.\epsilon|\text{\lstinline!AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!True!}.\epsilon|\text{\lstinline!Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!True.False!}.\epsilon|\text{\lstinline!OR!}.\epsilon|\epsilon|\epsilon\rangle\\
-&\Rightarrow \langle \text{\lstinline!True!}.\epsilon|\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS4}} \langle \epsilon|\text{\lstinline!False.False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS2}} \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS2}} \langle \text{\lstinline!False.False!}.\epsilon|\text{\lstinline!AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS6b}} \langle \text{\lstinline!True!}.\epsilon|\text{\lstinline!Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS3b}} \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS1}} \langle \text{\lstinline!True.False!}.\epsilon|\text{\lstinline!OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\xRightarrow{\text{OS5a}} \langle \text{\lstinline!True!}.\epsilon|\epsilon|\epsilon|\epsilon\rangle\\
 \end{align*}
 \item some stuff here\\
 \end{enumerate}
