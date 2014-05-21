@@ -185,7 +185,13 @@ z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}.\epsilon|\e
 &\xRightarrow{\text{OS1}} \langle \text{\lstinline!True.False!}.\epsilon|\text{\lstinline!OR!}.\epsilon|\epsilon|\epsilon\rangle\\
 &\xRightarrow{\text{OS5a}} \langle \text{\lstinline!True!}.\epsilon|\epsilon|\epsilon|\epsilon\rangle\\
 \end{align*}
-\item some stuff here\\
+\item $z_0=(True\ \underline{Or}\ Not\ \underline{False\ \underline{And}\ False}, (E,A))$\\
+\begin{align*}
+z_0=(True\ \underline{Or}\ Not\ \underline{False\ \underline{And}\ False}, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS3}} z_0=(True\ \underline{Or}\ Not\ False, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS1b}} z_0=(True\ \underline{Or}\ True, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS4}} z_0=(True,(\epsilon,\epsilon))
+\end{align*}
 \end{enumerate}
 \end{enumerate}
 \section*{Aufgabe 3 \text{(freiwillig)}}
