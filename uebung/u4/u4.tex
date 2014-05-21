@@ -97,7 +97,7 @@ x := 5; y := 2; output (x - (y + read))
 \end{lstlisting}
 dass sowohl die operationelle Semantik als auch die Reduktionssemantik bei Eingabe $E = (4)$ die Ausgabe $A = (-1)$ bestimmt.\\
 %\textbf{Lösungsidee von Tobi:}
-Wir betrachten die entsprechenden Regeln (aus der Vorlesung) aus beiden Semantiken.\\
+Wir betrachten die entsprechenden Regeln (aus der Vorlesung) von beiden Semantiken.\\
 Für die operationelle Semantik:
 \begin{align}
 \Delta\langle W|S|I:=T.K|E|A\rangle &= \langle W|S|T.assign.I.K|E|A\rangle \tag{OS1a}\\
@@ -123,14 +123,14 @@ und für die Reduktionssemantik diese Regeln:
 \end{align}
 Durch auflösen der Klammern erhalten wir folgendes Programm im Kontrollkeller\\
 $K= \{x := 5; y := 2; y + \underline{read}.x.-.\underline{output}\}$,\\ damit können wir die Kellerspitze simulieren und so die Regeln Schritt für Schritt in folgender Reihenfolge für die operationelle Semantik anwenden:\\
-OS1a, OS1b, OS1a, OS1b, OS4a, OS2, OS4b, OS4a, OS3a, OS3b\\
+OS1a, OS1b, OS1a, OS1b, OS4a, OS2, OS4b, OS4a, OS3b\\
 \\
 Durch induktives anwenden der Regeln für die Reduktionssemantik erhalten das Ergebnis nach anwenden der Regel in dieser Reihenfolge:\\
 RS1b, RS1b, RS3, RS2b, RS2c, RS4\\
 
 \section*{Aufgabe 2}
-\textbf{Anmerkung Hinnerk:} S hab ich aus der WSKEA Maschine weggelassen, weil es ja eigentlich keinen Speicher und damit kein S gibt. Theoretisch müsste man E und A auch weglassen können, weil es in dieser Aufgabe ja keine Ein-/Ausgabe gibt. Allerdings wäre ich mir dann spätestens bei der Reduktionssemantik nicht mehr sicher...
-Für c habe ich auch noch nix tolles...
+%\textbf{Anmerkung Hinnerk:} S hab ich aus der WSKEA Maschine weggelassen, weil es ja eigentlich keinen Speicher und damit kein S gibt. Theoretisch müsste man E und A auch weglassen können, weil es in dieser Aufgabe ja keine Ein-/Ausgabe gibt. Allerdings wäre ich mir dann spätestens bei der Reduktionssemantik nicht mehr sicher...
+%Für c habe ich auch noch nix tolles...
 
 Gegeben sei folgende Syntax:
 \begin{lstlisting}
@@ -141,6 +141,7 @@ LA := W | LA1 LOP LA2 | Not LA
 zur Formalisierung logischer Ausdrücke.
 \begin{enumerate}
 \item Definieren Sie eine geeignete operationelle Semantik.\\
+\textbf{Annahme:} Wir vereinfachen die WSKEA Maschine indem wir den Speicher $S$ weglassen. Man könnte noch einen Schritt weiter gehen und Ein- und Ausgabe ebenfalls streichen, da die Syntax weder Ein- noch Ausgabe unterstützt.\\
 $z=\langle W|L.K|E|A\rangle$ mit $L \in LA$
 \begin{align}
 \Delta\langle W|\underline{true}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\tag{OS1}\\
