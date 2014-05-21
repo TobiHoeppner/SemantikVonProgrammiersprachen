@@ -232,9 +232,10 @@ wobei $\neg l = \left\lbrace\begin{array}{l l}
 \end{array}\right.$\\
 $\Delta\langle W|LA_1\ \underline{LOP}\ LA_2.K|E|A\rangle:= \langle W|LA_1.LA_2.\underline{LOP}.K|E|A\rangle$\\
 $\Delta\langle l_2.l_1W|\underline{OR}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ oder $l_2=\underline{true}$\\
-$\Delta\langle l2.l1.W|\underline{OR}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
+$\Delta\langle l_2.l_1.W|\underline{OR}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
 
-$\Delta\langle l2.l1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ und $l_2=\underline{true}$\\
+$\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ und $l_2=\underline{true}$\\
+$\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
 $\Delta\langle l_2.l_1W|\underline{AND}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ oder $l_2=\underline{false}$\\
 \item Definieren Sie eine geeignete Reduktionssemantik.\\
 $z=(L, (E,A)$ mit $L \in LA$\\
@@ -255,13 +256,20 @@ Wir definieren einen Ausdruck mit der oben genannten Syntax:
 \begin{lstlisting}
 True OR Not (False AND False)
 \end{lstlisting}
-(Kontrolle: \lstinline!False!)\\
+(Kontrolle: \lstinline!True!)\\
 ... und überprüfen mit Struktureller Induktion die beiden Semantiken, ob wir das gewünschte Ergebnis erhalten.
 \begin{enumerate}
 \item Durch auflösen der Klammerung erhalten wir folgendes Programm im Kontrollkeller $K$\\
 $z_0=\langle W|\text{\lstinline!False AND False.Not.True.OR!}|E|A\rangle$
 \begin{align*}
-z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}|\epsilon|\epsilon\rangle
+z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle \\
+&\Rightarrow \langle \epsilon|\text{\lstinline!False.False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!False.AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!False.False!}.\epsilon|\text{\lstinline!AND.Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!True!}.\epsilon|\text{\lstinline!Not.True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!False!}.\epsilon|\text{\lstinline!True.OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!True.False!}.\epsilon|\text{\lstinline!OR!}.\epsilon|\epsilon|\epsilon\rangle\\
+&\Rightarrow \langle \text{\lstinline!True!}.\epsilon|\epsilon|\epsilon|\epsilon\rangle\\
 \end{align*}
 \item some stuff here\\
 \end{enumerate}
