@@ -208,6 +208,9 @@ Durch induktives anwenden der Regeln für die Reduktionssemantik erhalten wir:\\
 RS1b, RS1b, RS3, RS2b, RS2c, RS4\\
 
 \section*{Aufgabe 2}
+\textbf{Anmerkung Hinnerk:} S hab ich aus der WSKEA Maschine weggelassen, weil es ja eigentlich keinen Speicher und damit kein S gibt. Theoretisch müsste man E und A auch weglassen können, weil es in dieser Aufgabe ja keine Ein-/Ausgabe gibt. Allerdings wäre ich mir dann spätestens bei der Reduktionssemantik nicht mehr sicher...
+Für c habe ich auch noch nix tolles...
+
 Gegeben sei folgende Syntax:
 \begin{lstlisting}
 W := True | False
@@ -216,9 +219,39 @@ LA := W | LA1 LOP LA2 | Not LA
 \end{lstlisting}
 zur Formalisierung logischer Ausdrücke.
 \begin{enumerate}
-\item Definieren Sie eine geeignete operationelle Semantik.
-\item Definieren Sie eine geeignete Reduktionssemantik.
+\item Definieren Sie eine geeignete operationelle Semantik.\\
+$z=\langle W|L.K|E|A\rangle$ mit $L \in LA$\\
+
+$\Delta\langle W|\underline{true}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$\\
+$\Delta\langle W|\underline{false}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$\\
+$\Delta\langle W|\underline{not}\  L.K|E|A\rangle:= \langle W|L.\underline{not}\ .K|E|A\rangle$\\
+$\Delta\langle l.W|\underline{not}\ .K|E|A\rangle:= \langle \neg l.W|K|E|A\rangle$, für alle $l\in \{\underline{true},\underline{false}\}$\\
+wobei $\neg l = \left\lbrace\begin{array}{l l}
+\underline{false}& \text{falls } b=\underline{true}\\
+\underline{true}& \text{falls } b=\underline{false}\\
+\end{array}\right.$\\
+$\Delta\langle W|LA_1\ \underline{LOP}\ LA_2.K|E|A\rangle:= \langle W|LA_1.LA_2.\underline{LOP}.K|E|A\rangle$\\
+$\Delta\langle l_2.l_1W|\underline{OR}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ oder $l_2=\underline{true}$\\
+$\Delta\langle l2.l1.W|\underline{OR}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
+
+$\Delta\langle l2.l1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ und $l_2=\underline{true}$\\
+$\Delta\langle l_2.l_1W|\underline{AND}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ oder $l_2=\underline{false}$\\
+\item Definieren Sie eine geeignete Reduktionssemantik.\\
+$z=(L, (E,A)$ mit $L \in LA$\\
+$(\underline{not}\  L,(E,A)) \Rightarrow (\underline{not}\  L',(E',A))$, falls $(L,(E,A)) \Rightarrow (L',(E',A))$\\
+$(\underline{not}\  L,(E,A)) \Rightarrow (\neg l,(E,A))$, für $l\in\{\underline{true},\underline{false}\}$\\
+
+$(L_1\ \underline{LOP}\ L_2,(E,A)) \Rightarrow (L_1'\ \underline{LOP}\ L_2,(E',A))$, falls $(L_1,(E,A)) \Rightarrow (L_1',(E',A))$\\
+
+$(l\ \underline{LOP}\ L,(E,A)) \Rightarrow (l\ \underline{LOP}\ L',(E',A))$, falls $(L,(E,A)) \Rightarrow (L',(E',A))$\\
+
+$(l_1\ \underline{AND}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{AND}\ l_2),(E',A))$, falls $l_1\ \underline{AND}\ l_2$ ausgewertet werden kann
+$(l_1\ \underline{OR}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{OR}\ l_2),(E',A))$, falls $l_1\ \underline{AND}\ l_2$ ausgewertet werden kann
+
+$(read,(l.E,A)) \Rightarrow (l,(E,A))$, für $l\in\{\underline{true},\underline{false}\}$\\
 \item Beweisen Sie die Äquivalenz Ihrer Lösungen zu a) und b).
+
+
 \end{enumerate}
 \section*{Aufgabe 3 \text{(freiwillig)}}
 \begin{enumerate}
