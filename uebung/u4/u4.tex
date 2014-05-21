@@ -99,109 +99,28 @@ dass sowohl die operationelle Semantik als auch die Reduktionssemantik bei Einga
 \textbf{Lösungsidee von Tobi:}
 Wir betrachten die entsprechenden Regeln (aus der Vorlesung) aus beiden Semantiken.\\
 Für die operationelle Semantik:
-\begin{equation}
-\tag{OS1a}
-\begin{split}
-\Delta\langle W|S|I:=T.K|E|A\rangle = \langle W|S|T.assign.I.K|E|A\rangle
-\end{split}
-\label{eqn:os1a}
-\end{equation}	
-\begin{equation}
-\tag{OS1b}
-\begin{split}
-  \Delta\langle n.W|S|assign.I.K|E|A\rangle = \langle W|S[n/I]|K|E|A\rangle\text{, wobei }n\in ZAHL\text{ und } \\ S[n/I](x) = \left\lbrace\begin{array}{l l}
-n,&\text{falls }I =x\\
-	S(x)& \text{sonst}\\
-\end{array}\right.
-\end{split}
-\label{eqn:os1b}
-\end{equation}	
-\begin{equation}
-\tag{OS2}
-\begin{split}
-\Delta\langle W|S|\underline{read}.K|n.E|A\rangle = \langle n.W|S|K|E|A\rangle\text{ für alle }n\in ZAHL
-\end{split}
-\label{eqn:os2}
-\end{equation}	
-\begin{equation}
-\tag{OS3a}
-\begin{split}
-\Delta\langle W|S|\underline{output}\ T.K|E|A\rangle = \langle W|S|T.\underline{output}.K|E|A\rangle
-\end{split}
-\label{eqn:os3a}
-\end{equation}		
-\begin{equation}
-\tag{OS3b}
-\begin{split}
-\Delta\langle n.W|S|\underline{output}.K|E|A\rangle = \langle W|S|K|E|n.A\rangle
-\end{split}
-\label{eqn:os3b}
-\end{equation}	
-\begin{equation}
-\tag{OS4a}
-\begin{split}
-\Delta\langle W|S|T_1\;\underline{OP}\;T_2.K|E|A\rangle = \langle W|S|T_1.T_2.\underline{OP}.K|E|A\rangle
-\end{split}
-\label{eqn:os4a}
-\end{equation}	
-\begin{equation}
-\tag{OS4b}
-\begin{split}
-\Delta\langle n_2.n_1.W|S|\underline{OP}.K|E|A\rangle = \langle \underline{(n_1\;\underline{OP}\;n_2)}.W|S|K|E|A\rangle\text{, falls }\\\underline{n_1\ \underline{OP}\ n_2}\text{ nicht aus dem darstellbaren Zahlenbereich herausführt}
-\end{split}
-\label{eqn:os4b}
-\end{equation}	
-
+\begin{align}
+\Delta\langle W|S|I:=T.K|E|A\rangle &= \langle W|S|T.assign.I.K|E|A\rangle \tag{OS1a}\\
+\Delta\langle n.W|S|assign.I.K|E|A\rangle &= \langle W|S[n/I]|K|E|A\rangle\text{, wobei }n\in ZAHL\text{ und } \notag\\&\quad\quad S[n/I](x) = \left\lbrace\begin{array}{l l}
+n,&\text{falls }I =x\notag\\
+	S(x)& \text{sonst}\notag\\
+\end{array}\right.\tag{OS1b}\\
+\Delta\langle W|S|\underline{read}.K|n.E|A\rangle &= \langle n.W|S|K|E|A\rangle\text{ für alle }n\in ZAHL\tag{OS2}\\
+\Delta\langle W|S|\underline{output}\ T.K|E|A\rangle &= \langle W|S|T.\underline{output}.K|E|A\rangle\tag{OS3a}\\
+\Delta\langle n.W|S|\underline{output}.K|E|A\rangle &= \langle W|S|K|E|n.A\rangle\tag{OS3b}\\
+\Delta\langle W|S|T_1\;\underline{OP}\;T_2.K|E|A\rangle &= \langle W|S|T_1.T_2.\underline{OP}.K|E|A\rangle\tag{OS4a}\\
+\Delta\langle n_2.n_1.W|S|\underline{OP}.K|E|A\rangle &= \langle \underline{(n_1\;\underline{OP}\;n_2)}.W|S|K|E|A\rangle\text{, falls }\underline{n_1\ \underline{OP}\ n_2}\notag\\&\text{ nicht aus dem darstellbaren Zahlenbereich herausführt}\tag{OS4b}\\\notag
+\end{align}
 und für die Reduktionssemantik diese  Regeln:
-\begin{equation}
-\tag{RS1a}
-\begin{split}
-(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}\text{ für }x \in ID, (s,e,a) \in \mathcal{Z}
-\end{split}
-\label{eqn:RS1a}
-\end{equation}
-\begin{equation}
-\tag{RS1b}
-\begin{split}
-(I:=T,(s,e,a)) \Rightarrow (\underline{skip}, (s[n/I],e',a))\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))
-\end{split}
-\label{eqn:RS1b}
-\end{equation}
-\begin{equation}
-\tag{RS2a}
-\begin{split}
-(T_1\;\underline{OP}\;T_2, z) \Rightarrow (n\;\underline{OP}\;T_2, z')\text{, falls }(T_1, z) \xRightarrow{*}(n,z')
-\end{split}
-\label{eqn:RS2a}
-\end{equation}	
-\begin{equation}
-\tag{RS2b}
-\begin{split}
-(n\;\underline{OP}\;T_1, z) \Rightarrow (n\;\underline{OP}\;m, z')\text{, falls }(T, z) \xRightarrow{*}(m,z')
-\end{split}
-\label{eqn:RS2b}
-\end{equation}
-\begin{equation}
-\tag{RS2c}
-\begin{split}
-(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z')\text{, falls }\underline{n\;\underline{OP}\;m} \in\text{ ZAHL}
-\end{split}
-\label{eqn:RS2c}
-\end{equation}
-\begin{equation}
-\tag{RS3}
-\begin{split}
-\underline{read} \Rightarrow (n, (s,e,a)), \text{ falls } n \in\text{ ZAHL}
-\end{split}
-\label{eqn:RS3}
-\end{equation}
-\begin{equation}
-\tag{RS4}
-\begin{split}
-\underline{output}\;T, (s,e,a)\Rightarrow (\underline{skip}, (s,e',a.n))\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))
-\end{split}
-\label{eqn:RS4}
-\end{equation}
+\begin{align}
+(x,(s,e,a)) &\Rightarrow (s(x), (s,e,a))&\text{, falls }s(x) \neq \text{\underline{frei}}\text{ für }x \in ID, (s,e,a) \in \mathcal{Z}\tag{RS1a}\\
+(I:=T,(s,e,a)) &\Rightarrow (\underline{skip}, (s[n/I],e',a))&\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))\tag{RS1b}\\
+(T_1\;\underline{OP}\;T_2, z) &\Rightarrow (n\;\underline{OP}\;T_2, z')&\text{, falls }(T_1, z) \xRightarrow{*}(n,z')\tag{RS2a}\\
+(n\;\underline{OP}\;T_1, z) &\Rightarrow (n\;\underline{OP}\;m, z')&\text{, falls }(T, z) \xRightarrow{*}(m,z')\tag{RS2b}\\
+(n\;\underline{OP}\;n, z) &\Rightarrow (\underline{n\;\underline{OP}\;m}, z')&\text{, falls }\underline{n\;\underline{OP}\;m} \in\text{ ZAHL}\tag{RS2c}\\
+\underline{read} &\Rightarrow (n, (s,e,a))&\text{, falls } n \in\text{ ZAHL}\tag{RS3}\\
+\underline{output}\;T, (s,e,a) &\Rightarrow (\underline{skip}, (s,e',a.n))&\text{, falls }(T, (s,e,a))\xRightarrow{*}(n,(s,e',a))\tag{RS4}\\\notag
+\end{align}
 Durch simulieren der Kellerspitze können wir so alle Regeln Schritt für Schritt für die operationelle Semantik anwenden:\\
 OS1a, OS1b, OS1a, OS1b, OS4a, OS2, OS4b, OS4a, OS3a, OS3b\\
 Durch induktives anwenden der Regeln für die Reduktionssemantik erhalten wir:\\
@@ -220,36 +139,29 @@ LA := W | LA1 LOP LA2 | Not LA
 zur Formalisierung logischer Ausdrücke.
 \begin{enumerate}
 \item Definieren Sie eine geeignete operationelle Semantik.\\
-$z=\langle W|L.K|E|A\rangle$ mit $L \in LA$\\
-
-$\Delta\langle W|\underline{true}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$\\
-$\Delta\langle W|\underline{false}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$\\
-$\Delta\langle W|\underline{not}\  L.K|E|A\rangle:= \langle W|L.\underline{not}\ .K|E|A\rangle$\\
-$\Delta\langle l.W|\underline{not}\ .K|E|A\rangle:= \langle \neg l.W|K|E|A\rangle$, für alle $l\in \{\underline{true},\underline{false}\}$\\
-wobei $\neg l = \left\lbrace\begin{array}{l l}
-\underline{false}& \text{falls } b=\underline{true}\\
-\underline{true}& \text{falls } b=\underline{false}\\
-\end{array}\right.$\\
-$\Delta\langle W|LA_1\ \underline{LOP}\ LA_2.K|E|A\rangle:= \langle W|LA_1.LA_2.\underline{LOP}.K|E|A\rangle$\\
-$\Delta\langle l_2.l_1W|\underline{OR}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ oder $l_2=\underline{true}$\\
-$\Delta\langle l_2.l_1.W|\underline{OR}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
-
-$\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{true}$ und $l_2=\underline{true}$\\
-$\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle:= \langle \underline{true}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ und $l_2=\underline{false}$\\
-$\Delta\langle l_2.l_1W|\underline{AND}.K|E|A\rangle:= \langle \underline{false}.W|K|E|A\rangle$, wenn $l_1=\underline{false}$ oder $l_2=\underline{false}$\\
+$z=\langle W|L.K|E|A\rangle$ mit $L \in LA$
+\begin{align}
+\Delta\langle W|\underline{true}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\tag{OS1}\\
+\Delta\langle W|\underline{false}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\tag{OS2}\\
+\Delta\langle W|\underline{not}\  L.K|E|A\rangle &:= \langle W|L.\underline{not}\ .K|E|A\rangle\tag{OS3a}\\
+\Delta\langle l.W|\underline{not}\ .K|E|A\rangle &:= \langle \neg l.W|K|E|A\rangle\text{, für alle }l\in \{\underline{true},\underline{false}\}\notag\\&\quad\quad\text{wobei }\neg l = \left\lbrace\begin{array}{l l}\underline{false}& \text{falls } b=\underline{true}\\\underline{true}& \text{falls } b=\underline{false}\\\end{array}\right.\tag{OS3b}\\
+\Delta\langle W|LA_1\ \underline{LOP}\ LA_2.K|E|A\rangle &:= \langle W|LA_1.LA_2.\underline{LOP}.K|E|A\rangle\tag{OS4}\\
+\Delta\langle l_2.l_1W|\underline{OR}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{true}\text{ oder }l_2=\underline{true}\tag{OS5a}\\
+\Delta\langle l_2.l_1.W|\underline{OR}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ und }l_2=\underline{false}\tag{OS5b}\\
+\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{true}\text{ und }l_2=\underline{true}\tag{OS6a}\\
+\Delta\langle l_2.l_1.W|\underline{AND}.K|E|A\rangle &:= \langle \underline{true}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ und }l_2=\underline{false}\tag{OS6b}\\
+\Delta\langle l_2.l_1W|\underline{AND}.K|E|A\rangle &:= \langle \underline{false}.W|K|E|A\rangle\text{, wenn }l_1=\underline{false}\text{ oder }l_2=\underline{false}\tag{OS6c}\\\notag
+\end{align}
 \item Definieren Sie eine geeignete Reduktionssemantik.\\
-$z=(L, (E,A)$ mit $L \in LA$\\
-$(\underline{not}\  L,(E,A)) \Rightarrow (\underline{not}\  L',(E',A))$, falls $(L,(E,A)) \Rightarrow (L',(E',A))$\\
-$(\underline{not}\  L,(E,A)) \Rightarrow (\neg l,(E,A))$, für $l\in\{\underline{true},\underline{false}\}$\\
-
-$(L_1\ \underline{LOP}\ L_2,(E,A)) \Rightarrow (L_1'\ \underline{LOP}\ L_2,(E',A))$, falls $(L_1,(E,A)) \Rightarrow (L_1',(E',A))$\\
-
-$(l\ \underline{LOP}\ L,(E,A)) \Rightarrow (l\ \underline{LOP}\ L',(E',A))$, falls $(L,(E,A)) \Rightarrow (L',(E',A))$\\
-
-$(l_1\ \underline{AND}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{AND}\ l_2),(E',A))$, falls $l_1\ \underline{AND}\ l_2$ ausgewertet werden kann
-$(l_1\ \underline{OR}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{OR}\ l_2),(E',A))$, falls $l_1\ \underline{AND}\ l_2$ ausgewertet werden kann
-
-$(read,(l.E,A)) \Rightarrow (l,(E,A))$, für $l\in\{\underline{true},\underline{false}\}$\\
+$z=(L, (E,A)$ mit $L \in LA$
+\begin{align}
+(\underline{not}\  L,(E,A)) &\Rightarrow (\underline{not}\  L',(E',A))\text{, falls }(L,(E,A)) \Rightarrow (L',(E',A))\tag{RS1a}\\
+(\underline{not}\  L,(E,A)) &\Rightarrow (\neg l,(E,A))\text{, für }l\in\{\underline{true},\underline{false}\}\tag{RS1b}\\
+(L_1\ \underline{LOP}\ L_2,(E,A)) &\Rightarrow (L_1'\ \underline{LOP}\ L_2,(E',A))\text{, falls }(L_1,(E,A)) \Rightarrow (L_1',(E',A))\tag{RS2a}\\
+(l\ \underline{LOP}\ L,(E,A)) &\Rightarrow (l\ \underline{LOP}\ L',(E',A))\text{, falls }(L,(E,A)) \Rightarrow (L',(E',A))\tag{RS2b}\\
+(l_1\ \underline{AND}\ l_2,(E,A)) &\Rightarrow (eval(l_1\ \underline{AND}\ l_2),(E',A))\text{, falls }\notag\\&\quad\quad l_1\ \underline{AND}\ l_2\text{ ausgewertet werden kann}\tag{RS3}\\
+(l_1\ \underline{OR}\ l_2,(E,A)) &\Rightarrow (eval(l_1\ \underline{OR}\ l_2),(E',A))\text{, falls }\notag\\&\quad\quad l_1\ \underline{OR}\ l_2\text{ ausgewertet werden kann}\tag{RS4}\\ \notag
+\end{align}
 \item Beweisen Sie die Äquivalenz Ihrer Lösungen zu a) und b).\\
 \textbf{Lösungsidee von Tobi:}
 Wir definieren einen Ausdruck mit der oben genannten Syntax:
