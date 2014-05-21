@@ -249,9 +249,22 @@ $(l_1\ \underline{AND}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{AND}\ l_2),
 $(l_1\ \underline{OR}\ l_2,(E,A)) \Rightarrow (eval(l_1\ \underline{OR}\ l_2),(E',A))$, falls $l_1\ \underline{AND}\ l_2$ ausgewertet werden kann
 
 $(read,(l.E,A)) \Rightarrow (l,(E,A))$, für $l\in\{\underline{true},\underline{false}\}$\\
-\item Beweisen Sie die Äquivalenz Ihrer Lösungen zu a) und b).
-
-
+\item Beweisen Sie die Äquivalenz Ihrer Lösungen zu a) und b).\\
+\textbf{Lösungsidee von Tobi:}
+Wir definieren einen Ausdruck mit der oben genannten Syntax:
+\begin{lstlisting}
+True OR Not (False AND False)
+\end{lstlisting}
+(Kontrolle: \lstinline!False!)\\
+... und überprüfen mit Struktureller Induktion die beiden Semantiken, ob wir das gewünschte Ergebnis erhalten.
+\begin{enumerate}
+\item Durch auflösen der Klammerung erhalten wir folgendes Programm im Kontrollkeller $K$\\
+$z_0=\langle W|\text{\lstinline!False AND False.Not.True.OR!}|E|A\rangle$
+\begin{align*}
+z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}|\epsilon|\epsilon\rangle
+\end{align*}
+\item some stuff here\\
+\end{enumerate}
 \end{enumerate}
 \section*{Aufgabe 3 \text{(freiwillig)}}
 \begin{enumerate}
