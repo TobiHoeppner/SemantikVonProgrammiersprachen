@@ -165,7 +165,7 @@ $z=(L, (E,A)$ mit $L \in LA$
 (l_1\ \underline{OR}\ l_2,(E,A)) &\Rightarrow (eval(l_1\ \underline{OR}\ l_2),(E',A))\text{, falls }\notag\\&\quad\quad l_1\ \underline{OR}\ l_2\text{ ausgewertet werden kann}\tag{RS4}\\ \notag
 \end{align}
 \item Beweisen Sie die Äquivalenz Ihrer Lösungen zu a) und b).\\
-\textbf{Lösungsidee von Tobi:}
+%\textbf{Lösungsidee von Tobi:}
 Wir definieren einen Ausdruck mit der oben genannten Syntax:
 \begin{lstlisting}
 True OR Not (False AND False)
@@ -187,13 +187,14 @@ z_0&=\langle \epsilon|\text{\lstinline!False AND False.Not.True.OR!}.\epsilon|\e
 \end{align*}
 \item $z_0=(True\ \underline{Or}\ Not\ \underline{False\ \underline{And}\ False}, (E,A))$\\
 \begin{align*}
-z_0=(True\ \underline{Or}\ Not\ \underline{False\ \underline{And}\ False}, (\epsilon,\epsilon))\\
-&\xRightarrow{\text{RS3}} z_0=(True\ \underline{Or}\ Not\ False, (\epsilon,\epsilon))\\
-&\xRightarrow{\text{RS1b}} z_0=(True\ \underline{Or}\ True, (\epsilon,\epsilon))\\
-&\xRightarrow{\text{RS4}} z_0=(True,(\epsilon,\epsilon))
+z_0&=(True\ \underline{Or}\ Not\ \underline{False\ \underline{And}\ False}, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS3}} (True\ \underline{Or}\ Not\ False, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS1b}} (True\ \underline{Or}\ True, (\epsilon,\epsilon))\\
+&\xRightarrow{\text{RS4}} (True,(\epsilon,\epsilon))
 \end{align*}
 \end{enumerate}
 \end{enumerate}
+Für beide Semantiken erhalten wir das gleiche Ergebnis. Da wir nicht davon ausgehen können alle erdenklichen Kombinationen der Syntax erfasst zu haben ist eine vollständige Äquivalenz beider Semantiken trotzdem nicht bewiesen.\\
 \section*{Aufgabe 3 \text{(freiwillig)}}
 \begin{enumerate}
 	\item Implementieren Sie die Reduktionssemantik von WHILE in eine Programmiersprache Ihrer Wahl.
