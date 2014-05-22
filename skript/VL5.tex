@@ -25,19 +25,25 @@
 		\item[-] Hilfsbereiche:\\
 		ZUSTAND = SPEICHER $\times$ EINGABE $\times$ AUSGABE mit SPEICHER = ID $\rightarrow$ ZAHL $\cup \{\underline{frei}\}$, EINGABE = KON$^*$ und AUSGABE = KON$^*$
 		\item[\textbf{1.}] $\mathcal{T}:$TERM$\rightarrow \underline{\underline{B_T}}$\\
-		$B_T :=$ZAHL???
-		\begin{compactitem}
+		$B_T :=$ZAHL???\\
+		\fbox{\parbox[b]{\textwidth*4/5}{
 		% versuchen als kleinen Einschub auf Höhe B.1. zu ordnen
-			\item[Curry-Isomorphie] $(A \times B \rightarrow C) \cong A \rightarrow (B \rightarrow C)$\\
-			% Runder Pfeil oben mit "curry" von links nach rechts(spitze)
-			% Runder Pfeil unten mit "uncurry" von rechts nach links(spitze)
-			curry $f a b = f(a,b)$\\
-			uncurry $g (a,b) = g a b$
-		\end{compactitem}
-		$B_T := $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((ZAHL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
-		$\mathcal{B}:$ BT $\rightarrow $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((BOOL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
-		$\mathcal{C}:$ COM $\rightarrow $ ZUSTAND $\rightarrow$ (ZUSTAND $\cup \{\underline{Fehler} \}$ )\\
+			\underline{\textbf{Curry-Isomorphie}} \\
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.3cm]
+  \node[state,draw=none] (q1)      {$(A \times B \rightarrow C)$};
+  \node[state,draw=none] (q2) [right of=q1]  {$\cong$};
+  \node[state,draw=none] (q3) [right of=q2] {$A \rightarrow (B \rightarrow C)$};
+  \path[->] (q1)  edge   [bend left=30]   node {curry} (q3);
+  \path[->] (q3)  edge   [bend left=30]   node {uncurry} (q1);
+\end{tikzpicture}\\	
+			%$(A \times B \rightarrow C) \cong A \rightarrow (B \rightarrow C)$\\
+			\textbf{curry}: $f\;a\; b = f(a,b)$\\
+			\textbf{uncurry}: $g\;(a,b) = g\;a\;b$\\
+			$B_T := $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((ZAHL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
+			$\mathcal{B}:$ BT $\rightarrow $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((BOOL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
+			$\mathcal{C}:$ COM $\rightarrow $ $\underbrace{ \text{ZUSTAND} \rightarrow \text{ZUSTAND }\cup \{\underline{Fehler} \}\text{ )}}_{B_C}$\\
 		% geschwungene Klammer mit $B_C$unter ZUSTAND -> (...)
+		}}
 		\item[\textbf{2.}] Induktive Definition über dem Aufbau
 		% höhe \mathcal{C}[\underline{skip}] z &= z
 \marginnote{\small\emph{alt. Schreibweise:}\\$\mathcal{C}[\underline{skip}]\;z = \underline{id}$}[11,5cm]
