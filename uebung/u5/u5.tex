@@ -107,9 +107,24 @@ Erweitern Sie die Sprache \textbf{WHILE} um Anweisungen der Form
 for I := T_1 to T_2 do C
 \end{lstlisting}.
 Formalisieren Sie die Semantik dieser Anweisungen denotationell.\\
-\section*{Aufgabe 3}
+
+\textbf{Idee von Flo:}\\
+
+Das soll doch am Ende ne ganz simple Zählvariable werden denk ich mal, also:\\
+
+
+C[[while I:/=T2 do C]] (s,e,a) = { C[[C; while I:/=T2 do C; I:= I+1]](s,e',a)\\
+
+Solange I noch nicht T2 entspricht, wird das Programm weiter ausgeführt.\\
 Erweitern Sie die Sprache WHILE um den atomaren booleschen Term \lstinline!eof!. Die informelle Semantik von eof lautet: eof ist wahr gdw die Eingabe leer ist.\\
 Formalisieren Sie die Semantik von \lstinline!eof! denotationell.\\
+
+\textbf{Idee von Flo:}\\
+
+B[[eof]] s,e = { (falsch, e'), falls e = b.e' mit b e BOOL oder e = E oder e=n.e' mit n e Zahl\\
+B[[eof]] s,e = { (wahr, e'), sonst\\
+
+Ich hoffe ich habe alle möglichen Eingabearten abgegriffen.
 \section*{Aufgabe 4}
 Programmieren Sie in WHILE (einschließlich \lstinline!eof!) einen Algorithmus zur Berechnung der Summe aller Eingabewerte. Beweisen Sie die Korrektheit Ihres Programms anhand der denotationellen Semantik. Diskutieren Sie die Problematik beim Fehlen von \lstinline!eof!.
 \end{document}
