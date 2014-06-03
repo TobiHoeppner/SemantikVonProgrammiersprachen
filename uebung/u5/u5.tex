@@ -93,6 +93,14 @@
 \section*{Aufgabe 1}
 Ändern Sie die Sprache \textbf{WHILE} ab, indem Sie anstelle des atomaren Ausdruckes \lstinline!read! Anweisungen der Form \lstinline!read I! zulassen. Die Semantik dieser Anweisung lautet informell: Die Ausführung von \lstinline!read I! bewirkt eine Zuweisung des nächsten Eingabewertes an die Variable \lstinline!I! und eine Verkürzung der Eingabedatei um das erste Element.\\
 Formalisieren Sie die Semantik von \lstinline!read I! denotationell.\\
+
+\textbf{Idee von Flo:}\\
+
+C[[read I]] (s,e,a) = { (S[n/I],e',a) mit e = n.e'\\
+
+Soll heißen: der nächste gelesene Eingabewert (n) ersetzt (I) im Speicher. (e') ist ein um den ersten
+
+Wert kürzeres (e). Naja....
 \section*{Aufgabe 2}
 Erweitern Sie die Sprache \textbf{WHILE} um Anweisungen der Form 
 \begin{lstlisting}
