@@ -105,7 +105,7 @@ $		\mathcal{C}
 		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.$\\
 Soll heißen: der nächste gelesene Eingabewert ($n$) ersetzt ($I$) im Speicher. ($e'$) ist ein um den ersten Wert kürzeres ($e$).\\
 \section*{Aufgabe 2}
-Erweitern Sie die Sprache \textbf{WHILE} um Anweisungen der Form 
+Erweitern Sie die Sprache \textbf{WHILE} um Anweisungen der Form
 \begin{lstlisting}
 for I := T_1 to T_2 do C
 \end{lstlisting}.
@@ -141,4 +141,13 @@ B[[eof]] s,e = { (wahr, e'), sonst\\
 Ich hoffe ich habe alle möglichen Eingabearten abgegriffen.
 \section*{Aufgabe 4}
 Programmieren Sie in WHILE (einschließlich \lstinline!eof!) einen Algorithmus zur Berechnung der Summe aller Eingabewerte. Beweisen Sie die Korrektheit Ihres Programms anhand der denotationellen Semantik. Diskutieren Sie die Problematik beim Fehlen von \lstinline!eof!.
+\textbf{Programm in \texttt{WHILE}:}\\
+\begin{lstlisting}[escapeinside={(*@}{@*)}]
+zahl := 0
+while (*@$\neg$@*) eof do zahl := zahl + (*@$\underline{read}$@*)
+\end{lstlisting}
+
+\textbf{Diskussion:}\\
+Ohne \lstinline$eof$ bräuchte das Programm für das Einlesen der kompletten Datei mittels einer Schleife eine Fehlerbehandlung (Exception-Handling), um eine leere Eingabe abzufangen, da das Programm sonst abstürzen würde (\lstinline$read$ wirft einen Fehler bei leerer eingabe).
+
 \end{document}
