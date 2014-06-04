@@ -22,6 +22,7 @@
 \usepackage{amsmath}
 \usepackage{accents}
 \usepackage{tikz}
+\usepackage{stmaryrd}
 
 % Code Listing Style
 \definecolor{darkblue}{rgb}{0,0,.6}
@@ -139,6 +140,12 @@ B[[eof]] s,e = { (falsch, e'), falls e = b.e' mit b e BOOL oder e = E oder e=n.e
 B[[eof]] s,e = { (wahr, e'), sonst\\
 
 Ich hoffe ich habe alle möglichen Eingabearten abgegriffen.
+
+\textbf{Anmerkung Hinnerk:} Kann man es sich nicht wie folgt einfach machen? ;)\\
+$ B \llbracket\text{eof} \rrbracket z = \left\lbrace\begin{array}{l l}
+(\text{wahr},z') & \text{falls } e = \epsilon\\
+(\text{falsch},z') & \text{sonst}
+\end{array}\right.$
 \section*{Aufgabe 4}
 Programmieren Sie in WHILE (einschließlich \lstinline!eof!) einen Algorithmus zur Berechnung der Summe aller Eingabewerte. Beweisen Sie die Korrektheit Ihres Programms anhand der denotationellen Semantik. Diskutieren Sie die Problematik beim Fehlen von \lstinline!eof!.
 \textbf{Programm in \texttt{WHILE}:}\\
