@@ -94,13 +94,16 @@
 Ändern Sie die Sprache \textbf{WHILE} ab, indem Sie anstelle des atomaren Ausdruckes \lstinline!read! Anweisungen der Form \lstinline!read I! zulassen. Die Semantik dieser Anweisung lautet informell: Die Ausführung von \lstinline!read I! bewirkt eine Zuweisung des nächsten Eingabewertes an die Variable \lstinline!I! und eine Verkürzung der Eingabedatei um das erste Element.\\
 Formalisieren Sie die Semantik von \lstinline!read I! denotationell.\\
 
-\textbf{Idee von Flo:}\\
-
-C[[read I]] (s,e,a) = { (S[n/I],e',a) mit e = n.e'\\
-
-Soll heißen: der nächste gelesene Eingabewert (n) ersetzt (I) im Speicher. (e') ist ein um den ersten
-
-Wert kürzeres (e). Naja....
+%\textbf{Idee von Flo:}\\
+%
+%C[[read I]] (s,e,a) = { (S[n/I],e',a) mit e = n.e'\\
+%$\mathcal{C}[\![\underline{read} I]\!]\;(s,e,a) = (S[n/I],e',a \text{ mit } e = n.e')$\\
+\textbf{Tobi: Idee von Flo etwas weiter gedacht:}\\
+$		\mathcal{C}
+[\![\underline{read}\;I]\!]\;(s,e,a) = \left\lbrace\begin{array}{l l} (S[n/I], e', a)\text{,}\quad\text{falls }\mathcal{T}
+[\![\underline{read}]\!]\;s\;e = (n, e')\\
+		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.$\\
+Soll heißen: der nächste gelesene Eingabewert ($n$) ersetzt ($I$) im Speicher. ($e'$) ist ein um den ersten Wert kürzeres ($e$).\\
 \section*{Aufgabe 2}
 Erweitern Sie die Sprache \textbf{WHILE} um Anweisungen der Form 
 \begin{lstlisting}
@@ -112,10 +115,20 @@ Formalisieren Sie die Semantik dieser Anweisungen denotationell.\\
 
 Das soll doch am Ende ne ganz simple Zählvariable werden denk ich mal, also:\\
 
-
 C[[while I:/=T2 do C]] (s,e,a) = { C[[C; while I:/=T2 do C; I:= I+1]](s,e',a)\\
 
 Solange I noch nicht T2 entspricht, wird das Programm weiter ausgeführt.\\
+
+\textbf{Idee von Tobi:}\\
+Ja, die Idee ist gut, nur bissl anders aufgeschrieben:\\
+$		\mathcal{C}
+[\![\underline{for}\;I:=T_1\;\underline{to}\;T_2\;\underline{do}\;C]\!]\;(s,e,a) = \left\lbrace\begin{array}{l l} \mathcal{C}
+[\![I=I+1;C;\underline{for}\;I\;\underline{to}\;T_2\;\underline{do}\;C]\!](s,e',a)\text{,}&\text{falls }\\\quad\quad\mathcal{B}
+[\![I\;\underline{>=}\;T_2]\!]\;s\;e= (\underline{false},e')\\
+(s,e',a)\text{,}\quad\text{falls }\quad\mathcal{B}[\![I\;\underline{>=}\;T_2]\!]\;s\;e= (\underline{true},e')\\
+		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.$\\
+Bin mir aktuell nicht 100\% sicher, weil ich die erste Zuweisung etwas unterschlage. Eigentlich müsste man das $I:=T_1$ noch vor der ersten Ausführung vom Befehl $C$ ausführen.\\
+
 \section*{Aufgabe 3}
 Erweitern Sie die Sprache WHILE um den atomaren booleschen Term \lstinline!eof!. Die informelle Semantik von eof lautet: eof ist wahr gdw die Eingabe leer ist.\\
 Formalisieren Sie die Semantik von \lstinline!eof! denotationell.\\
