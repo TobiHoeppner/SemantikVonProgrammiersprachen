@@ -40,10 +40,10 @@ C&::= \underline{skip} | \underline{read} I | I:=T | \underline{output} T | C_1;
 		\item Bedingungen: $T_1 \underline{Relop} T_2$\\
 		$B_1 \lor B_2, B_1 \land B_2, \lnot B$ 
 	\end{itemize}
-	\item[2.] atomare Definitionen:
+	\item[2.] atomare Definitionen:\\
 		\begin{align}
-			\{Q\}\underline{skip}\{Q\}\tag{A.1}\\
-			\{Q[T/I]\}I:=T\{Q\},\text{wobei}[T/I]\text{ die einmalige textliche Substitution von} T \text{ für jedes Vorkommen von I in Q bezeichnet.}\tag{A.2}\\
+			\{Q\}&\underline{skip}\{Q\}\tag{A.1}\\
+			\{Q[T/I]\}&I:=T\{Q\},\notag\\&\text{wobei}[T/I]\text{ die einmalige textliche Substitution von} \notag\\&T \text{ für jedes Vorkommen von I in Q bezeichnet.}\tag{A.2}\\
 			\{Q[\underline{hd} \; \underline{input}/I | \underline{tl} input / \underline{input}]\underline{read} I \{Q\} &\approx I:= \underline{hd}(\underline{
 			input}); \underline{input} := \underline{tl} (\underline{input}) \tag{A.3}\\
 			\{Q[output.T / \underline{outpunt}]\} \underline{output}T \{Q\} &\approx \underline{output}=\underline{output}.T\tag{A.4}\\
@@ -62,11 +62,9 @@ C&::= \underline{skip} | \underline{read} I | I:=T | \underline{output} T | C_1;
 	\item[3.]
 	\begin{align}
 	\frac{\{Q\}C_1\{S\},\{S\}C_2\{R\}}{\{Q\}C_1,C_2\{R\}}\tag{A.5}\\
-	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}B\underline{then}C_1\underline{else}C_2}\{R\}\tag{A.6}\\
+	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}B\underline{then}C_1\underline{else}C_2\{R\}}\tag{A.6}\\
 	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}B\underline{do}C\{Q\land \lnot B\}}\tag{A.7}\\
+	\notag
 	\end{align}
 	\item[4.] \emph{(nicht in Vorlesung behandelt, da wohl nicht so wichtig.)}
-\end{compactitem}
-\begin{compactitem}
-
 \end{compactitem}
