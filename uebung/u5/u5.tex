@@ -164,15 +164,23 @@ Ohne \lstinline$eof$ bräuchte das Programm für das Einlesen der kompletten Dat
 \textbf{Beweisskizze:} (Strukturelle Induktion)\\
 \emph{Induktionsanfang}: Leere Datei. Das Programm wird korrekt ausgeführt, die Bedingung der While-Schleife wird als falsch ausgewertet.\\
 \emph{Induktionsschritt}: Datei mit beliebig vielen Zahlen wird solange ausgewertet, bis die Datei leer ist. Die Schleife bricht wie im Induktionsanfang beschrieben.\\
+\begin{align*}
+\left. \begin{array}{l l}
+\left. \begin{array}{l l} &x:=0 \end{array}\right\} C_1\\
+\left. \begin{array}{l l}
+\left. \begin{array}{l l} \underline{while}\ \lnot \underline{eof}\ \underline{do} \\ \left. \begin{array}{l l} &x:=x+\underline{read} \end{array}\right\} C_5\end{array}\right\} C_2\\
+\left. \begin{array}{l l} &\underline{output}\ x \end{array}\right\} C_3\\\end{array}\right\} C_4\\ \end{array}\right\} i\\
+\end{align*}
 
 \begin{align*}
 \mathcal{P}[C'] (n_1,\dots,n_k) &= (\sum_{i=1}^k n_i)\\
-\Leftarrow \mathcal{C}[C] \underbrace{(s_0, (n_0,\dots,n_k),\epsilon}_z &=(s, \epsilon,(\sum_{i=1}^k n_i))
+&\Leftarrow \mathcal{C}[C] \underbrace{(s_0, (n_0,...,n_k),\epsilon}_z &=(s,\epsilon,(\sum_{i=1}^k n_i))\\
 \mathcal{C}[C_1,C_4] z &= \mathcal{C}[C_4](\mathcal{C}[x:=0]z)\\
-&= \mathcal{C}[C_4] \underbrace{(s_0[0/x],(n_1,\dots,n_k),\epsilon)}_z_0\\
-\text{sei} z:= (s_0[(\sum_{i=1}^i n_j/x)], (n_{i+1},\dots,n_k), \epsilon) = \mathcal{C}[C_2,C_3]z_0 = \mathcal{C}[C_3](\mathcal{C}[C_2]z_0)\\
-\text{Beh.:} \mathcal{C}[C_2]z_i = \left\lbrace\begin{array}{l l} \mathcal{C}[C_2] z_{i+1}\text{ falls } i < k\\ z_k \text{ falls } i = k \end{array}\right.\\
-\mathcal{C}[\underline{while}\lnot \underline{eof} \underline{do}C_5] z_i = \mathcal{C}[C_2](\mathcal{C}[C_5]z_i)\\
-\mathcal{C}[x:=x+read]z_i = z_{i+1}
+&= \mathcal{C}[C_4] \underbrace{(s_0[0/x],(n_1,...,n_k),\epsilon)}_{z_0}\\
+\text{sei } \\z:= (s_0[(\sum_{i=1}^i n_j/x)], (n_{i+1},...,n_k), \epsilon) &= \mathcal{C}[C_2,C_3]z_0 = \mathcal{C}[C_3](\mathcal{C}[C_2]z_0)\\
+\text{Beh.: }\\ \mathcal{C}[C_2]z_i &= \left\lbrace\begin{array}{l l} \mathcal{C}[C_2] z_{i+1}&\text{ falls } i < k \\ z_k &\text{ falls } i = k \end{array}\right.\\
+\mathcal{C}[\underline{while}\;\lnot\underline{eof}\;\underline{do}\;C_5] z_i &= \mathcal{C}[C_2](\mathcal{C}[C_5]z_i)\\
+\mathcal{C}[x:=x+read]z_i &= z_{i+1}\\
 \end{align*}
+
 \end{document}
