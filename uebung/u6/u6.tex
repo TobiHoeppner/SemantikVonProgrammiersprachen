@@ -1,0 +1,120 @@
+\documentclass[ngerman,a4paper]{report}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{MyriadPro}
+\usepackage[scaled]{beramono}
+\newcommand\Small{\fontsize{10.5}{10.5}\selectfont}
+\newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-20}\lsstyle}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{centernot}
+\usepackage{listings}
+%\usepackage{ stmaryrd }
+\usepackage{mathtools}
+\usepackage{paralist}
+\usepackage{array}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage{tikz}
+\usepackage{stmaryrd}
+
+% Code Listing Style
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\lstset{%
+	language=C,
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen},
+	keywordstyle=\color{darkblue}\bfseries,
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%
+	    then, not%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+\providecommand{\tabularnewline}{\\}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\makeatletter
+
+\lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
+\chead{}
+\rhead{\@date \\ \thepage \ von \pageref{LastPage} }
+\cfoot{}
+%\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\maketitle}{}
+\newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
+\renewcommand{\familydefault}{\sfdefault}
+
+\author{Florian Ritzel, Hinnerk van Bruinehsen, Tobias Höppner}
+\title{SvP - Übung 06. }
+\date{Sommersemester 2014}
+\begin{document}
+\maketitle
+\section*{Aufgabe 1}
+Beweisen Sie die Formel
+\begin{align*}
+\{true\}\quad
+x:=7;y:=x+3\quad
+\{y=10\}
+\end{align*}
+im Hoare-Kalkül.
+\section*{Aufgabe 2}
+Schreiben Sie ein WHILE'-Programm zur Berechnung der Signum-Funktion und beweisen Sie seine Korrektheit im Hoare-Kalkül.
+\section*{Aufgabe 3}
+Führen Sie einen Korrektheitsbeweis unter Verwendung der axiomatischen Semantik zu folgendem Programm:\\
+\begin{lstlisting}
+sum:=0;
+while not eof do
+	read x;
+	sum := sum + x;
+output sum
+\end{lstlisting}
+\section*{Aufgabe 4}
+Beweisen Sie die Gültigkeit des Axioms (A.4), d.h. zeigen Sie die Gültigkeit der Formel:
+\begin{align*}
+\{Q[output.T/output]\}\quad
+output T\quad
+\{Q\}
+\end{align*}
+\end{document}
