@@ -116,6 +116,29 @@ and here we go: (von hinten nach vorne, also von unten nach oben lesen ;) )
 \end{align*}
 \section*{Aufgabe 2}
 Schreiben Sie ein WHILE'-Programm zur Berechnung der Signum-Funktion und beweisen Sie seine Korrektheit im Hoare-Kalkül.\\
+\textbf{Idee von Tobi:}\\
+Erstmal die Regeln
+\begin{align}
+\frac{\{I\land B\}\quad S\quad\{I\}}{\{I\}\quad \underline{while}\;B\;\underline{do}\;S\quad\{I\land \lnot B\}}\tag{while}\\
+\notag
+\end{align}
+\begin{lstlisting}
+sum:=0;
+while not eof do
+	read x;
+	sum := sum + x;
+output sum
+\end{lstlisting}
+Die Vorbedingung $P$ ist relativ egal. Viel wichtiger ist die Nachbedingung $Q$, die muss den Zustand $e=\epsilon$ enthalten, da das Programm terminieren muss und der Wahrheitswert von $\underline{eof}$ davon abhängt. Eine Herausforderung ist die Schleifeninvariante $I$ zu finden. Da unser Programm eigentlich nur aus der Schleife besteht und davor nichts wesentliches passiert. Kann man die schwächste und einfachste Invariante $\{True\}$ wählen. Im folgenden werden die Variablen $a$ für die Ausgabe und $e$ für die Eingabe verwendet.
+\begin{align*}
+P = \{True\}	\\
+sum:=0;																		\\
+\underline{while}\; \lnot \underline{eof}\; \underline{do}\;
+	\underline{read}\; x;
+	sum := sum + x;															\\
+\underline{output}\; sum																	\\
+Q = \{a = sum \land e = \epsilon \}\\
+\end{align*}
 \section*{Aufgabe 3}
 Führen Sie einen Korrektheitsbeweis unter Verwendung der axiomatischen Semantik zu folgendem Programm:\\
 \begin{lstlisting}
