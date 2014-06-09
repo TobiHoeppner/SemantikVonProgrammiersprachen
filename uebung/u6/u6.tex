@@ -98,9 +98,24 @@ Beweisen Sie die Formel
 x:=7;y:=x+3\quad
 \{y=10\}
 \end{align*}
-im Hoare-Kalkül.
+im Hoare-Kalkül.\\
+\textbf{Idee von Tobi:}\\
+kurze Regelkunde:
+% \frac{\{P\}S\{R\}\{R\}T\{Q\}}{\{P\}S;T\{Q\}}\tag{Sequenz}\\
+\begin{align}
+\{P[x\leftarrow e]	\}\quad	x:=e 	\quad						\{P\}\tag{Zuweisung}\\
+\notag
+\end{align}
+Mit anderen Worten: Man ersetzt in der Nachbedingung alle vorkommen von x durch e.\\
+and here we go: (von hinten nach vorne, also von unten nach oben lesen ;) )
+\begin{align*}
+\{true\}\quad & 			\quad &\{true\} \\
+\{true\}\quad &			\quad &\{7+3=10\} \tag{Zuweisung}\\
+\{true\}\quad &	x:=7		\quad &\{x+3=10\} \tag{Zuweisung}\\
+\{true\}\quad &	x:=7;y:=x+3		\quad &\{y=10\}\\
+\end{align*}
 \section*{Aufgabe 2}
-Schreiben Sie ein WHILE'-Programm zur Berechnung der Signum-Funktion und beweisen Sie seine Korrektheit im Hoare-Kalkül.
+Schreiben Sie ein WHILE'-Programm zur Berechnung der Signum-Funktion und beweisen Sie seine Korrektheit im Hoare-Kalkül.\\
 \section*{Aufgabe 3}
 Führen Sie einen Korrektheitsbeweis unter Verwendung der axiomatischen Semantik zu folgendem Programm:\\
 \begin{lstlisting}

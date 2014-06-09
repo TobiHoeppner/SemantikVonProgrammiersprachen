@@ -16,7 +16,7 @@ Neben der abstrakten Syntax brauchen wir vier Angaben:
 \begin{compactitem}
 	\item[1.] Eine Menge von Bedingungen (logische Ausdrücke, Prädikate, assertions), die über den Zustandsraum interpretierbar sind. Im Allgemeinen Prädikatenlogik 1. Stufe oder Aussagenlogik.\\
 	(formales Setting von logischen Ausdrücken vorgeben, damit man damit arbeiten kann!)
-	Beispiel: $x < y, input = \epsilon$\\ %TODO es gibt ein(existenzquantor) i.x=p.i, ...
+	Beispiel: $x < y, input = \epsilon, \exists i.x=p.i, ...$ 
 	natürliche Interpretation: Verbinde $I \in$ ID mit $S(I)$ sowie $\underline{input}$ mit Eingabe....\\
 	Sei $S(x)=0$, dann ist die Bedingung $y/x=7$ \underline{falsch}.
 	\item[2.] Definition zu jeder atomaren Anweisung $\mathcal{C}$ ein Axiom bzw. ein Axiomenschema der Form\\
@@ -29,9 +29,9 @@ Neben der abstrakten Syntax brauchen wir vier Angaben:
 \subsubsection{Konkretisierung am Beispiel von WHILE'}
 %TODO als Einschub:
 \begin{align*}
-T&::= Z | I | T_1 \underline{OP} T_2\\
-B&::= \underline{true} | \underline{false} | \underline{eof} | T_1 \underline{Relop} T_2\\
-C&::= \underline{skip} | \underline{read} I | I:=T | \underline{output} T | C_1;C_2 | \underline{if}B\underline{then}C_1\underline{else}C_2|\underline{while}B\underline{do}C
+T&::= Z\; |\; I\; |\; T_1\; \underline{OP}\; T_2\\
+B&::= \underline{true}\; |\; \underline{false}\; |\; \underline{eof}\; |\; T_1\; \underline{Relop}\; T_2\\
+C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{output}\; T\; |\; C_1;C_2\; |\; \underline{if}\;B\;\underline{then}\;C_1\;\underline{else}\;C_2\;|\;\underline{while}\;B\;\underline{do}\;C
 \end{align*}
 \begin{compactitem}
 	\item[1.] Aussagenlogik:
@@ -44,9 +44,9 @@ C&::= \underline{skip} | \underline{read} I | I:=T | \underline{output} T | C_1;
 		\begin{align}
 			\{Q\}&\underline{skip}\{Q\}\tag{A.1}\\
 			\{Q[T/I]\}&I:=T\{Q\},\notag\\&\text{wobei}[T/I]\text{ die einmalige textliche Substitution von} \notag\\&T \text{ für jedes Vorkommen von I in Q bezeichnet.}\tag{A.2}\\
-			\{Q[\underline{hd} \; \underline{input}/I | \underline{tl} input / \underline{input}]\underline{read} I \{Q\} &\approx I:= \underline{hd}(\underline{
+			\{Q[\underline{hd} \; \underline{input}/I\; |\; \underline{tl} input / \underline{input}]\;\underline{read}\; I \{Q\} &\approx I:= \underline{hd}(\underline{
 			input}); \underline{input} := \underline{tl} (\underline{input}) \tag{A.3}\\
-			\{Q[output.T / \underline{outpunt}]\} \underline{output}T \{Q\} &\approx \underline{output}=\underline{output}.T\tag{A.4}\\
+			\{Q[output.T / \underline{outpunt}]\}\;\underline{output}\;T \{Q\} &\approx \underline{output}=\underline{output}.T\tag{A.4}\\
 			\notag
 		\end{align}
 		Beispiele:
@@ -63,7 +63,7 @@ C&::= \underline{skip} | \underline{read} I | I:=T | \underline{output} T | C_1;
 	\begin{align}
 	\frac{\{Q\}C_1\{S\},\{S\}C_2\{R\}}{\{Q\}C_1,C_2\{R\}}\tag{A.5}\\
 	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}B\underline{then}C_1\underline{else}C_2\{R\}}\tag{A.6}\\
-	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}B\underline{do}C\{Q\land \lnot B\}}\tag{A.7}\\
+	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}\;B\;\underline{do}\;C\{Q\land \lnot B\}}\tag{A.7}\\
 	\notag
 	\end{align}
 	\item[4.] \emph{(nicht in Vorlesung behandelt, da wohl nicht so wichtig.)}
