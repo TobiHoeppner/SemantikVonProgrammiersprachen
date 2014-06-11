@@ -129,15 +129,16 @@ while not eof do
 	sum := sum + x;
 output sum
 \end{lstlisting}
-Die Vorbedingung $P$ ist relativ egal. Viel wichtiger ist die Nachbedingung $Q$, die muss den Zustand $e=\epsilon$ enthalten, da das Programm terminieren muss und der Wahrheitswert von $\underline{eof}$ davon abhängt. Eine Herausforderung ist die Schleifeninvariante $I$ zu finden. Da unser Programm eigentlich nur aus der Schleife besteht und davor nichts wesentliches passiert. Kann man die schwächste und einfachste Invariante $\{True\}$ wählen. Im folgenden werden die Variablen $a$ für die Ausgabe und $e$ für die Eingabe verwendet.
+Die Vorbedingung $P$ ist relativ egal. Viel wichtiger ist die Nachbedingung $Q$, die muss den Zustand $in=\epsilon$ enthalten, da das Programm terminieren muss und der Wahrheitswert von $\underline{eof}$ davon abhängt. Im folgenden werden die Variablen $out$ für die Ausgabe und $in$ für die Eingabe verwendet. Das Symbol $\epsilon$ stellt hier eine leere Menge dar.\\
+Die Invariante für die Whileschleife sollte eventuell nur Festhalten, dass die Ausgabe unverändert bleibt, die Schleifenbedingung lässt sich wie folgt definieren:\\ $B = \{\lnot(in = \epsilon) \} = \{in \neq \epsilon\} = \{in = [n_0,\dots,n_i]\}$
 \begin{align*}
-P = \{True\}	\\
-sum:=0;																		\\
-\underline{while}\; \lnot \underline{eof}\; \underline{do}\;
-	\underline{read}\; x;
-	sum := sum + x;															\\
-\underline{output}\; sum																	\\
-Q = \{a = sum \land e = \epsilon \}\\
+P = &\{True\}																						\\
+\{\} \quad		&sum:=0; 		\;\;\quad\quad\quad\quad\quad	\{out = \epsilon \land in \neq \epsilon \land 0 + (n_0) \neq \epsilon\}				\\
+\{\} \quad 		&\underline{while}\; \lnot \underline{eof}\; \underline{do}\;		\;\;\quad\quad\quad	\{out = \epsilon \land in \neq \epsilon \land sum + (n_0) \neq \epsilon\}	\\
+\{\} \quad 		&\quad	\underline{read}\; x;	\ \;\;\quad\quad\quad\quad\quad	\{out = \epsilon \land in = [n_1, \dots, n_i] \land sum + (n_0) \neq \epsilon\}\\
+\{\} \quad 		&\quad	sum := sum + x;												\;\quad\{out = \epsilon \land in \neq \epsilon \land sum + x \neq \epsilon\}\\
+\{\} \quad 		&\underline{output}\; sum							\quad\quad\quad\quad\quad\{out = \epsilon \land in = \epsilon \land sum \neq \epsilon \}	\\
+Q = &\{out = sum \land in = \epsilon \}																\\
 \end{align*}
 \section*{Aufgabe 3}
 Führen Sie einen Korrektheitsbeweis unter Verwendung der axiomatischen Semantik zu folgendem Programm:\\
