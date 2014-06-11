@@ -23,6 +23,7 @@
 \usepackage{accents}
 \usepackage{tikz}
 \usepackage{stmaryrd}
+%\usepackage[verification]{struktex}
 
 % Code Listing Style
 \definecolor{darkblue}{rgb}{0,0,.6}
@@ -114,6 +115,16 @@ and here we go: (von hinten nach vorne, also von unten nach oben lesen ;) )
 \{true\}\quad &	x:=7		\quad &\{x+3=10\} \tag{Zuweisung}\\
 \{true\}\quad &	x:=7;y:=x+3		\quad &\{y=10\}\\
 \end{align*}
+
+%\textbf{Struktex Version (Hinnerk):}\\
+%\begin{struktogramm}(100,25)
+%\assert{$\{P\} true$}
+%\assert{$7=7 \Rightarrow true$}
+%\assign{$x:=7$}
+%\assert{$x+3=10 \Rightarrow x=7$}
+%\assign{$y:=x+3$}
+%\assert{$\{Q\} y=10$ }
+%\end{struktogramm}\\
 \section*{Aufgabe 2}
 Schreiben Sie ein WHILE'-Programm zur Berechnung der Signum-Funktion und beweisen Sie seine Korrektheit im Hoare-Kalkül.\\
 \textbf{Idee von Tobi:}\\
@@ -140,6 +151,39 @@ P = &\{True\}																						\\
 \{\} \quad 		&\underline{output}\; sum							\quad\quad\quad\quad\quad\{out = \epsilon \land in = \epsilon \land sum \neq \epsilon \}	\\
 Q = &\{out = sum \land in = \epsilon \}																\\
 \end{align*}
+
+%\textbf{Struktex Version (Hinnerk):}\\
+%\begin{struktogramm}(150,120)
+%\assert{$\{I\} x\in\mathbb{Z}$}
+%\assign{read x}
+%\assert{$\{I\} x\in\mathbb{Z} \wedge (0=1\vee0=-1\vee0=0)$}
+%\assign{signum=0}
+%\assert{$\{I\} x\in\mathbb{Z}\wedge(signum=1\vee signum=-1\vee signum=0)$}
+%\ifthenelse[10]{3}{2}{ }{true}{false}
+%\assert{ }
+%\assert{$\{I\} x\in \mathbb{Z} \wedge x > 0 \ true$}
+%\assert{$\{I\} (1=1)\vee (1=-1)\vee (1=0) \Rightarrow true \vee false\vee false$}
+%\assign{signum=1}
+%\assert{$\{I\} x\in\mathbb{Z}\wedge(signum=1\vee signum=-1\vee signum=0)$}
+%\change
+%\assert{$\{I\}x \in \mathbb{Z} \wedge x\leq0 \wedge (signum=1\vee signum=-1\vee signum=0)$}
+%\assign[20]{skip}
+%\assert{$\{I\} x\in\mathbb{Z}\wedge (signum=1\vee signum=-1\vee signum=0)$}
+%\ifend
+%\assert{$\{I\} x\in\mathbb{Z}\wedge(signum=1\vee signum=-1\vee signum=0)$}
+%\ifthenelse[10]{3}{2}{ }{true}{false}
+%\assert{ }
+%\assert{$\{I\} x\in \mathbb{Z} \wedge x < 0 \ true$}
+%\assert{$\{I\} (-1=1)\vee (-1=-1)\vee (-1=0) \Rightarrow false \vee  true\vee false$}
+%\assign{signum=-1}
+%\assert{$\{I\} x\in\mathbb{Z}\wedge(signum=1\vee signum=-1\vee signum=0)$}
+%\change
+%\assert{$\{I\}x \in \mathbb{Z} \wedge x\geq0 \wedge (signum=1\vee signum=-1\vee signum=0)$}
+%\assign[20]{skip}
+%\assert{$\{I\} x\in\mathbb{Z}\wedge (signum=1\vee signum=-1\vee signum=0)$}
+%\ifend
+%\assert{$\{I\} x\in\mathbb{Z}\wedge(signum=1\vee signum=-1\vee signum=0)$}
+%\end{struktogramm}
 \section*{Aufgabe 3}
 Führen Sie einen Korrektheitsbeweis unter Verwendung der axiomatischen Semantik zu folgendem Programm:\\
 \begin{lstlisting}
@@ -149,6 +193,23 @@ while not eof do
 	sum := sum + x;
 output sum
 \end{lstlisting}
+
+%\textbf{Hinnerks Idee:}\\
+%\begin{struktogramm}(100,90)
+%\assert{$\{I\} sum\in\mathbb{Z}$}
+%\assign{sum:=0}
+%\assert{$\{I\} sum\in\mathbb{Z}$}
+%\while[12]{$\neg eof$}
+%  \assert{$\{I\} sum\in\mathbb{Z}\wedge \neg eof$}
+%  \assign{read x}
+%  \assert{$\{I\} sum\in\mathbb{Z}$}
+%  \assign{sum:=sum+x}
+%  \assert{$\{I\} sum\in\mathbb{Z}$}
+%\whileend
+%\assert{$\{I\wedge \neg B\} sum\in\mathbb{Z}\wedge eof$}
+%\assign{output sum}
+%\assert{$\{I\} sum\in\mathbb{Z}$}
+%\end{struktogramm}\\
 \section*{Aufgabe 4}
 Beweisen Sie die Gültigkeit des Axioms (A.4), d.h. zeigen Sie die Gültigkeit der Formel:
 \begin{align*}
@@ -156,4 +217,22 @@ Beweisen Sie die Gültigkeit des Axioms (A.4), d.h. zeigen Sie die Gültigkeit d
 output T\quad
 \{Q\}
 \end{align*}
+
+%Wir unterscheiden zwei Fälle:
+%\begin{enumerate}
+%	\item \textbf{Fehler:}\\
+%\begin{struktogramm}(100,40)
+%\assert{$\{Q[output.T/output]\}$}
+%\assert{$\{Q[output.T/output]\} Fehler$}
+%\assign{output T}
+%\assert{$\{Q\} Fehler$}
+%\end{struktogramm}
+%\item \textbf{kein Fehler:}\\
+%\begin{struktogramm}(100,20)
+%\assert{$\{Q[output.T/output]\}$}
+%\assert{$\{Q[output.T/output]\}(n,(s,e',a)) $}
+%\assign{output T}
+%\assert{$\{Q\}(s,e',a.n)$}
+%\end{struktogramm}
+%\end{enumerate}
 \end{document}
