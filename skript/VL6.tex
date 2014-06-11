@@ -44,8 +44,8 @@ C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{ou
 			\{Q\}&\underline{skip}\{Q\}\tag{A.1}\\
 			\{Q[T/I]\}&I:=T\{Q\},\notag\\&\text{wobei}[T/I]\text{ die einmalige textliche Substitution von} \notag\\&T \text{ für jedes Vorkommen von I in Q bezeichnet.}\tag{A.2}\\
 			\{Q[\underline{hd} \; \underline{input}/I\; |\; \underline{tl} input / \underline{input}]\;\underline{read}\; I \{Q\} &\approx I:= \underline{hd}(\underline{
-			input}); \underline{input} := \underline{tl} (\underline{input}) \tag{A.3}\\
-			\{Q[output.T / \underline{outpunt}]\}\;\underline{output}\;T \{Q\} &\approx \underline{output}=\underline{output}.T\tag{A.4}\\
+			input}); \underline{input} := \underline{tl}\; (\underline{input}) \tag{A.3}\\
+			\{Q[output.T / \underline{output}]\}\;\underline{output}\;T \{Q\} &\approx \underline{output}=\underline{output}.T\tag{A.4}\\
 			\notag
 		\end{align}
 		Beispiele:
@@ -53,10 +53,10 @@ C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{ou
 		\{input=(4,5)\land2+x=3\} I:=2+x \{input=(4,5)\land I=3\}
 		\end{align*}
 		\begin{align*}
-		\{\underline{hd}\;\underline{input}=7 \land \underline{tl} \underline{tl}\;\underline{input}=(3) \} \underline{read} x \{x=7 \land input=(3)\}
+		\{\underline{hd}\;\underline{input}=7 \land \underline{tl}\; \underline{tl}\;\underline{input}=(3) \}\;\underline{read}\; x \{x=7 \land input=(3)\}
 		\end{align*}
 		\begin{align*}
-		\{\underline{output}.7+y=(1,2,3,4,5)\} \underline{output} (7+9) \{\underline{output} = (1,2,3,4,5)\}
+		\{\underline{output}.7+y=(1,2,3,4,5)\}\; \underline{output} (7+9) \{\underline{output} = (1,2,3,4,5)\}
 		\end{align*}
 	\item[\textbf{3.}]
 	\begin{align}
