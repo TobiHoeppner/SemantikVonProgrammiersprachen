@@ -1,4 +1,4 @@
-\section{Vorlesung 2 - 24.04.}
+\section{Operationelle Semantik \small (Vorlesung 2 am 24.04.)}
 \subsection{Operationelle Semantik am Beispiel der Terme}
 \marginnote{\small\emph{(Inhalt ist nicht im Lehrbuch!)}}[0cm]
 %notes:
@@ -37,13 +37,13 @@ Grundsätzlich gibt es zwei Methoden:
     \path [line] (abstractmachine) -- (ausg);
 \end{tikzpicture}
 \end{compactitem}
-\subsubsection{Terme der Sprache WHILE}
+\subsection{Terme der Sprache WHILE}
 \begin{lstlisting}[mathescape]
 // Terme TERM
 T::= Z  |  I  |  T$_1$ OP T$_2$ | READ, für T$_1$,T$_2$ in TERM
 \end{lstlisting}
 
-\subsubsection{Beispiel: AST}
+\subsubsection*{Beispiel: AST}
 Der Ausdruck
 \begin{lstlisting}
 3 + read - x 
@@ -58,7 +58,7 @@ wird zu:\\
 	child{node [node]{x}};
 \end{tikzpicture}
 
-\subsubsection{Informelle Semantik}
+\subsection{Informelle Semantik}
 Interpretation nur möglich, wenn Speicher und Eingabe vorgelegt sind.\\
 \textbf{Annahme:} wir bekommen alles als AST und wir bekommen eine Eingabe, die auch von der Maschine unterstützt wird!
 \begin{compactitem}

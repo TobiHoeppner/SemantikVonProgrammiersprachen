@@ -1,46 +1,45 @@
-\section{Vorlesung 6 - 05.06.}
-\subsection{Axiomatische Semantik}
+\section{Axiomatische Semantik \small (Vorlesung 6 am 05.06.)}
 % höhe von Grundlage
 \marginnote{\small\emph{(Hoare-Kalkül zum Bew. von Prog. Eigenschft.)}}[0,5cm]
 % höhe Allgemeine Methode 1.)
-\marginnote{\small\emph{(formales Setting von logischen Ausdrücken vorgeben, damit man damit arbeiten kann!)}}[2,5cm]
-% höhe Formel A.1
-\marginnote{\small\emph{(zu lesen: Für jede Bedingung $Q$ gilt die Hoare-Formel $\{Q\}\underline{skip}\{Q\}$)}}[8,5cm]
-
+\marginnote{\small\emph{(formales Setting von logischen Ausdrücken vorgeben, damit man damit arbeiten kann!)}}[3cm]
 
 Am Beispiel von WHILE' ($\underline{read}\;I$ anstelle von Termen der Form $\underline{read}$).\\
 \textbf{Grundlage:} C. A. R. Hoare: \emph{An aximatic Basis for Computer Programming} (CACM 1969)
-\subsubsection{Allgemeine Methode}
-Annahme: AST ist gegeben.
+\subsection{Allgemeine Methode}
+\textbf{Annahme:} AST ist gegeben.\\
 Neben der abstrakten Syntax brauchen wir vier Angaben:
 \begin{compactitem}
-	\item[1.] Eine Menge von Bedingungen (logische Ausdrücke, Prädikate, assertions), die über den Zustandsraum interpretierbar sind. Im Allgemeinen Prädikatenlogik 1. Stufe oder Aussagenlogik.\\
+	\item[\textbf{1.}] Eine Menge von Bedingungen (\emph{logische Ausdrücke, Prädikate, assertions}), die über den Zustandsraum interpretierbar sind. Im Allgemeinen Prädikatenlogik 1. Stufe oder Aussagenlogik.\\
 	(formales Setting von logischen Ausdrücken vorgeben, damit man damit arbeiten kann!)
 	Beispiel: $x < y, input = \epsilon, \exists i.x=p.i, ...$ 
 	natürliche Interpretation: Verbinde $I \in$ ID mit $S(I)$ sowie $\underline{input}$ mit Eingabe....\\
-	Sei $S(x)=0$, dann ist die Bedingung $y/x=7$ \underline{falsch}.
-	\item[2.] Definition zu jeder atomaren Anweisung $\mathcal{C}$ ein Axiom bzw. ein Axiomenschema der Form\\
+	Sei $S(x)=0$, dann ist die Bedingung $y/x=7$ \underline{falsch}.\\
+	\item[\textbf{2.}] Definition zu jeder atomaren Anweisung $\mathcal{C}$ ein Axiom bzw. ein Axiomenschema der Form\\
 	$\{Q\}C\{R\}$ - Hoare Formel\\
 	zu lesen als: Wenn die Bedingung $Q$ auf einem Zustand $z$ gilt und die Ausführung von $C$ auf $z$ in einem Zustand $z'$ terminiert, dann gilt $R$ auf $z'$.\\
-	Beispiel: für $\underline{skip}$ des Axiomenschema: $\{Q\}\;\underline{skip}\;\{Q\}$, zu lesen: für alle Q gilt es.
-	\item[3.] Für zusammengesetzte Anweisungen $C$ mit unmittelbaren Komponenten $C_1,\dots,C_r$ eine Schlussregel der Form $\frac{F1,\dots,F_i}{\{Q\}C\{R\}}$, wobei die $F_i$ Hoare-Formeln zu $C1, \dots, C_r$ oder anere Formeln sind.\\
-	\item[4.] Logischer Klebstoff: Allgemeine Schlussregeln in Verbindung mit Hoare-Formeln, mindestens (oft ausreichend) die Konsequenzregel: $\frac{Q\Rightarrow S, T \Rightarrow R, \{S\}C\{T\}}{\{Q\}C\{R\}}$, wobei $\Rightarrow$ logische Herleitung bezeichnet.\\
+	Beispiel: für $\underline{skip}$ des Axiomenschema: $\{Q\}\;\underline{skip}\;\{Q\}$, \emph{zu lesen: für alle $Q$ gilt es}.\\
+	\item[\textbf{3.}] Für zusammengesetzte Anweisungen $C$ mit unmittelbaren Komponenten $C_1,\dots,C_r$ eine Schlussregel der Form $\frac{F_1,\dots,F_i}{\{Q\}C\{R\}}$, wobei die $F_i$ Hoare-Formeln zu $C1, \dots, C_r$ oder andere Formeln sind.\\
+	\item[\textbf{4.}] \emph{Logischer Klebstoff}: Allgemeine Schlussregeln in Verbindung mit Hoare-Formeln, mindestens (oft ausreichend) die Konsequenzregel: $\frac{Q\Rightarrow S, T \Rightarrow R, \{S\}C\{T\}}{\{Q\}C\{R\}}$, wobei $\Rightarrow$ logische Herleitung bezeichnet.\\
 \end{compactitem}
-\subsubsection{Konkretisierung am Beispiel von WHILE'}
+\subsection{Konkretisierung am Beispiel von WHILE'}
 %TODO als Einschub:
 \begin{align*}
 T&::= Z\; |\; I\; |\; T_1\; \underline{OP}\; T_2\\
 B&::= \underline{true}\; |\; \underline{false}\; |\; \underline{eof}\; |\; T_1\; \underline{Relop}\; T_2\\
 C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{output}\; T\; |\; C_1;C_2\; |\; \underline{if}\;B\;\underline{then}\;C_1\;\underline{else}\;C_2\;|\;\underline{while}\;B\;\underline{do}\;C
 \end{align*}
+% höhe Formel A.1
 \begin{compactitem}
-	\item[1.] Aussagenlogik:
+	\item[\textbf{1.}] Aussagenlogik:
 	\begin{itemize}
 		\item Terme über $Z, I, OP, \underline{input}, \underline{output},$ Konstruktor- und Selektorfunktionen ($., \underline{hd}, \underline{tl}$)
-		\item Bedingungen: $T_1 \underline{Relop} T_2$\\
+		\item Bedingungen: $T_1\;\underline{Relop}\;T_2$\\
 		$B_1 \lor B_2, B_1 \land B_2, \lnot B$ 
 	\end{itemize}
-	\item[2.] atomare Definitionen:\\
+\newpage
+\marginnote{\small\emph{(zu lesen: Für jede Bedingung $Q$ gilt die Hoare-Formel $\{Q\}\underline{skip}\{Q\}$)}}[1cm]
+	\item[\textbf{2.}] atomare Definitionen:\\
 		\begin{align}
 			\{Q\}&\underline{skip}\{Q\}\tag{A.1}\\
 			\{Q[T/I]\}&I:=T\{Q\},\notag\\&\text{wobei}[T/I]\text{ die einmalige textliche Substitution von} \notag\\&T \text{ für jedes Vorkommen von I in Q bezeichnet.}\tag{A.2}\\
@@ -59,12 +58,12 @@ C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{ou
 		\begin{align*}
 		\{\underline{output}.7+y=(1,2,3,4,5)\} \underline{output} (7+9) \{\underline{output} = (1,2,3,4,5)\}
 		\end{align*}
-	\item[3.]
+	\item[\textbf{3.}]
 	\begin{align}
 	\frac{\{Q\}C_1\{S\},\{S\}C_2\{R\}}{\{Q\}C_1,C_2\{R\}}\tag{A.5}\\
 	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}B\underline{then}C_1\underline{else}C_2\{R\}}\tag{A.6}\\
 	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}\;B\;\underline{do}\;C\{Q\land \lnot B\}}\tag{A.7}\\
 	\notag
 	\end{align}
-	\item[4.] \emph{(nicht in Vorlesung behandelt, da wohl nicht so wichtig.)}
+	\item[\textbf{4.}] \emph{(nicht in Vorlesung behandelt, da wohl nicht so wichtig.)}
 \end{compactitem}
