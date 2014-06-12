@@ -20,7 +20,7 @@ Neben der abstrakten Syntax brauchen wir vier Angaben:
 	zu lesen als: Wenn die Bedingung $Q$ auf einem Zustand $z$ gilt und die Ausführung von $C$ auf $z$ in einem Zustand $z'$ terminiert, dann gilt $R$ auf $z'$.\\
 	Beispiel: für $\underline{skip}$ des Axiomenschema: $\{Q\}\;\underline{skip}\;\{Q\}$, \emph{zu lesen: für alle $Q$ gilt es}.\\
 	\item[\textbf{3.}] Für zusammengesetzte Anweisungen $C$ mit unmittelbaren Komponenten $C_1,\dots,C_r$ eine Schlussregel der Form $\frac{F_1,\dots,F_i}{\{Q\}C\{R\}}$, wobei die $F_i$ Hoare-Formeln zu $C1, \dots, C_r$ oder andere Formeln sind.\\
-	\item[\textbf{4.}] \emph{Logischer Klebstoff}: Allgemeine Schlussregeln in Verbindung mit Hoare-Formeln, mindestens (oft ausreichend) die Konsequenzregel: $\frac{Q\Rightarrow S, T \Rightarrow R, \{S\}C\{T\}}{\{Q\}C\{R\}}$, wobei $\Rightarrow$ logische Herleitung bezeichnet.\\
+	\item[\textbf{4.}] \emph{Logischer Klebstoff}: Allgemeine Schlussregeln in Verbindung mit Hoare-Formeln, mindestens (oft ausreichend) die Konsequenzregel: $\frac{Q\Rightarrow S, T \Rightarrow R, \{S\}C\{T\}}{\{Q\}C\{R\}}$, wobei $\Rightarrow$ die logische Herleitung bezeichnet. Daraus folgt: Beweisbar $\Rightarrow$ Gültig. Frage: gilt diese Herleitung auch andersrum ($F$ gültig $\Rightarrow$ beweisbar)? Nein. Im Allgemeinen landet man beim Haltemaschinenproblem und dem Gödelschen Unvollständigkeitssatz.\\
 \end{compactitem}
 \subsection{Konkretisierung am Beispiel von WHILE'}
 %TODO als Einschub:
@@ -65,5 +65,6 @@ C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{ou
 	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}\;B\;\underline{do}\;C\{Q\land \lnot B\}}\tag{A.7}\\
 	\notag
 	\end{align}
-	\item[\textbf{4.}] \emph{(nicht in Vorlesung behandelt, da wohl nicht so wichtig.)}
+	\item[\textbf{4.}] Schlussregeln:\\
+	
 \end{compactitem}

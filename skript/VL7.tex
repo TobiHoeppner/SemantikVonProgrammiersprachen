@@ -1,8 +1,122 @@
-\section{Das könnte Ihr Titel werden! \small (Vorlesung 7 am 12.06.)}
+\section{Mathematische Grundlagen zur Konstruktion sematischer Bereiche \small (Vorlesung 7 am 12.06.)}
 % höhe von Grundlage
 \marginnote{\small\emph{()}}[0,5cm]
 % höhe Allgemeine Methode 1.)
 %\marginnote{\small\emph{()}}[3cm]
 
-\subsection{Allgemeine Methode}
+\subsection{Den. Semantik}
+\begin{compactitem}
+	\item[Den. Semantik]: Zuordnung von mathematischen Objekten zu syntaktischen Konstrukten.
+	\item[Problem:] Rekursion. (Wdh.: Wir erklären eine Funktion (Zustand $\rightarrow$ Zustand $\cup$ Fehler)...
+	\begin{align*}
+			\mathcal{C}
+[\![\underline{while}\;B\;\underline{do}\;C]\!]\;(s,e,a) &= \left\lbrace\begin{array}{l l} \mathcal{C}
+[\![C;\underline{while}\;B\;\underline{do}\;C]\!](s,e',a)\text{,}\quad\text{falls }&\mathcal{B}
+[\![B]\!]\;s\;e = (\underline{true}, e')\\
+		(s,e',a)\text{,}\quad\text{falls }&\mathcal{B}
+[\![B]\!]\;s\;e = (\underline{false}, e')\\
+		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.\\
+	\end{align*}
+	\item[Frage:] Gibt es eine eindeutige Lösung solcher Rekursionsgleichungen?
+	\item[Antwort:] I.A. nein.
+	\item[Beispiele:] (von leicht zu schwer)\\
+	\begin{align*}
+	f(x) = f(x) + 1 &\text{Keine Lösung im Bereich der totalen Funktionen } \N \rightarrow \N \text{.}\\
+	&\text{Eine Lösung im Bereich der partiellen Fuktionen } \N \rightarrow \N \\
+	&f(x)\text{ ist undefiniert für alle } x \in N.\tag{Beispiel 1}\\
+	\\
+	f(x) = 
+	\left\lbrace\begin{array}{l l}
+	&\text{Drei Lösungen über partiellen Funktionen } N \rightarrow N:\\
+	0\text{,} \quad\text{falls} f(x)=0 &\text{ a)} n \mapsto 0\\
+	1\text{,} \quad\text{falls} f(x)\neq0 &\text{ b)} n \mapsto 1\\
+	&\text{ c)} f(n) \text{ ist nicht definiert für alle } n \in N\\
+	\end{array}\right.\\\tag{Beispiel 2}\\
+	\\
+	f(x) = 
+	\left\lbrace\begin{array}{l l}
+	&\text{ Lösungen im Breich der partiellen Funktionen } \N \times \N \rightarrow \N:\\
+	y\text{,} \quad\text{falls} f(x)=0 &\text{ a)} (x,y) \mapsto
+		\left\lbrace\begin{array}{l l}
+		y\text{,} \quad\text{falls } x=0\\
+		\text{undefiniert sonst}\\ 
+		\end{array}\right.\\
+	f(f(x,y-1), f(x-1,y))\text{,} \quad\text{sonst} f(x)\neq 0 &\text{ b)} (x,y) \rightarrow y\\
+	&\text{c) } (x,y) \mapsto \max(x,y)\\
+	&\text{d) } (x,y) \mapsto 
+		\left\lbrace\begin{array}{l l}
+		y\text{,} \quad\text{falls } x=0\\
+		k\text{,} \quad\text{sonst für } k \in \N_+ \text{ bel.}\\ 
+		\end{array}\right.\\
+	\end{array}\right.\\\tag{Beispiel 3}\\
+	\\
+	\text{Sei } g: \N \rightarrow \N \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
+	g(g x) = g \; x \text{, dann ist}\\
+	(x,y) \mapsto 
+		\left\lbrace\begin{array}{l l}
+		y\text{,} \quad\text{falls } x=0\\
+		g(x)\text{,} \quad\text{sonst }\\ 
+		\end{array}\right. \text{ eine Lösung zu Beispiel 3}\\
+	\end{align*}
+\end{compactitem}
 
+\subsection{Konsequenz}
+Konstruiere semantische Bereiche so, dass zu jeder rekursiven Gleichung eine \emph{eindeutige Lösung} zugeordnet werden kann.\\
+\textbf{Idee:} 
+\begin{itemize}
+	\item Betrachte totale Funktion über Bereichen, in denen ein Element undefiniert ($\perp$) hinzugefügt ist.
+	\item Betrachte eine Approximationsrelation $\sqsubseteq$(weniger definiert als), um unendliche Objekte durch endliche zu approximieren.
+	\item[Beispiel]
+	\begin{align*}
+		\text{Part. Fkt.} \N \rightarrow \N \text{ mit } f \sqsubseteq g \text{ gdw } Graph(f) \leq Graph(g)\\
+		\text{doppelt} x = 2 * x \text{ wird approximiert von}\\
+		f_{\mathcal{v}}(x)
+		\left\lbrace\begin{array}{l l}
+		2*x\text{,} \quad\text{falls } x<\mathcal{v}\\
+		\text{undefiniert sonst,} \mathcal{v} \in \N \\ 
+		\end{array}\right.\\
+	\end{align*}
+\end{itemize}
+\subsection{Defintion Semantischer Bereich, CPO}
+% höhe von Defintion
+\marginnote{\small\emph{(cpo - complete partial order)}}[0,5cm]
+Eine Struktur $\underline{A}=(A,\sqsubseteq_A)$ heißt semantischer Bereich (cpo), wenn 1-3 gilt:
+\begin{compactitem}
+	\item[1.] $\sqsubseteq_A$ ist eine Halbordnung auf A (reflexiv, transitiv, antisymmetrisch)
+	\item[2.] Es gibt bezüglich $\sqsubseteq_A$ ein minimales Element $\perp_A$ in $A$, d.h. $\perp_A \sqsubseteq a$, für alle $a \in A$
+	\item[3.] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\sqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
+\subsubsection*{Beispiel}
+\begin{align*}
+(\N, \leqs)\text{ ist cpo? Nein! 1. }\checkmark \text{ 2.} 0 = \perp_\N \checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \N \text{ hat in } \N \text{ keine kleinste obere Schranke!} \times\\
+\end{align*}
+\subsection{Defintionen (monton, stetig, strikt, [$\rightarrow$])}
+Seien $A$ und $B$ cpo's. 
+\begin{compactitem}
+	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{monton}, wenn $f(a_1) \sqsubseteq_A f(a_2)$ für alle $a_1 \sqsubseteq a_2 \in A$
+	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\sqcup K) = \sqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.
+	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{strikt}, wenn $f(\perp_A) = \perp_B$
+	\item $[A\rightarrow B]$ bezeichnet den Raum aller stetigen Funktionen von $A \rightarrow B$.
+	\item[1. Lemma] ($[A\rightarrowB], \sqsubseteq$) ist cpo mit punktweiser Ordnung, d.h. $f \sqsubseteq g$, wenn $f (a) \sqsubseteq_B g(a)$ für alle $a \in A$
+	\item[2. Lemma] Aus $f$ ist stetig folgt $f$ ist monoton.
+	\item[Beweis] Sei
+	\begin{align*}
+	f: A \rightarrow B \text{ stetig und } a_1 \sqsubseteq_A a_2 \in A\\
+	f(a_1) \sqsubseteq \sqcup\{f(a_1), f(a_2) \} = \sqcup f(\{a_1, a_2\}) = f (\sqcup\{\a_1, a_2}) = f(a_2) \checkmark
+	\end{align*}
+\end{compactitem}
+\subsection{Satz: minimaler Fixpunkt (Tarski 1955)}
+Sei
+\begin{align*}
+f: A \rightarrow A \text{ eine stetige Funktion \\ Es existiert ein minimaler Fixpunkt}\\
+\underline{fix} f \text{ in } A \text { und es gilt}\\
+\underline{fix} f = \sqcup_{\mathcal{v} \in \N} f^\mathcal{v}(\perp)
+\end{align*}
+\subsection{Graphische Illustration von cpo's}
+\begin{itemize}
+	\item Elemente des Trägers sind Knoten
+	\item $\sqsubseteq$ wird durch aufwärts gerichtete Kanten dargestellt
+\end{itemize}
+% siehe FOTO1!
+Beispiel für cpo. Teilmengen von endlichen Mengen ($\mathcal{P} \{a,b,c\}, \subseteq$)\\
+% siehe FOTO2!
+\end{compactitem}
