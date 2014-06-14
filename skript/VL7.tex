@@ -1,13 +1,12 @@
-\section{Mathematische Grundlagen zur Konstruktion sematischer Bereiche \small (Vorlesung 7 am 12.06.)}
+\section{Mathematische Grundlagen \\ zur Konstruktion sematischer Bereiche \tiny (Vorlesung 7 am 12.06.)}
 % höhe von Grundlage
-\marginnote{\small\emph{()}}[0,5cm]
+%\marginnote{\small\emph{()}}[0,5cm]
 % höhe Allgemeine Methode 1.)
 %\marginnote{\small\emph{()}}[3cm]
-
 \subsection{Den. Semantik}
 \begin{compactitem}
-	\item[Den. Semantik]: Zuordnung von mathematischen Objekten zu syntaktischen Konstrukten.
-	\item[Problem:] Rekursion. (Wdh.: Wir erklären eine Funktion (Zustand $\rightarrow$ Zustand $\cup$ Fehler)...
+	\item[\textbf{Den. Semantik:}] Zuordnung von mathematischen Objekten zu syntaktischen Konstrukten.
+	\item[\textbf{Problem:}] Rekursion. (Wdh.: Wir erklären eine Funktion (Zustand $\rightarrow$ Zustand $\cup$ Fehler)...
 	\begin{align*}
 			\mathcal{C}
 [\![\underline{while}\;B\;\underline{do}\;C]\!]\;(s,e,a) &= \left\lbrace\begin{array}{l l} \mathcal{C}
@@ -17,77 +16,81 @@
 [\![B]\!]\;s\;e = (\underline{false}, e')\\
 		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.\\
 	\end{align*}
-	\item[Frage:] Gibt es eine eindeutige Lösung solcher Rekursionsgleichungen?
-	\item[Antwort:] I.A. nein.
-	\item[Beispiele:] (von leicht zu schwer)\\
+	\item[\textbf{Frage:}] Gibt es eine eindeutige Lösung solcher Rekursionsgleichungen?
+	\item[\textbf{Antwort:}] I.A. nein.
+	\item[\textbf{Beispiele:}] (von leicht zu schwer)
 	\begin{align*}
-	f(x) = f(x) + 1 &\text{Keine Lösung im Bereich der totalen Funktionen } \N \rightarrow \N \text{.}\\
-	&\text{Eine Lösung im Bereich der partiellen Fuktionen } \N \rightarrow \N \\
-	&f(x)\text{ ist undefiniert für alle } x \in N.\tag{Beispiel 1}\\
-	\\
+	f(x) = f(x) + 1 &\quad\text{Keine Lösung im Bereich der totalen Funktionen } \mathrm{N}\rightarrow \mathrm{N}\text{.}\\
+	&\quad\text{Eine Lösung im Bereich der partiellen Fuktionen } \mathrm{N}\rightarrow \mathrm{N}\\
+	&\quad f(x)\text{ ist undefiniert für alle } x \in \mathrm{N}.\\\tag{Beispiel 1}\\
+	\end{align*}
+	\begin{align*}
 	f(x) = 
 	\left\lbrace\begin{array}{l l}
-	&\text{Drei Lösungen über partiellen Funktionen } N \rightarrow N:\\
-	0\text{,} \quad\text{falls} f(x)=0 &\text{ a)} n \mapsto 0\\
-	1\text{,} \quad\text{falls} f(x)\neq0 &\text{ b)} n \mapsto 1\\
-	&\text{ c)} f(n) \text{ ist nicht definiert für alle } n \in N\\
+	&\text{Drei Lösungen über partiellen Funktionen } \mathrm{N} \rightarrow \mathrm{N}:\\
+	0\text{,} \quad\text{falls} f(x)=0 &\text{ a) } n \mapsto 0\\
+	1\text{,} \quad\text{falls} f(x)\neq0 &\text{ b) } n \mapsto 1\\
+	&\text{ c) } f(n) \text{ ist nicht definiert für alle } n \in \mathrm{N}\\
 	\end{array}\right.\\\tag{Beispiel 2}\\
-	\\
+	\end{align*}
+	\begin{align*}
 	f(x) = 
 	\left\lbrace\begin{array}{l l}
-	&\text{ Lösungen im Breich der partiellen Funktionen } \N \times \N \rightarrow \N:\\
-	y\text{,} \quad\text{falls} f(x)=0 &\text{ a)} (x,y) \mapsto
+	&\text{Lösungen im Breich der}\\
+	&\text{partiellen Funktionen } \mathrm{N} \times \mathrm{N} \rightarrow \mathrm{N}:\\
+	y\text{,} \quad\text{falls} f(x)=0 &\text{a) } (x,y) \mapsto
 		\left\lbrace\begin{array}{l l}
 		y\text{,} \quad\text{falls } x=0\\
 		\text{undefiniert sonst}\\ 
 		\end{array}\right.\\
-	f(f(x,y-1), f(x-1,y))\text{,} \quad\text{sonst} f(x)\neq 0 &\text{ b)} (x,y) \rightarrow y\\
-	&\text{c) } (x,y) \mapsto \max(x,y)\\
+	f(f(x,y-1), f(x-1,y)) &\text{b) } (x,y) \rightarrow y\\
+	\text{, sonst} f(x)\neq 0 &\text{c) } (x,y) \mapsto \max(x,y)\\
 	&\text{d) } (x,y) \mapsto 
 		\left\lbrace\begin{array}{l l}
 		y\text{,} \quad\text{falls } x=0\\
-		k\text{,} \quad\text{sonst für } k \in \N_+ \text{ bel.}\\ 
+		k\text{,} \quad\text{sonst für } k \in \mathrm{N}_+ \text{ bel.}\\ 
 		\end{array}\right.\\
 	\end{array}\right.\\\tag{Beispiel 3}\\
-	\\
-	\text{Sei } g: \N \rightarrow \N \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
-	g(g x) = g \; x \text{, dann ist}\\
-	(x,y) \mapsto 
+	\end{align*}
+	\begin{align*}
+	\text{Sei } g: &\mathrm{N} \rightarrow \mathrm{N} \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
+	g(g x) &= g \; x \text{, dann ist}\\
+	(x,y) &\mapsto 
 		\left\lbrace\begin{array}{l l}
 		y\text{,} \quad\text{falls } x=0\\
 		g(x)\text{,} \quad\text{sonst }\\ 
-		\end{array}\right. \text{ eine Lösung zu Beispiel 3}\\
+		\end{array}\right. \\\tag{eine Lösung zu Beispiel 3}\\
 	\end{align*}
 \end{compactitem}
 
 \subsection{Konsequenz}
 Konstruiere semantische Bereiche so, dass zu jeder rekursiven Gleichung eine \emph{eindeutige Lösung} zugeordnet werden kann.\\
 \textbf{Idee:} 
-\begin{itemize}
-	\item Betrachte totale Funktion über Bereichen, in denen ein Element undefiniert ($\perp$) hinzugefügt ist.
-	\item Betrachte eine Approximationsrelation $\sqsubseteq$(weniger definiert als), um unendliche Objekte durch endliche zu approximieren.
-	\item[Beispiel]
+\begin{compactitem}
+	\item[-] Betrachte totale Funktion über Bereichen, in denen ein Element undefiniert ($\perp$) hinzugefügt ist.
+	\item[-] Betrachte eine Approximationsrelation $\sqsubseteq$(weniger definiert als), um unendliche Objekte durch endliche zu approximieren.
+	\item[\textbf{Beispiel}]
 	\begin{align*}
-		\text{Part. Fkt.} \N \rightarrow \N \text{ mit } f \sqsubseteq g \text{ gdw } Graph(f) \leq Graph(g)\\
-		\text{doppelt} x = 2 * x \text{ wird approximiert von}\\
+		\text{Part. Fkt. } \mathrm{N}\rightarrow \mathrm{N}\text{ mit } f \sqsubseteq g \text{ gdw } Graph(f) \leq Graph(g)\\
+		\text{doppelt } x = 2 * x \text{ wird approximiert von}\\
 		f_{\mathcal{v}}(x)
 		\left\lbrace\begin{array}{l l}
 		2*x\text{,} \quad\text{falls } x<\mathcal{v}\\
-		\text{undefiniert sonst,} \mathcal{v} \in \N \\ 
+		\text{undefiniert sonst, } \mathcal{v} \in \mathrm{N}\\ 
 		\end{array}\right.\\
 	\end{align*}
-\end{itemize}
+\end{compactitem}
 \subsection{Defintion Semantischer Bereich, CPO}
 % höhe von Defintion
-\marginnote{\small\emph{(cpo - complete partial order)}}[0,5cm]
+\marginnote{\small\emph{cpo - complete partial order}}[0cm]
 Eine Struktur $\underline{A}=(A,\sqsubseteq_A)$ heißt semantischer Bereich (cpo), wenn 1-3 gilt:
 \begin{compactitem}
-	\item[1.] $\sqsubseteq_A$ ist eine Halbordnung auf A (reflexiv, transitiv, antisymmetrisch)
-	\item[2.] Es gibt bezüglich $\sqsubseteq_A$ ein minimales Element $\perp_A$ in $A$, d.h. $\perp_A \sqsubseteq a$, für alle $a \in A$
-	\item[3.] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\sqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
+	\item[\textbf{1.}] $\sqsubseteq_A$ ist eine Halbordnung auf A (reflexiv, transitiv, antisymmetrisch)
+	\item[\textbf{2.}] Es gibt bezüglich $\sqsubseteq_A$ ein minimales Element $\perp_A$ in $A$, d.h. $\perp_A \sqsubseteq a$, für alle $a \in A$
+	\item[\textbf{3.}] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\sqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
 \subsubsection*{Beispiel}
 \begin{align*}
-(\N, \leqs)\text{ ist cpo? Nein! 1. }\checkmark \text{ 2.} 0 = \perp_\N \checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \N \text{ hat in } \N \text{ keine kleinste obere Schranke!} \times\\
+(\mathrm{N}, \leq)\text{ ist cpo? Nein! 1. } \checkmark \text{ 2. } 0 = \perp_\mathrm{N}\checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \mathrm{N}\text{ hat in } \mathrm{N}\text{ keine kleinste obere Schranke!} \times\\
 \end{align*}
 \subsection{Defintionen (monton, stetig, strikt, [$\rightarrow$])}
 Seien $A$ und $B$ cpo's. 
@@ -96,20 +99,21 @@ Seien $A$ und $B$ cpo's.
 	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\sqcup K) = \sqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.
 	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{strikt}, wenn $f(\perp_A) = \perp_B$
 	\item $[A\rightarrow B]$ bezeichnet den Raum aller stetigen Funktionen von $A \rightarrow B$.
-	\item[1. Lemma] ($[A\rightarrowB], \sqsubseteq$) ist cpo mit punktweiser Ordnung, d.h. $f \sqsubseteq g$, wenn $f (a) \sqsubseteq_B g(a)$ für alle $a \in A$
-	\item[2. Lemma] Aus $f$ ist stetig folgt $f$ ist monoton.
-	\item[Beweis] Sei
+	\item[\textbf{1. Lemma}] ($[A\rightarrow B], \sqsubseteq$) ist cpo mit punktweiser Ordnung, d.h. $f \sqsubseteq g$, wenn $f (a) \sqsubseteq_B g(a)$ für alle $a \in A$
+	\item[\textbf{2. Lemma}] Aus $f$ ist stetig folgt $f$ ist monoton.
+	\item[\textbf{Beweis:}] Sei
 	\begin{align*}
-	f: A \rightarrow B \text{ stetig und } a_1 \sqsubseteq_A a_2 \in A\\
-	f(a_1) \sqsubseteq \sqcup\{f(a_1), f(a_2) \} = \sqcup f(\{a_1, a_2\}) = f (\sqcup\{\a_1, a_2}) = f(a_2) \checkmark
+	&f: A \rightarrow B \text{ stetig und } a_1 \sqsubseteq_A a_2 \in A\\
+	&f(a_1) \sqsubseteq \sqcup\{f(a_1), f(a_2) \} = \sqcup f(\{a_1, a_2\}) = f (\sqcup\{a_1, a_2\}) = f(a_2) \checkmark\\
 	\end{align*}
 \end{compactitem}
 \subsection{Satz: minimaler Fixpunkt (Tarski 1955)}
 Sei
 \begin{align*}
-f: A \rightarrow A \text{ eine stetige Funktion \\ Es existiert ein minimaler Fixpunkt}\\
+f: A \rightarrow A \text{ eine stetige Funktion} \\ 
+\text{Es existiert ein minimaler Fixpunkt}\\
 \underline{fix} f \text{ in } A \text { und es gilt}\\
-\underline{fix} f = \sqcup_{\mathcal{v} \in \N} f^\mathcal{v}(\perp)
+\underline{fix} f = \sqcup_{\mathcal{v} \in \mathrm{N}} f^\mathcal{v}(\perp)\\
 \end{align*}
 \subsection{Graphische Illustration von cpo's}
 \begin{itemize}
@@ -117,6 +121,40 @@ f: A \rightarrow A \text{ eine stetige Funktion \\ Es existiert ein minimaler Fi
 	\item $\sqsubseteq$ wird durch aufwärts gerichtete Kanten dargestellt
 \end{itemize}
 % siehe FOTO1!
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$\infty$};
+  \node[main node] (2) [below of=1] {$\vdots$};
+  \node[main node] (3) [below of=2] {$2$};
+  \node[main node] (4) [below of=3] {$1$};
+  \node[main node] (5) [below of=4] {$0$};
+    \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (2);
+\end{tikzpicture}
 Beispiel für cpo. Teilmengen von endlichen Mengen ($\mathcal{P} \{a,b,c\}, \subseteq$)\\
 % siehe FOTO2!
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$\{a,b,c\}$};
+  \node[main node] (3) [below of=1] {$\{a,c\}$};
+  \node[main node] (2) [left of=3] {$\{a,b\}$};
+  \node[main node] (4) [right of=3] {$\{b,c\}$};
+  \node[main node] (5) [below of=3] {$\{b\}$};
+  \node[main node] (7) [left of=5] {$\{a\}$};
+  \node[main node] (8) [right of=5] {$\{c\}$};
+  \node[main node] (6) [below of=5] {$\varnothing$};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (2)
+    (1) edge node {} (3)
+    (1) edge node {} (4)
+    (2) edge node {} (7)
+    (2) edge node {} (5)
+    (3) edge node {} (7)
+    (3) edge node {} (8)
+    (4) edge node {} (5)
+    (4) edge node {} (8)
+    (5) edge node {} (6)
+    (7) edge node {} (6)
+    (8) edge node {} (6);
+\end{tikzpicture}
 \end{compactitem}
