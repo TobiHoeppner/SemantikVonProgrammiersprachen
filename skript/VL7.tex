@@ -53,7 +53,7 @@
 	\end{array}\right.\\\tag{Beispiel 3}\\
 	\end{align*}
 	\begin{align*}
-	\text{Sei } g: &\mathrm{N} \rightarrow \mathrm{N} \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
+	\text{Sei }\;g: \mathrm{N} &\rightarrow \mathrm{N} \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
 	g(g x) &= g \; x \text{, dann ist}\\
 	(x,y) &\mapsto 
 		\left\lbrace\begin{array}{l l}
@@ -121,6 +121,19 @@ f: A \rightarrow A \text{ eine stetige Funktion} \\
 	\item $\sqsubseteq$ wird durch aufwärts gerichtete Kanten dargestellt
 \end{itemize}
 % siehe FOTO1!
+$\mathrm{N}$
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (2) [below of=1] {$\vdots$};
+  \node[main node] (3) [below of=2] {$2$};
+  \node[main node] (4) [below of=3] {$1$};
+  \node[main node] (5) [below of=4] {$0$};
+    \path[every node/.style={font=\sffamily\small}]
+    (2) edge node {} (3)
+    (3) edge node {} (4)
+    (4) edge node {} (5);
+\end{tikzpicture}
+$\mathrm{N} \cup \{\infty\}$
 \begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
   thick,main node/.style={font=\sffamily\Large\bfseries}]
   \node[main node] (1) {$\infty$};
@@ -129,8 +142,27 @@ f: A \rightarrow A \text{ eine stetige Funktion} \\
   \node[main node] (4) [below of=3] {$1$};
   \node[main node] (5) [below of=4] {$0$};
     \path[every node/.style={font=\sffamily\small}]
-    (1) edge node {} (2);
+    (1) edge node {} (2)
+    (2) edge node {} (3)
+    (3) edge node {} (4)
+    (4) edge node {} (5)
+    (1) edge [bend right=60] node {} (5)
+    (1) edge [bend right=40] node {} (4)
+    (1) edge [bend right=20] node {} (3);
 \end{tikzpicture}
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$\infty$};
+  \node[main node] (2) [below of=1] {$\vdots$};
+  \node[main node] (3) [below of=2] {$4$};
+  \node[main node] (4) [below of=3] {$2$};
+  \node[main node] (5) [below of=4] {$0$};
+    \path[every node/.style={font=\sffamily\small}]
+    (1) edge [bend right=60] node {} (5)
+    (1) edge [bend right=40] node {} (4)
+    (1) edge [bend right=20] node {} (3);
+\end{tikzpicture}
+
 Beispiel für cpo. Teilmengen von endlichen Mengen ($\mathcal{P} \{a,b,c\}, \subseteq$)\\
 % siehe FOTO2!
 \begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
