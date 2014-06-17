@@ -1,0 +1,140 @@
+\documentclass[ngerman,a4paper]{report}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{MyriadPro}
+\usepackage[scaled]{beramono}
+\newcommand\Small{\fontsize{10.5}{10.5}\selectfont}
+\newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-20}\lsstyle}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{centernot}
+\usepackage{listings}
+\usepackage{paralist}
+%\usepackage{array}
+\usepackage{xcolor}
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{url}
+\usepackage[verification]{struktex}
+\usepackage{amsmath}
+\usepackage{mathtools}
+%\usepackage{accents}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,automata}
+\tikzset{
+	treenode/.style = {align=center, inner sep=1pt, text centered,font=\sffamily},
+	node/.style = {treenode, font=\sffamily\bfseries, text width=1.5em},
+	cloud/.style = {draw, circle, fill=red!20, node distance=3cm, minimum height=2em},
+	decision/.style = {diamond, draw, fill=blue!20, text width=6em, text badly centered, node distance=3cm, inner sep=0pt},
+	block/.style = {rectangle, draw, fill=green!20, text width=6em, text centered, rounded corners, minimum height=4em},
+	line/.style = {draw, -latex'}
+}
+\usepackage{stmaryrd}
+
+% Code Listing Style
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\lstset{%
+	language=C,
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen},
+	keywordstyle=\color{darkblue}\bfseries,
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%
+	    then, not%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+\providecommand{\tabularnewline}{\\}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\makeatletter
+
+\lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
+\chead{}
+\rhead{\@date \\ \thepage \ von \pageref{LastPage} }
+\cfoot{}
+%\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\maketitle}{}
+\newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
+\renewcommand{\familydefault}{\sfdefault}
+
+\author{Florian Ritzel, Hinnerk van Bruinehsen, Tobias Höppner}
+\title{SvP - Übung 07. }
+\date{Sommersemester 2014}
+\begin{document}
+\maketitle
+\section*{Aufgabe 1}
+Sei $\underline{A} = (A,\sqsubseteq)$ eine Struktur, wobei die Relation $\sqsubseteq$ eine Halbordnung ist und es in $A$ bzgl. $\sqsubseteq$ ein minimales Element $\perp$ gibt.\\
+Zeigen Sie, dass aus der Endlichkeit von $A$ folgt, dass $\underline{A}$ ein cpo ist.
+\section*{Aufgabe 2}
+Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen lässt:\\
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[-,>=stealth',auto,node distance=2cm,
+  thick,main node/.style={circle, fill=black, minimum size=4pt, inner sep=.1pt, outer sep=.1pt}]
+  \node[] (11){};
+  \node[main node] (1) [left of=11] {};
+  \node[main node] (2) [right of=11] {};
+  \node[main node] (4) [below of=11] {};
+  \node[main node] (3) [below left of=1] {};
+  \node[main node] (5) [below right of=2] {};
+  \node[main node] (6) [below of=4] {};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (3)
+    (1) edge node {} (4)
+    (2) edge node {} (4)
+    (2) edge node {} (5)
+    (4) edge node {} (6)
+    (3) edge node {} (6)
+    (5) edge node {} (6);
+\end{tikzpicture}
+
+\end{figure}
+\begin{compactitem}
+\item[a)] Ist $A$ ein cpo?
+\item[b)] Ist $A$ eine Kette?
+\item[c)] Existiert eine kleinste obere Schranke von $A$ in $A$?
+\end{compactitem}
+\section*{Aufgabe 3}
+Finden Sie zwei Beispiele für Halbordnungen $(A,\sqsubseteq)$, die ein minimales Element besitzen aber keine cpo's sind.
+\section*{Aufgabe 4}
+Finden Sie ein Beispiel für eine nicht triviale, rekursive Funktionsgleichung, die mehr als eine Lösung hat.
+\end{document}
