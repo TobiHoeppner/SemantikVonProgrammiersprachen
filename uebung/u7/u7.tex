@@ -18,7 +18,7 @@
 %\usepackage{graphicx}
 %\usepackage{caption}
 %\usepackage{url}
-\usepackage[verification]{struktex}
+%\usepackage[verification]{struktex}
 \usepackage{amsmath}
 \usepackage{mathtools}
 %\usepackage{accents}
@@ -103,7 +103,18 @@
 \maketitle
 \section*{Aufgabe 1}
 Sei $\underline{A} = (A,\sqsubseteq)$ eine Struktur, wobei die Relation $\sqsubseteq$ eine Halbordnung ist und es in $A$ bzgl. $\sqsubseteq$ ein minimales Element $\perp$ gibt.\\
-Zeigen Sie, dass aus der Endlichkeit von $A$ folgt, dass $\underline{A}$ ein cpo ist.
+Zeigen Sie, dass aus der Endlichkeit von $A$ folgt, dass $\underline{A}$ ein cpo ist.\\
+
+\textbf{Lösungsvorschlag Hinnerk:}\\
+Es müssen drei Bedingungen erfüllt sein, damit eine Struktur $A$ ein cpo ist:
+\begin{enumerate}
+\item $\sqsubseteq$ ist Halbordnung.
+\item In $A$ existiert ein minimales Element.
+\item Zu jeder Kette $K\subseteq A$ existiert eine kleinste obere Schranke.
+\end{enumerate}
+Aus der Aufgabenstellung folgt, dass Bedingung 1 ($\sqsubseteq$ ist Halbordnungsrelation) und 2 (es gibt minimales Elemement $\bot$) erfüllt sind.
+Um die Endlichkeit von $A$ zu beweisen, müssen wir also zeigen, dass zu jeder Kette $K\sqsubseteq A$ eine kleinste obere Schranke existiert.
+Aus der Endlichkeit von A folgt, dass es ein Element $\top$ gibt, für das gilt: $\top \geq x$ für alle $x \in A$. Aus der Definition der oberen Schranke folgt, dass es eine obere Schranke gibt, wenn ein größtes Element existiert. Daraus folgt wiederum, dass es eine kleinste obere Schranke für jede Kette $K\subseteq A$ geben muss.
 \section*{Aufgabe 2}
 Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen lässt:\\
 \begin{figure}[h]
@@ -129,12 +140,37 @@ Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen
 
 \end{figure}
 \begin{compactitem}
-\item[a)] Ist $A$ ein cpo?
-\item[b)] Ist $A$ eine Kette?
-\item[c)] Existiert eine kleinste obere Schranke von $A$ in $A$?
+\item[a)] Ist $A$ ein cpo?\\
+\textbf{Lösungsvorschlag Hinnerk:}\\
+	Ja, alle Kritierien sind erfüllt.
+\item[b)] Ist $A$ eine Kette?\\
+\textbf{Lösungsvorschlag Hinnerk:}\\
+	Nein, die mittleren drei Elemente stehen nicht in Relation zu einander, die oberen zwei ebenso wenig.
+\item[c)] Existiert eine kleinste obere Schranke von $A$ in $A$?\\
+\textbf{Lösungsvorschlag Hinnerk:}\\
+	Nein, da die beiden oberen Elemente augenscheinlich auf einer Höhe liegen.
 \end{compactitem}
 \section*{Aufgabe 3}
 Finden Sie zwei Beispiele für Halbordnungen $(A,\sqsubseteq)$, die ein minimales Element besitzen aber keine cpo's sind.
+
+\textbf{Lösungsvorschlag Hinnerk:}\\
+\begin{enumerate}
+	\item $f(x) = \sqrt{x}$ für $x \in \mathbb{R}$ (Besitzt minimales Element $0$, ist aber nach oben nicht beschränkt.
+	\item $f(x) = x$ für $x \in \mathbb{N}$ (wie oben).
+\end{enumerate}
 \section*{Aufgabe 4}
 Finden Sie ein Beispiel für eine nicht triviale, rekursive Funktionsgleichung, die mehr als eine Lösung hat.
+
+
+\textbf{Lösungsvorschlag Hinnerk:}\\
+$f(x) = \left\lbrace\begin{array}{l l}
+	x, & \text{wenn } f(x) \mod 2 = x \\
+	0, & \text{wenn } f(x) \mod 2 \neq x
+	\end{array}\right.$
+Macht das Sinn? Ist das zu Trivial?
+(Für 1 ist es 1, für alle anderen Werte ist es 0)
 \end{document}
+
+
+
+
