@@ -20,6 +20,7 @@
 %\usepackage{url}
 %\usepackage[verification]{struktex}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{mathtools}
 %\usepackage{accents}
 \usepackage{tikz}
@@ -105,7 +106,7 @@
 Sei $\underline{A} = (A,\sqsubseteq)$ eine Struktur, wobei die Relation $\sqsubseteq$ eine Halbordnung ist und es in $A$ bzgl. $\sqsubseteq$ ein minimales Element $\perp$ gibt.\\
 Zeigen Sie, dass aus der Endlichkeit von $A$ folgt, dass $\underline{A}$ ein cpo ist.\\
 
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 Es müssen drei Bedingungen erfüllt sein, damit eine Struktur $A$ ein cpo ist:
 \begin{enumerate}
 \item $\sqsubseteq$ ist Halbordnung.
@@ -129,8 +130,10 @@ Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen
   \node[main node] (1) [left of=11] {};
   \node[main node] (2) [right of=11] {};
   \node[main node] (4) [below of=11] {};
-  \node[main node] (3) [below left of=1] {};
-  \node[main node] (5) [below right of=2] {};
+  \node[] (41)[left of=4]{};
+  \node[] (42)[right of=4]{};
+  \node[main node] (3) [left of=41] {};
+  \node[main node] (5) [right of=42] {};
   \node[main node] (6) [below of=4] {};
   \path[every node/.style={font=\sffamily\small}]
     (1) edge node {} (3)
@@ -145,19 +148,20 @@ Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen
 \end{figure}
 \begin{compactitem}
 \item[a)] Ist $A$ ein cpo?\\
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 	Ja, alle Kritierien sind erfüllt.
 \item[b)] Ist $A$ eine Kette?\\
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 	Nein, die mittleren drei Elemente stehen nicht in Relation zu einander, die oberen zwei ebenso wenig.
 \item[c)] Existiert eine kleinste obere Schranke von $A$ in $A$?\\
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 	Nein, da die beiden oberen Elemente augenscheinlich auf einer Höhe liegen.
 \end{compactitem}
+\newpage
 \section*{Aufgabe 3}
 Finden Sie zwei Beispiele für Halbordnungen $(A,\sqsubseteq)$, die ein minimales Element besitzen aber keine cpo's sind.
 
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 \begin{enumerate}
 	\item $f(x) = \sqrt{x}$ für $x \in \mathbb{R}$ (Besitzt minimales Element $0$, ist aber nach oben nicht beschränkt.
 	\item $f(x) = x$ für $x \in \mathbb{N}$ (wie oben).
@@ -165,14 +169,21 @@ Finden Sie zwei Beispiele für Halbordnungen $(A,\sqsubseteq)$, die ein minimale
 \section*{Aufgabe 4}
 Finden Sie ein Beispiel für eine nicht triviale, rekursive Funktionsgleichung, die mehr als eine Lösung hat.
 
-
-\textbf{Lösungsvorschlag Hinnerk:}\\
+%\textbf{Lösungsvorschlag Hinnerk:}\\
 $f(x) = \left\lbrace\begin{array}{l l}
 	x, & \text{ wenn } f(x) \mod 2 = x \\
 	0, & \text{ wenn } f(x) \mod 2 \neq x
 	\end{array}\right.$
-Macht das Sinn? Ist das zu Trivial?
-(Für 1 ist es 1, für alle anderen Werte ist es 0)
+
+
+Ein Klassiker: Fibonacci.\\
+$g(x) = \left\lbrace\begin{array}{l l}
+	0, & \text{ falls } x = 0 \\
+	1, & \text{ falls } x = 1 \\
+	g(x-1) + g(x-2), & \text{ falls } x = 1 \\
+	\end{array}\right.$	
+%Macht das Sinn? Ist das zu Trivial?
+%(Für 1 ist es 1, für alle anderen Werte ist es 0)
 \end{document}
 
 
