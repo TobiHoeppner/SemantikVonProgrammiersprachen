@@ -113,8 +113,12 @@ Es müssen drei Bedingungen erfüllt sein, damit eine Struktur $A$ ein cpo ist:
 \item Zu jeder Kette $K\subseteq A$ existiert eine kleinste obere Schranke.
 \end{enumerate}
 Aus der Aufgabenstellung folgt, dass Bedingung 1 ($\sqsubseteq$ ist Halbordnungsrelation) und 2 (es gibt minimales Elemement $\bot$) erfüllt sind.
-Um die Endlichkeit von $A$ zu beweisen, müssen wir also zeigen, dass zu jeder Kette $K\sqsubseteq A$ eine kleinste obere Schranke existiert.
+Um zu beweisen, dass $A$ ein cpo ist, müssen wir also zeigen, dass zu jeder Kette $K\sqsubseteq A$ eine kleinste obere Schranke existiert.
 Aus der Endlichkeit von A folgt, dass es ein Element $\top$ gibt, für das gilt: $\top \geq x$ für alle $x \in A$. Aus der Definition der oberen Schranke folgt, dass es eine obere Schranke gibt, wenn ein größtes Element existiert. Daraus folgt wiederum, dass es eine kleinste obere Schranke für jede Kette $K\subseteq A$ geben muss.
+
+Die Bedinungen 1 und 2 sind entsprechend der Aufgabenstellung erfüllt. Daher ist zu zeigen, dass aus der Endlichkeit von $A$ folgt, dass zu jeder kette $K\subseteq A$ eine kleinste obere Schanke existiert.\\
+
+Aus der Endlichkeit von A folgt, dass es ein Element $\top$ gibt, dass $\geq$ aller anderen Elemente ist. Aus der Definition der oberen Schranke folgt, dass es, wenn es ein größtes Elemement gibt, auch eine obere Schranke gibt. Daraus folgt, dass es eine kleinste obere Schranke für jede Kette $K\subseteq A$ geben muss
 \section*{Aufgabe 2}
 Gegeben sei eine halbgeordnete Menge $A$, die sich grafisch wie folgt darstellen lässt:\\
 \begin{figure}[h]
@@ -164,8 +168,8 @@ Finden Sie ein Beispiel für eine nicht triviale, rekursive Funktionsgleichung, 
 
 \textbf{Lösungsvorschlag Hinnerk:}\\
 $f(x) = \left\lbrace\begin{array}{l l}
-	x, & \text{wenn } f(x) \mod 2 = x \\
-	0, & \text{wenn } f(x) \mod 2 \neq x
+	x, & \text{ wenn } f(x) \mod 2 = x \\
+	0, & \text{ wenn } f(x) \mod 2 \neq x
 	\end{array}\right.$
 Macht das Sinn? Ist das zu Trivial?
 (Für 1 ist es 1, für alle anderen Werte ist es 0)
