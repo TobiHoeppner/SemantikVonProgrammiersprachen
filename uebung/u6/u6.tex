@@ -219,6 +219,26 @@ output sum
 \assign{\lstinline!output sum!}
 \assert{$\{I\} sum\in\mathbb{Z}$}
 \end{struktogramm}\\
+
+Musterlösung aus Tutorium:\\
+%Erstmal die Regeln
+%\begin{align}
+%\frac{\{I\land B\}\quad S\quad\{I\}}{\{I\}\quad \underline{while}\;B\;\underline{do}\;S\quad\{I\land \lnot B\}}\tag{while}\\
+%\notag
+%\end{align}
+
+\begin{align*}
+Q := \underline{input} = (n_1, ..., n_k) \land \underline{output} = \epsilon\\
+R := \underline{input} = \epsilon \land \underline{output = (\sum_{j=1}^k n_j)}\\
+Q' \Rightarrow I \\
+I \land \underline{eof} \Rightarrow R'\\
+Q' := Q \land sum = 0\\
+R' = \underline{input} = \epsilon \land sum = \sum_{j=1}^k n_j \land \underline{output} = \epsilon\\
+I:= (\exists 1 \leq i \leq k+1 : \underline{input} = (n_i,...,n_k) \land sum = \sum_{j=1}^{i-1} n_j \land \underline{output} = \epsilon \\
+\{I \land \lnot \underline{eof} \} \Rightarrow \{ \exists 1 \leq i \leq k : \underline{input} = (n_i, ..., n_k) \land sum = \sum_{j=1}^{i-1} n_j \land  \underline{output} = \epsilon\} C_1 \{ \exists 2 \leq i \leq k+1 : \underline{input} = (n_i, ... , n_k) \land sum = \sum_{j=1}^{i-1} \land \underline{output} = \epsilon\}\\
+\Rightarrow I
+\end{align*}
+
 \section*{Aufgabe 4}
 Beweisen Sie die Gültigkeit des Axioms (A.4), d.h. zeigen Sie die Gültigkeit der Formel:
 \begin{align*}
