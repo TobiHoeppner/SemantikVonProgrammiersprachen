@@ -96,7 +96,7 @@ Eine Struktur $\underline{A}=(A,\sqsubseteq_A)$ heißt semantischer Bereich (cpo
 Seien $A$ und $B$ cpo's. 
 \begin{compactitem}
 	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{monton}, wenn $f(a_1) \sqsubseteq_A f(a_2)$ für alle $a_1 \sqsubseteq a_2 \in A$
-	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\sqcup K) = \sqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.
+	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\bigsqcup K) = \bigsqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.
 	\item Eine Funktion $f: A \rightarrow B$ heißt \textbf{strikt}, wenn $f(\perp_A) = \perp_B$
 	\item $[A\rightarrow B]$ bezeichnet den Raum aller stetigen Funktionen von $A \rightarrow B$.
 	\item[\textbf{1. Lemma}] ($[A\rightarrow B], \sqsubseteq$) ist cpo mit punktweiser Ordnung, d.h. $f \sqsubseteq g$, wenn $f (a) \sqsubseteq_B g(a)$ für alle $a \in A$
@@ -112,10 +112,10 @@ Sei
 \begin{align*}
 f: A \rightarrow A \text{ eine stetige Funktion} \\ 
 \text{Es existiert ein minimaler Fixpunkt}\\
-\underline{fix} f \text{ in } A \text { und es gilt}\\
-\underline{fix} f = \sqcup_{\mathcal{v} \in \mathrm{N}} f^\mathcal{v}(\perp)\\
+\underline{fix}\; f \text{ in } A \text { und es gilt}\\
+\underline{fix}\; f = \bigsqcup_{\mathcal{v} \in \mathrm{N}} f^\mathcal{v}(\perp)\\
 \end{align*}
-Nachtrag: Sei $D$ ein cpo und $f:D \rightarrow D$ eine stetige Funktion. Es existiert in $D$ der minimale Fixpunkt, $\underline{fix} f$, von $f$ in $D$.\\
+\textbf{Nachtrag:} Sei $D$ ein cpo und $f:D \rightarrow D$ eine stetige Funktion. Es existiert in $D$ der minimale Fixpunkt, $\underline{fix} f$, von $f$ in $D$.\\
 Es gilt $\underline{fix}\ f = \bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)$.\\
 % höhe von 1. im Beweis
 \marginnote{\small Nebenbemerkung: $\{ f^{\mu} (\perp) | \mu \in \mathbb{N}\}$ ist Kette in $D$. Begründung: $\perp, f(\perp), f^2(\perp),\dots, \perp \sqsubseteq f(\perp),f(\perp) \sqsubseteq f^2(\perp),f^2(\perp) \sqsubseteq f^3(\perp), \dots$ Minimalität von $\perp$}[0,5cm]
