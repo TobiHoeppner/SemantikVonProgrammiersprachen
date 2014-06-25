@@ -3,11 +3,10 @@
 %\marginnote{\small\emph{()}}[0,5cm]
 % höhe Allgemeine Methode 1.)
 %\marginnote{\small\emph{()}}[3cm]
-\subsection{Abzähbare Mengen}
-\begin{compatcitem}
-\item[1.)] Sei $M$ eine abzählbare Menge. Der cpo $M_\perp$ entsteht aus $M$ durch
+\subsection{Abzählbare Mengen}
+Sei $M$ eine abzählbare Menge. Der cpo $ M_{\perp} $ entsteht aus $M$ durch
 \begin{align*}
-M_\perp = (M \cup \{ \perp \}, \sqsubseteq) \text{ mit } x \sqsubseteq y \text{gdw} x = \perp \text{ oder } x = y \qed \\
+M_{\perp} = (M \cup \{ \perp \}, \sqsubseteq) \text{ mit } x \sqsubseteq y \text{ gdw. } x = \perp \text{ oder } x = y\\ &&\qed \\
 \end{align*}
 Beispiele:
 % kleiner Baum neben Definition von ZAHL malen
@@ -16,62 +15,136 @@ Beispiele:
 %						ZAHL_\perp
 % ebenfalls für N und Bool zeichnen
 \begin{align*}
-\text{ZAHL} = \{\min,...,\max\}_\perp\\
-\mathbb{N}_\perp = 0, 1, 2, ...\\
-\text{BOOL} = \{\underline{true}, \underline{false}\}_\perp\\
-\text{ID} = \{ w | w \in \{a,b, \dots, z\}^* \}_\perp
+\text{ZAHL} = \{\min,...,\max\}_{\perp} \\
+\end{align*}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$\min ,$};
+  \node[main node] (2) [right of=1] {$\min +1 ,$};
+  \node[main node] (3) [right of=2] {$\dots ,$};
+  \node[main node] (4) [right of=3] {$0,$};
+  \node[main node] (5) [right of=4] {$1,$};
+  \node[main node] (6) [right of=5] {$\dots ,$};
+  \node[main node] (7) [right of=6] {$\max$};
+  \node[main node] (8) [below of=4] {$\perp$};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (8)
+	(2) edge node {} (8)
+	(4) edge node {} (8)
+	(5) edge node {} (8)
+	(7) edge node {} (8)
+    ;
+\end{tikzpicture}
+\end{figure}
+
+\begin{align*}
+\mathbb{N}_{\perp} = 0, 1, 2, ... \\
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$0,$};
+  \node[main node] (2) [right of=1] {$1,$};
+  \node[main node] (3) [right of=2] {$\dots ,$};
+  \node[main node] (4) [right of=3] {$\infty$};
+  \node[main node] (8) [below of=3] {$\perp$};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (8)
+    (2) edge node {} (8)
+    (4) edge node {} (8)
+    ;
+\end{tikzpicture}
+\end{figure}
+
+\begin{align*}
+\text{BOOL} = \{\underline{true}, \underline{false}\}_{\perp} \\
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$\underline{true}$};
+  \node[] (11) [right of=1] {};
+  \node[main node] (2) [right of=11] {$\underline{false}$};
+  \node[main node] (8) [below of=11] {$\perp$};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (8)
+    (2) edge node {} (8)
+    ;
+\end{tikzpicture}
+\end{figure}
+\begin{align*}
+\text{ID} = \{ w | w \in \{a,b, \dots, z\}^* \}_{\perp} \\
 \end{align*}
 \subsection{Kartesische Produkt}
-\item[2.)] Kartesische Produkt \\
-Seinen $D_1, ... , D_n$ cpo's. $D=D_1 \times ... \times \D_n$\\
+Seien $ D_1, ... , D_n $ cpo's. $ D = D_1 \times ... \times D_n $\\
 $D$ ist cpo mit komponentenweise Ordnung $\sqsubseteq_D$, d.h.
 \begin{align*}
 <d_1,...,d_n> &\sqsubseteq_D <d'_1,...,d'_n> \text{ gdw. } d_1 \sqsubseteq_{D_1} d'_i \text{ für alle } 1 \leq i \leq n \\
-D &:= (D_1 \times D_n, \sqsubseteq_D) \text{ ist cpo.}\\
+D &:= (D_1 \times D_n, \sqsubseteq_D) \text{ ist cpo.} \\
 \end{align*}
 \subsection{Summen}
-\item[3.)] Summen\\
-Seien:
+Seien: $ D_1, ... , D_n  $ cpo's\\
 % Bild mit einem Baum neben für alle:
 % D_1, D_2, ... D_n
 % 	\			\			/
 %					\perp_D
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$D_1,$};
+  \node[main node] (2) [right of=1] {$D_2,$};
+  \node[main node] (3) [right of=2] {$\dots ,$};
+  \node[main node] (4) [right of=3] {$d_n$};
+  \node[main node] (8) [below of=3] {$\perp$};
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node {} (8)
+    (2) edge node {} (8)
+    (4) edge node {} (8)
+    ;
+\end{tikzpicture}
+\end{figure}
+
 \begin{align*}
-D_1, ... , D_n \text{ cpo's } &D=D_1 + ... + D_n \text{ ist wie folgt erklärt.}\\
-D = (\{(d,i) | d \in D_i, i \leq i \leq n\}, \sqsubseteq_D ) \cup \{\perp_D\}, \sqsubseteq_D) mit (d,i) \sqsubseteq_D (e,j) \text{ gdw. } i = j \text{ und } \perp_D \sqsubseteq (d,i) \text{ für alle ...}
+D &= D_1 + ... + D_n \text{ ist wie folgt erklärt.}\\
+D &= (\{(d,i) | d \in D_i, i \leq i \leq n\}, \sqsubseteq_D ) \cup \{\perp_D\}, \sqsubseteq_D) mit (d,i) \sqsubseteq_D (e,j) \text{ gdw. } i = j \text{ und } \perp_D \sqsubseteq (d,i) \text{ für alle ...}\\
 \end{align*}
-\end{compatcitem}
 \subsection{endliche Folgen}
-\item[4.)] endliche Folgen\\
 Sei $\underline{D}=(D,\sqsubseteq_D)$ ein cpo.
 \begin{align*}
-\underline{D*} = (\{ <d_i | d_i \in 1 \leq i \leq n > | n \in \mathbb{N} \} \cup \{ \perp_{D^*}\}, \sqsubseteq_{D^*}) \text{ mit}&\\
-&\text{\underline{Vorüberlegung}} <d_i | 1 \leq i \leq n> \sqsubseteq_D <d'_i | 1 \leq i \leq m> \\
-&\text{gdw. } n \leq m \text{ und } d_i \sqsubseteq_D d'_i \text{ für alle } 1 \leq i \leq n \text{ funktioniert nicht, weil}\\
-&\text{Sei } 1 \in D\\
-&K:=\{<>,<1>,<1,1>,<1,1,1>,...\} \text{ Kette in D^*\}
-&\bigsqcup K = <1,1,1,...> \text{ unendliche Folgen in D^W}
-<d_i | 1 \leq i \leq n > \sqsubseteq_{D^*} <d'_i | 1 \leq i \leq n > \\
-\text{gdw. } n = m \text{ und } d_i \sqsubseteq_D d'_i \text{ für alle } 1 \leq i \leq n \\
-\perp_{D^*} \sqsubseteq_{D^*} \text{ für jede Folge } \in D^*\\
+\underline{D^*} = (\{ <d_i | d_i \in 1 \leq i \leq n > | n \in \mathbb{N} \} \cup \{ \perp_{D^*}\}, \sqsubseteq_{D^*})\text{ mit}&\\
+\text{\underline{Vorüberlegung}}& \\
+& <d_i | 1 \leq i \leq n> \sqsubseteq_D <d'_i | 1 \leq i \leq m> \\
+&\text{gdw. } n \leq m \text{ und } d_i \sqsubseteq_D d'_i \text{ für alle } 1 \leq i \leq n \\
+& \text{ funktioniert nicht, weil}\\
+&\text{Sei } 1 \in D,\\
+& K:= \{ <>,<1>,<1,1>,<1,1,1>,... \} \text{ Kette in } D^* \\
+&\bigsqcup K = <1,1,1,...> \text{ unendliche Folgen in } D^W\\
+\text{Ende der Vorüberlegung}&\\
+<d_i | 1 \leq i \leq n > \sqsubseteq_{D^*} <d'_i | 1 \leq i \leq n > &\\
+\text{gdw. } n = m \text{ und } d_i \sqsubseteq_D d'_i \text{ für alle } 1 \leq i \leq n & \\
+\perp_{D^*} \sqsubseteq_{D^*} \text{ für jede Folge } \in D^* &\\
 \\
-\text{d.h. } D^* = \bigcup_{i \in \mathbb{N}} D^i
+\text{d.h. } D^* = \bigcup_{i \in \mathbb{N}} D^i &\\
 \end{align*}
 \subsection{unendliche Folgen}
-\item[5.)] unendliche Folgen \\
 \begin{align*}
 D^w := (\{ < d_i | i \in \mathbb{N} > \}, \sqsubseteq_{D^W}) \text{ mit } <d_i | i \in \mathbb{N} > \sqsubseteq_{D^w} <d'_i | i \in \mathbb{N}> \text{ gdw. } d_i \sqsubseteq_{D} d'_i \text{ für alle } i \in \mathbb{N}\\
-\perp_{D^W} = <\perp_D | i \in \mathbb{N}>
+\perp_{D^W} = <\perp_D | i \in \mathbb{N}>\\
 \end{align*}
 \subsection{Funktionenraum}
-\item[6.)] Funktionenraum \\
 Seien $D_1$ und $D_2$ cpo's
 \begin{align*}
-D = [D_1 \rightarrow D_2] := (\{ f : D_1 \rightarrow D_2 | f \text{ ist stetig}\}, \sqsubseteq_{D}) \text{ mit punktweiser Ordnung, d.h.}\\
-f \sqsubseteq_{D} g \text{ gdw. } f(d) \sqsubseteq_{D_2} g(d) \text{ für alle } d \in D_1 \text{.} \\
+D = [D_1 \rightarrow D_2] &:= (\{ f : D_1 \rightarrow D_2 | f \text{ ist stetig}\}, \sqsubseteq_{D}) \text{ mit punktweiser Ordnung, d.h.}\\
+f &\sqsubseteq_{D} g \text{ gdw. } f(d) \sqsubseteq_{D_2} g(d) \text{ für alle } d \in D_1 \text{.} \\
 \end{align*}
-D ist cpo!\\
+$D$ ist cpo!\\
 \subsection{Ausblick}
-\item[Ausblick:] Konstruktionen rekrusiver Domains ist möglich. Wenn $D$ eine cpo-Variable, dann löst sich eine Gleichung der Form $D = \Tau [D, B_1,...,B_r]$ lösen. $\tau$ über $\times, +, *, ^w, \rightarrow$, cpo's $B_i$\\ 
-
-Kanonische Operationen, wie Projektionen, Injektionen, Test auf leere Liste, ..., sind stetig.
+Konstruktionen rekrusiver Domains ist möglich. Wenn $D$ eine cpo-Variable, dann löst sich eine Gleichung der Form $D = \tau [D, B_1,...,B_r]$ lösen. $\tau$ über $\times, +, *, ^w, \rightarrow $, cpo's $B_i$\\ 
+Kanonische Operationen, wie Projektionen, Injektionen, Test auf leere Liste, ..., sind stetig.\\
