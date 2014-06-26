@@ -142,11 +142,11 @@ Für alle Ketten $k \subseteq A$:
 (g \circ f) (\bigsqcup k) &= \bigsqcup (g \cric f) (k) \\
 &= \bigsqcup g (f (k)) \\
 \end{align*}
-Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotonie von $g$ ist $g(f(k)) \subseteq B$ Kette in C.
+Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotonie von $g$ ist $g(f(k)) \subseteq B$ Kette in $C$.
 \begin{align*}
 \bigsqcup g (f()k) &= g (\bigsqcup f(k))\\
 &= g (f (\bigsqcup k))\\
-&= (g \cric f) (\bigsqcup K)\\
+&= (g \circ f) (\bigsqcup K)\\
 && \qed\\
 \end{align*}
 \end{compactenum}
@@ -167,6 +167,29 @@ Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, 
 Definieren Sie stetige Erweiterungen der Addition und des Tests auf Gleichheit, so dass diese Operationen total werden auf den \lstinline!cpo!'s $\mathbb{N}_\bot$ und $BOOL_\bot$. Diskutieren Sie, ob es mehrere solche Erweiterungen gibt.\\
 %\textbf{Idee von Tobi:} Irgendwie macht das nicht viel Sinn mit dem Bool und der Addition\\
 %Es sollen $+, =$ erweitert werden, sodass $(\mathbb{N}_\perp, +)$, $(BOOL_\perp, +)$ und $(\mathbb{N}_\perp, =)$, $(BOOL_\perp, =)$ neben relexiv, transitiv und antisymetrisch auch noch total sind.\\ Soweit ich heraus bekommen habe ist "total werden" eine Umschreibung von Kette bilden.\\
+\begin{align*}
+\underline{plus} : \mathbb{N}_\perp \times \mathbb{N}_\perp &\rightarrow \mathbb{N}_\perp\\
+(n,m) &\rightarrow \begin{cases}
+n+m, &\text{ falls } n,m \in \mathbb{N}\\
+\perp , &\text{ sonst.}
+\end{cases}
+\end{align*}
+\begin{align*}
+\underline{gleich} : \mathbb{N}_\perp \times \mathbb{N}_\perp &\rightarrow BOOL_\perp\\
+(n,m) &\rightarrow \begin{cases}
+n=m, &\text{ falls } n,m \in \mathbb{N}\\
+\perp , &\text{ sonst.}
+\end{cases}
+\end{align*}
+
+Es gibt keine weitere Erweiterungen für $\underline{plus}$, weil:
+\begin{align*}
+(\perp, n) & \rightarrow n \\
+(\perp, \perp) & \rightarrow \perp \\
+\{(\perp, 1),(1,1) \} &\rightarrow \{1,2\} \text{ Widerspruch zu den beiden oberen Zeilen}\\
+\end{align*}
+
+Für $\underline{gleich}$ gibt es ebenfalls keine weitere Erweiterung.\\
 \section*{Aufgabe 4}
 Seien $D_1$ und $D_2$ \lstinline!cpo!'s und auf $f:D_1\rightarrow D_2$ und $g:D_2 \rightarrow D_1$ stetige Funktionen.\\
 Beweisen Sie:\\
