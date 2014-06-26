@@ -173,11 +173,11 @@ Da jedes $D_i$ vorher cpo war und nun jeweils ein weiteres, gemeinsames Element,
 %
 	\begin{align*}
 		&in_i:& D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
-		&& d \mapsto (d,i)& \text{ für } 1 \leq i \leq n\\
+		& d \mapsto (d,i) \text{ für } 1 \leq i \leq n\\
 		&out_i:& (D_1+...+D_n)\rightarrow D_i& \text{ für alle } 1\leq i\leq n\\
-		&& d \mapsto \begin{cases} d & \text{ falls } x=(d,i)\\ \bot_{D_i} & \text{ sonst }\end{cases}\\
+		& d \mapsto \begin{cases} d & \text{ falls } x=(d,i)\\ \bot_{D_i} & \text{ sonst }\end{cases}&&\\
 		&is_i:& (D_1+...+D_n)\rightarrow BOOL_\bot& \text{ für alle } 1\leq i\leq n\\
-		&& d \mapsto \begin{cases} \underline{true},& \text{ falls } x=(d,i)\\ \underline{false},& \text{ falls } x = (d,j), i \neq j\\ \bot,& \text{ sonst } \end{cases}
+		& d \mapsto \begin{cases} \underline{true},& \text{ falls } x=(d,i)\\ \underline{false},& \text{ falls } x = (d,j), i \neq j\\ \bot,& \text{ sonst } \end{cases}&&
 	\end{align*}
 
 
