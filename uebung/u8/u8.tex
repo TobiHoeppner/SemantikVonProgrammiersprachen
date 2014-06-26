@@ -149,11 +149,7 @@ Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotoni
 \bigsqcup g (f()k) &= g (\bigsqcup f(k))\\
 &= g (f (\bigsqcup k))\\
 &= (g \circ f) (\bigsqcup K)\\
-<<<<<<< HEAD
-&& \qed\\
-=======
 && q.e.d.\\
->>>>>>> FETCH_HEAD
 \end{align*}
 \end{compactenum}
 
@@ -231,11 +227,13 @@ $fix_j = \bigsqcup\limits_{n\in\mathbb{N}} f^n (\bot)$\\
 	&=f(fix_{g\circ f})\\
 \end{align*}
 
-(i) $fix_{f\circ g} \sqsubseteq_{D_2} f(fix_{g\circ f}$\\
-(ii) $ fix_{g\circ f} \sqsubseteq_{D_1} g(fix_{f\circ g}$\\
-(iii) $f(fix_{g\circ f}) \sqsubseteq_{D_1} f(g(fix_{f\circ g}))$, wegen (ii) und Monotonie von $f$\\
-(iv) $g(fix_{f\circ g} \sqsubseteq_{D_2} fix_{g\circ f} = (f\circ g) (fix_{f\circ g}$\\
-$fix_{f\circ g}$\\
+\begin{align*}
+	(i)& fix_{f\circ g} \sqsubseteq_{D_2} f(fix_{g\circ f}\\
+	(ii) & fix_{g\circ f} \sqsubseteq_{D_1} g(fix_{f\circ g}\\
+	(iii) &f(fix_{g\circ f}) \sqsubseteq_{D_1} f(g(fix_{f\circ g})), \text{ wegen (ii) und Monotonie von } f\\
+	(iv) &g(fix_{f\circ g} \sqsubseteq_{D_2} fix_{g\circ f} = (f\circ g) (fix_{f\circ g})\\
+	  &=fix_{f\circ g}\\
+\end{align*}
 Behauptung folgt aus (iii) und (iv) sowie Antisymetrie.
 
 
