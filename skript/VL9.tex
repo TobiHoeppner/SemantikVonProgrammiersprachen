@@ -1,20 +1,22 @@
-\section{Der getypte \lambda -Kalkül als Metasprache \tiny (Vorlesung 9 am 26.06.)}
+\section{Der getypte $\lambda$-Kalkül als Metasprache \tiny (Vorlesung 9 am 26.06.)}
 % höhe von Grundlage
 %\marginnote{\small\emph{()}}[0,5cm]
 % Def. Menge A_\lambda der getypten...
-\marginnote{\small typfrei: Sei $\mathcal{X}$ als unendl. Menge \\ (i) $x \in \mathcal{X}$ ist $\Lambda$-Ausdruck (Atom) \\ (ii) ($t_1\ t_2$) ist $\Lambda$-Ausdruck (Applikation) \\ (iii) ($\lambda x.t$) ist $\lambda$-Ausdruck (Abstraktion)}[2cm]
+\marginnote{\small typfrei: Sei $\mathcal{X}$ als unendl. Menge \\ (i) $x \in \mathcal{X}$ ist $\lambda$-Ausdruck (Atom) \\ (ii) ($t_1\ t_2$) ist $\lambda$-Ausdruck (Applikation) \\ (iii) ($\lambda x.t$) ist $\lambda$-Ausdruck (Abstraktion)}[6cm]
 \begin{compactitem}
 \item[-] Semantische Bereiche, \lstinline!cpo!'s
 \item[-] Bezeichnung für Elemente aus Ausgangsbereichen, kartesische Produkte, Folgen, Summenbereichen ist die vertraute mathematische Notation. Für Elemente aus Funktionenbereichen (-domains) bietet sich der $\lambda$ -Kalkül von Alonso Church (1936) an.\\
 Bisher: $f:D_1 \rightarrow D_2$ wurde definiert durch $d \rightarrow t$, wobei in $t$ sowohl der formale Parameter $d$ als auch bekannte Elemente vorkommen können.\\
-Problematisch für Funktionen höheren Typs.\\
+Problematisch für Funktionen höheren Typs.
 \end{compactitem}
-\subsection{Definition: Menge $A_{\Lambda}$ der getypten $\Lambda$ -Ausdrücke}
-Sei $\mathcal{X} = \{ \mathcal{X}^D | D \in \mathcal{D}$, $\mathcal{D} \}$ Familie von \lstinline!cpo!'s, die Ausgangsbreiche enthält und abgeschlossen ist unter: $x, ^* , ^w , + und \rightarrow$ .\\
+\subsection{Definition: Menge $A_{\lambda}$ der getypten $\lambda$ -Ausdrücke}
+Sei $\mathcal{X} = \{ \mathcal{X}^D | D \in \mathcal{D}$, $\mathcal{D} \}$ Familie von \lstinline!cpo!'s, die Ausgangsbereiche enthält und abgeschlossen ist unter: $x, ^* , ^w , + und \rightarrow$.
 \begin{compactitem}
 \item[1.] \begin{align*}
-x : D \in \mathcal{A}_\lambda \text{ für alle } x \in \mathcal{X}^D \tag{Atome, Variable}\\
-k : D \in \mathcal{A}_\lambda \text{ für alle } k \in \mathcal{K}^D \text{, wobei } \mathcal{K} = \{ \mathcal{K}^D | D \in D \} \text{, die diskrete Elemente, sowie Projektionsfunktion, Listenoperationen, } \underline{fix}, \underline{curry}, \dots \\
+x &: D \in \mathcal{A}_\lambda \text{ für alle } x \in \mathcal{X}^D \tag{Atome, Variable}\\
+k &: D \in \mathcal{A}_\lambda \text{ für alle } k \in \mathcal{K}^D \text{, wobei } \\ 
+\mathcal{K} &= \{ \mathcal{K}^D | D \in D \}, &\text{die diskrete Elemente, sowie Projektionsfunktion,} \\
+&& \text{Listenoperationen, } \underline{fix}, \underline{curry}, \dots \\
 \end{align*}
 \item[2.] \begin{align*}
 <t_1, \dots , t_r> : D_1 \times \dots \times D_r \in \mathcal{A}_\lambda \text{ für alle } t_i : D_i \in \mathcal{A}_\lambda, 1 \leq i \leq r \tag{Tupel}\\
@@ -30,18 +32,18 @@ k : D \in \mathcal{A}_\lambda \text{ für alle } k \in \mathcal{K}^D \text{, wob
 \end{align*}
 \end{compactitem}
 \subsection{Konventionen (Verbesserung der Lesbarkeit)}
-\begin{itemize}
-\item[-] Applikation ist linksassoziativ, d.h. $f \; a_1 \; a_2$ steht für $(\dots((f\;a_1)a_2)\dots a_n)$
-\item[-] Abstraktion erstreckt sich soweit nach rechts wie möglich, d.h. $\lambda x. t_1 \; t_2 \dots \t_r$ steht für $(\lambda x. t_1 \; t_2 \dots \t_r)$ und $t_0 (\lambda x. t_1 \; t_2 \dots \t_r) t_{r+1}$ steht für $(t_0 (\lambda x. t_1 \; t_2 \dots \t_r) ) t_{r+1}$
-\item[-] Applikation mit rechtsassoziativer Bindung notiert durch "j'', d.h. $t_1 \dots t_r; s_1 \dots s_n; u_1 \dots u_m$ steht für $(t_1 \dots t_r) ((s_1 \dots s_n)( u_1 \dots u_m))$
+\begin{compactitem}
+\item[-] Applikation ist links assoziativ, d.h. $f \; a_1 \; a_2$ steht für $(\dots((f\;a_1)a_2)\dots a_n)$
+\item[-] Abstraktion erstreckt sich soweit nach rechts wie möglich, d.h. $\lambda x.t_1 \; t_2 \dots t_r$ steht für $(\lambda x.t_1 \; t_2 \dots t_r)$ und $t_0 (\lambda x.t_1 \; t_2 \dots t_r) t_{r+1}$ steht für $(t_0 (\lambda x. t_1 \; t_2 \dots t_r) ) t_{r+1}$
+\item[-] Applikation mit rechtsassoziativer Bindung notiert durch ";\", d.h. $t_1 \dots t_r; s_1 \dots s_n; u_1 \dots u_m$ steht für $(t_1 \dots t_r) ((s_1 \dots s_n)( u_1 \dots u_m))$
 \item[-] Mehrfachabstratktionen der Form $\lambda x_1.\lambda x_2 \dots \lambda x_r.t$ wird abgekürzt durch $\lambda x_1 \dots x_r . t$
 \item[-] Die bekannten zweistelligen arithm. u. log. Operatoren werden Infix notiert und binden schwächer als die Applikation, d.h. $\lambda x. 2 + f x$ steht für $(\lambda x.((\underline{plus} 2)(f x)))$
 \item[-] Verzicht auf Typenangabe, wenn aus Kontext ersichtlich!
-\end{itemize}
+\end{compactitem}
 
 \subsubsection*{Beispiel} 
 Für die Verwendung getypter $\lambda$-Ausdruck zur Definition von Elementen aus funktionalen \lstinline!cpo!'s.\\
-\textbf{Verbal} Gewicht $f$, welches angewendet auf eine Liste von Zahlen, eine zweistellige arithm. Operation $g$ und eine Zahl $z$ den Wert von $g$ angewendet auf die dritte Komponente von $L$ und $z$ liefert.\\
+\textbf{Verbal} Gewicht $f$, welches angewendet auf eine Liste von Zahlen, eine zweistellige arithm. Operation $g$ und eine Zahl $z$ den Wert von $g$ angewendet auf die dritte Komponente von $L$ und $z$ liefert.
 \begin{align*}
 f:=\lambda L\; g \;z . g (\pi_3 L) z \text{ mit } g : \mathbb{Z}_perp \rightarrow \mathbb{Z}_perp \rightarrow \mathbb{Z}_perp, L : D^* \text{oder} L : \mathbb{Z}^*_perp, z : \mathbb{Z}_perp\\
 f : \mathbb{Z}_perp^* \rightarrow [\mathbb{Z}_perp \rightarrow \mathbb{Z}_perp \rightarrow \mathbb{Z}_perp] \rightarrow \mathbb{Z}_perp \rightarrow \mathbb{Z}_perp
@@ -56,7 +58,7 @@ f <4, 7, \underline{hd}<3>, 8, 2> \underline{plus} 5 &\rightarrow \underline{plu
 \end{align*}
 \subsection{Formale Semantik der Metasprache:}
 \begin{align*}
-[\![ \; ]\!] &: \mathcal{A}_\lambda \rightarrow [\mathcal{U} \rightarrow \mathcal{D}]\text{, wobei } \mathcal{U}:\mathcal{X} \rightarrow \mathcal{D} \text{ typhaltende Funktion.}\\
+[\![ \; ]\!] &: \mathcal{A}_\lambda \rightarrow [\mathcal{U} \rightarrow \mathcal{D}] \text{, wobei } \mathcal{U}:\mathcal{X} \rightarrow \mathcal{D} \text{ typhaltende Funktion.}\\
 [\![ x ]\!] \rho &= \rho x \\
 [\![ k ]\!] \rho &= k \tag{1}\\
 \\
@@ -64,15 +66,16 @@ f <4, 7, \underline{hd}<3>, 8, 2> \underline{plus} 5 &\rightarrow \underline{plu
 \\
 [\![ t_1 \; t_2 ]\!] \rho &= [\![ 2_1 ]\!] \rho ([\![ t_2 ]\!] \rho)  \tag{3}\\
 \\
-[\![\lambda x.t ]\!] \rho = d \rightarrow [\![ t ]\!] s [d/x] \tag{4a}\\
-[\![ \lambda (x_1,\dots, x_r).t ]\!] \rho = <d_1, \dots , d_r> \rightarrow [\![ t ]\!] \rho [d_1 \dots d_r / x_1 \dots x_i], x_i \neq x_j \text{ für alle } i \neq j \tag{4b}\\
+[\![\lambda x.t ]\!] \rho &= d \rightarrow [\![ t ]\!] s [d/x] \tag{4a}\\
+[\![ \lambda (x_1,\dots, x_r).t ]\!] \rho &= <d_1, \dots , d_r> \\
+&\rightarrow [\![ t ]\!] \rho [d_1 \dots d_r / x_1 \dots x_i], x_i \neq x_j \text{ für alle } i \neq j \tag{4b}\\
 \end{align*}
 
 \subsection{$\lambda$-Kalkül (Semantische Reduktionsregeln)}
-Fr : $\mathcal{A}_\lambda \rightarrow \mathcal{X}$, Geb.: $\mathcal{A}_\lambda \rightarrow \mathcal{X}$ , Var : $\mathcal{A}_\lambda \rightarrow \mathcal{X}$ 
+$Fr : \mathcal{A}_\lambda \rightarrow \mathcal{X}, Geb.: \mathcal{A}_\lambda \rightarrow \mathcal{X}, Var : \mathcal{A}_\lambda \rightarrow \mathcal{X}$ 
 \begin{align*}
-\rightarrow_\alpha \text{ Variablenumbenennung } \lambda x.t \rightarrow_\alpha \lambda y. \$^x_y t \text{, wobei } \$ \text{ Substitutionsoperator}\\
-\rightarrow_\beta	\text{ Ersetzung formaler Parameter } (\lambda x.t) a \rightarrow_\beta	\$^x_a t \text{, falls } Fr(a) Geb(t) = \varnothing\\
-\rightarrow_\gamma \text{ Wertreduktion, } \underline{plus} 4\; 3 \rightarrow_\gamma 7 \\
-\text{Extensionalität: } \lambda x.(t\;x) \rightarrow_\eta t, x \nin Fr(t)\\ 
+&\xrightarrow{\alpha} \text{ Variablenumbenennung } \lambda x.t \xrightarrow{\alpha} \lambda y. \$^x_y t \text{, wobei } \$ \text{ Substitutionsoperator}\\
+&\xrightarrow{\beta}	\text{ Ersetzung formaler Parameter } (\lambda x.t) a \xrightarrow{\beta}	\$^x_a t \text{, falls } Fr(a) Geb(t) = \varnothing\\
+&\xrightarrow{\gamma} \text{ Wertreduktion, } \underline{plus} 4\; 3 \xrightarrow{\gamma} 7 \\
+&\text{Extensionalität: } \lambda x.(t\;x) \xrightarrow{\eta} t, x \notin Fr(t)\\ 
 \end{align*}
