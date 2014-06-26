@@ -116,6 +116,8 @@ $K$ ist Kette, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1 \sqsubseteq_A k_2$ od
 \lstinline!cpo!: $(\mathbb{N}_\infty,\leq)$\\
 $f(x) = x \mod 2$ mit $x \in \mathbb{N}$\\
 Ist eine nicht stetige Funktion.\\
+%Also sowas wie $f(x) = x \mod 2$ mit $x \in \mathbb{N}$ sollte dem Widersprechen, oder?\\
+%
 %\textbf{Hinnerk:}
 %Was ist mit sowas:\\
 %\lstinline!cpo!: $(\mathbb{N}_\infty,\leq)$\\
@@ -139,7 +141,7 @@ Skizze: Seien $f : A \rightarrow B$ und $g : B \rightarrow C$ stetige Funktionen
 %\end{align*}
 Für alle Ketten $k \subseteq A$:
 \begin{align*}
-(g \circ f) (\bigsqcup k) &= \bigsqcup (g \cric f) (k) \\
+(g \circ f) (\bigsqcup k) &= \bigsqcup (g \circ f) (k) \\
 &= \bigsqcup g (f (k)) \\
 \end{align*}
 Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotonie von $g$ ist $g(f(k)) \subseteq B$ Kette in $C$.
@@ -147,21 +149,42 @@ Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotoni
 \bigsqcup g (f()k) &= g (\bigsqcup f(k))\\
 &= g (f (\bigsqcup k))\\
 &= (g \circ f) (\bigsqcup K)\\
+<<<<<<< HEAD
 && \qed\\
+=======
+&& q.e.d.\\
+>>>>>>> FETCH_HEAD
 \end{align*}
 \end{compactenum}
 
 \section*{Aufgabe 2}
 \begin{compactenum}
 \item[a)] Zeigen Sie, wie Sie zu gegebenen \lstinline!cpo!s $D_1,...,D_n$ mit $n\geq 2$ den Bereich der disjunkten Vereinigung $(D_1 + ... + D_n)$ erklären können, ohne die minimalen Elemente zu verschmelzen.\\
-\textbf{Idee:} 
-Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, wie der gemeinsame Wertebereich aller cpos mit zusätzlich einem weiteren Element: ein gemeinsames $\bot$ (es kann ja kein Element $\bot$ sein, dass vorher schon in der Menge enthalten war, da die cpos disjunkt waren).
+
+	$D:= D_1+...+S_2 = (\lbrace (d,i)| 1\leq i \leq nm d \in D_i \rbrace \cup \bot_0, \sqsubseteq_0)$\\
+	$\bot_0 \sqsubseteq d \in D$\\
+	$(d,i) \sqsubseteq_D (d',j)$ genau dann wenn $ i=j$, und $ d\sqsubseteq_{0_i}d'$
+%\textbf{Idee:}
+%Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, wie der gemeinsame Wertebereich aller cpos mit zusätzlich einem weiteren Element: ein gemeinsames $\bot$ (es kann ja kein Element $\bot$ sein, dass vorher schon in der Menge enthalten war, da die cpos disjunkt waren).
+Da jedes $D_i$ vorher cpo war und nun jeweils ein weiteres, gemeinsames Element, dass jeweils die Kritierien für $\bot$ erfüllt, ist das Resultat auch ein cpo.
 \item[b)] Definieren Sie folgende Injektions-, Projektions- und Testfunktionen in kanonischer Weise:\\
+%	\begin{align*}
+%		&in_i: D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
+%		&out_i: (D_1+...+D_n)\rightarrow D_i& \text{ für alle } 1\leq i\leq n\\
+%		&is_i: (D_1+...+D_n)\rightarrow BOOL_\bot& \text{ für alle } 1\leq i\leq n\\
+%	\end{align*}
+%
+%
 	\begin{align*}
-		&in_i: D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
-		&out_i: (D_1+...+D_n)\rightarrow D_i& \text{ für alle } 1\leq i\leq n\\
-		&is_i: (D_1+...+D_n)\rightarrow BOOL_\bot& \text{ für alle } 1\leq i\leq n\\
+		&in_i:& D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
+		& d \mapsto (d,i) \text{ für } 1 \leq i \leq n\\
+		&out_i:& (D_1+...+D_n)\rightarrow D_i& \text{ für alle } 1\leq i\leq n\\
+		& d \mapsto \begin{cases} d & \text{ falls } x=(d,i)\\ \bot_{D_i} & \text{ sonst }\end{cases}&&\\
+		&is_i:& (D_1+...+D_n)\rightarrow BOOL_\bot& \text{ für alle } 1\leq i\leq n\\
+		& d \mapsto \begin{cases} \underline{true},& \text{ falls } x=(d,i)\\ \underline{false},& \text{ falls } x = (d,j), i \neq j\\ \bot,& \text{ sonst } \end{cases}&&
 	\end{align*}
+
+
 \end{compactenum}
 \section*{Aufgabe 3}
 Definieren Sie stetige Erweiterungen der Addition und des Tests auf Gleichheit, so dass diese Operationen total werden auf den \lstinline!cpo!'s $\mathbb{N}_\bot$ und $BOOL_\bot$. Diskutieren Sie, ob es mehrere solche Erweiterungen gibt.\\
