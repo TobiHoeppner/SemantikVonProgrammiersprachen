@@ -109,34 +109,48 @@
 Definition der Stetigkeit aus VL: Seinen $A$ und $B$ \lstinline!cpo!'s\\
 Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\bigsqcup K) = \bigsqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.\\
 
-Noch ein Blick auf die Kette:\\
+Noch ein Blick auf die Kette aus der Vorlesung:\\
 $K$ ist Kette, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1 \sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.\\
-Also der Vorgänger steht mit dem Nachfolger oder der Nachfolger steht mit dem Vorgänger irgendwie in Relation.\\
+%Also der Vorgänger steht mit dem Nachfolger oder der Nachfolger steht mit dem Vorgänger irgendwie in Relation.\\
 
-%Also sowas wie $f(x) = x \mod 2$ mit $x \in \mathbb{N}$ sollte dem Widersprechen, oder?\\ 
-%
+\lstinline!cpo!: $(\mathbb{N}_\infty,\leq)$\\
+$f(x) = x \mod 2$ mit $x \in \mathbb{N}$\\
+Ist eine nicht stetige Funktion.\\
 %\textbf{Hinnerk:}
 %Was ist mit sowas:\\
-\lstinline!cpo!: $(\mathbb{N},\leq)$\\
-\begin{align*}
-f(x) = \begin{cases}
-	1, & \text{wenn } x = 42 \\
-    x, & sonst
-\end{cases}
-\end{align*}
+%\lstinline!cpo!: $(\mathbb{N}_\infty,\leq)$\\
+%\begin{align*}
+%f(x) = \begin{cases}
+%	1, & \text{wenn } x = 42 \\
+%    x, & sonst
+%\end{cases}
+%\end{align*}
 
 
 \item[b)] Beweisen Sie, dass die Komposition stetiger Funktionen wieder eine stetige Funktion ergibt.\\
-\textbf{Idee von Tobi:} na dit is relativ simple im Kopf, aber unklar wie ich es aufschreibe..\\
-Skizze: Seien $f$ und $g$ stetige Funktionen und $A, B$ und $C$ \lstinline!cpo!'s und der $\circ$-Operator steht - wie üblich - für die Komposition:
+%\textbf{Idee von Tobi:} na dit is relativ simple im Kopf, aber unklar wie ich es aufschreibe..\\
+Skizze: Seien $f : A \rightarrow B$ und $g : B \rightarrow C$ stetige Funktionen und $A, B$ und $C$ \lstinline!cpo!'s und der $\circ$-Operator steht - wie üblich - für die Komposition.\\
+%\begin{align*}
+%f &: A \rightarrow B &\\
+%g &: B \rightarrow C &\\
+%\text{ also ist } &\\
+%g \circ f &: (A \rightarrow B) \rightarrow C = A \rightarrow C &\\
+%\text{ ebenfalls stetig!}\\
+%\end{align*}
+Für alle Ketten $k \subseteq A$:
 \begin{align*}
-f &: A \rightarrow B &\\
-g &: B \rightarrow C &\\
-\text{ also ist } &\\
-f \circ g &: (A \rightarrow B) \rightarrow C = A \rightarrow C &\\
-\text{ ebenfalls stetig!}\\
+(g \circ f) (\bigsqcup k) &= \bigsqcup (g \cric f) (k) \\
+&= \bigsqcup g (f (k)) \\
+\end{align*}
+Wegen Monotonie von $f$ ist $f(k) \subseteq B$ eine Kette und wegen der Monotonie von $g$ ist $g(f(k)) \subseteq B$ Kette in C.
+\begin{align*}
+\bigsqcup g (f()k) &= g (\bigsqcup f(k))\\
+&= g (f (\bigsqcup k))\\
+&= (g \cric f) (\bigsqcup K)\\
+&& \qed\\
 \end{align*}
 \end{compactenum}
+
 \section*{Aufgabe 2}
 \begin{compactenum}
 \item[a)] Zeigen Sie, wie Sie zu gegebenen \lstinline!cpo!s $D_1,...,D_n$ mit $n\geq 2$ den Bereich der disjunkten Vereinigung $(D_1 + ... + D_n)$ erklären können, ohne die minimalen Elemente zu verschmelzen.\\
