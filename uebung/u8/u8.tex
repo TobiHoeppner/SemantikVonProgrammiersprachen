@@ -105,7 +105,7 @@
 \section*{Aufgabe 1}
 \begin{compactenum}
 \item[a)] Geben Sie ein Beispiel für eine nicht stetige Funktion $f$ über \lstinline!cpo!'s an.\\
-\textbf{Idee von Tobi:}\\
+%\textbf{Idee von Tobi:}\\
 Definition der Stetigkeit aus VL: Seinen $A$ und $B$ \lstinline!cpo!'s\\
 Eine Funktion $f: A \rightarrow B$ heißt \textbf{stetig}, wenn $f(K)$ eine Kette in $B$ ist und $f(\bigsqcup K) = \bigsqcup f(K)$ für alle $K \subseteq A$ mit $K$ ist Kette in $A$.\\
 
@@ -113,15 +113,18 @@ Noch ein Blick auf die Kette:\\
 $K$ ist Kette, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1 \sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.\\
 Also der Vorgänger steht mit dem Nachfolger oder der Nachfolger steht mit dem Vorgänger irgendwie in Relation.\\
 
-Also sowas wie $f(x) = x \mod 2$ mit $x \in \mathbb{N}$ sollte dem Widersprechen, oder?\\ 
-
-\textbf{Hinnerk:}
-Was ist mit sowas:\\
-\lstinline{cpo}: $(\mathbb{N},\leq)$\\
-$f(x) = \begin{cases}
+%Also sowas wie $f(x) = x \mod 2$ mit $x \in \mathbb{N}$ sollte dem Widersprechen, oder?\\ 
+%
+%\textbf{Hinnerk:}
+%Was ist mit sowas:\\
+\lstinline!cpo!: $(\mathbb{N},\leq)$\\
+\begin{align*}
+f(x) = \begin{cases}
 	1, & \text{wenn } x = 42 \\
     x, & sonst
-\end{cases}$
+\end{cases}
+\end{align*}
+
 
 \item[b)] Beweisen Sie, dass die Komposition stetiger Funktionen wieder eine stetige Funktion ergibt.\\
 \textbf{Idee von Tobi:} na dit is relativ simple im Kopf, aber unklar wie ich es aufschreibe..\\
@@ -137,8 +140,8 @@ f \circ g &: (A \rightarrow B) \rightarrow C = A \rightarrow C &\\
 \section*{Aufgabe 2}
 \begin{compactenum}
 \item[a)] Zeigen Sie, wie Sie zu gegebenen \lstinline!cpo!s $D_1,...,D_n$ mit $n\geq 2$ den Bereich der disjunkten Vereinigung $(D_1 + ... + D_n)$ erklären können, ohne die minimalen Elemente zu verschmelzen.\\
-
-\textbf{Idee:} Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, wie der gemeinsame Wertebereich aller cpos mit zusätzlich einem weiteren Element: ein gemeinsames $\bot$ (es kann ja kein Element $\bot$ sein, dass vorher schon in der Menge enthalten war, da die cpos disjunkt waren).
+\textbf{Idee:} 
+Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, wie der gemeinsame Wertebereich aller cpos mit zusätzlich einem weiteren Element: ein gemeinsames $\bot$ (es kann ja kein Element $\bot$ sein, dass vorher schon in der Menge enthalten war, da die cpos disjunkt waren).
 \item[b)] Definieren Sie folgende Injektions-, Projektions- und Testfunktionen in kanonischer Weise:\\
 	\begin{align*}
 		&in_i: D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
@@ -148,10 +151,10 @@ f \circ g &: (A \rightarrow B) \rightarrow C = A \rightarrow C &\\
 \end{compactenum}
 \section*{Aufgabe 3}
 Definieren Sie stetige Erweiterungen der Addition und des Tests auf Gleichheit, so dass diese Operationen total werden auf den \lstinline!cpo!'s $\mathbb{N}_\bot$ und $BOOL_\bot$. Diskutieren Sie, ob es mehrere solche Erweiterungen gibt.\\
-\textbf{Idee von Tobi:} Irgendwie macht das nicht viel Sinn mit dem Bool und der Addition\\
-Es sollen $+, =$ erweitert werden, sodass $(\mathbb{N}_\perp, +)$, $(BOOL_\perp, +)$ und $(\mathbb{N}_\perp, =)$, $(BOOL_\perp, =)$ neben relexiv, transitiv und antisymetrisch auch noch total sind.\\ Soweit ich heraus bekommen habe ist "total werden" eine Umschreibung von Kette bilden.\\
+%\textbf{Idee von Tobi:} Irgendwie macht das nicht viel Sinn mit dem Bool und der Addition\\
+%Es sollen $+, =$ erweitert werden, sodass $(\mathbb{N}_\perp, +)$, $(BOOL_\perp, +)$ und $(\mathbb{N}_\perp, =)$, $(BOOL_\perp, =)$ neben relexiv, transitiv und antisymetrisch auch noch total sind.\\ Soweit ich heraus bekommen habe ist "total werden" eine Umschreibung von Kette bilden.\\
 \section*{Aufgabe 4}
-Seien $D_1$ und $D_2$ \lstinline!cpo!'s und auf $f:D_1\rightarrow D_2$ und $d:D_2 \rightarrow D_1$ stetige Funktionen.\\
+Seien $D_1$ und $D_2$ \lstinline!cpo!'s und auf $f:D_1\rightarrow D_2$ und $g:D_2 \rightarrow D_1$ stetige Funktionen.\\
 Beweisen Sie:\\
 \begin{align*}
 	fix_{f\circ g}\quad &= \quad f(fix_{g \circ f}) \quad\quad \text{ und }\\
