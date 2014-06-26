@@ -115,6 +115,14 @@ Also der Vorgänger steht mit dem Nachfolger oder der Nachfolger steht mit dem V
 
 Also sowas wie $f(x) = x \mod 2$ mit $x \in \mathbb{N}$ sollte dem Widersprechen, oder?\\ 
 
+\textbf{Hinnerk:}
+Was ist mit sowas:\\
+\lstinline{cpo}: $(\mathbb{N},\leq)$\\
+$f(x) = \begin{cases}
+	1, & \text{wenn } x = 42 \\
+    x, & sonst
+\end{cases}$
+
 \item[b)] Beweisen Sie, dass die Komposition stetiger Funktionen wieder eine stetige Funktion ergibt.\\
 \textbf{Idee von Tobi:} na dit is relativ simple im Kopf, aber unklar wie ich es aufschreibe..\\
 Skizze: Seien $f$ und $g$ stetige Funktionen und $A, B$ und $C$ \lstinline!cpo!'s und der $\circ$-Operator steht - wie üblich - für die Komposition:
@@ -129,6 +137,8 @@ f \circ g &: (A \rightarrow B) \rightarrow C = A \rightarrow C &\\
 \section*{Aufgabe 2}
 \begin{compactenum}
 \item[a)] Zeigen Sie, wie Sie zu gegebenen \lstinline!cpo!s $D_1,...,D_n$ mit $n\geq 2$ den Bereich der disjunkten Vereinigung $(D_1 + ... + D_n)$ erklären können, ohne die minimalen Elemente zu verschmelzen.\\
+
+\textbf{Idee:} Bei der Vereinigung disjunkter cpos wird der entstehende Wertebereich so groß, wie der gemeinsame Wertebereich aller cpos mit zusätzlich einem weiteren Element: ein gemeinsames $\bot$ (es kann ja kein Element $\bot$ sein, dass vorher schon in der Menge enthalten war, da die cpos disjunkt waren).
 \item[b)] Definieren Sie folgende Injektions-, Projektions- und Testfunktionen in kanonischer Weise:\\
 	\begin{align*}
 		&in_i: D_i \rightarrow (D_1+...+D_n)& \text{ für alle } 1\leq i\leq n\\
