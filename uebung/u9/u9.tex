@@ -116,7 +116,12 @@ Wenn man für die $\beta$-Reduktion
 (\lambda x.t) s \xrightarrow[\beta]{} \$_s^x t
 \end{align*}
 auf die Forderung $\text{\lstinline!Fr!}(s) \cap \text{\lstinline!Geb!}(t) = \emptyset$ verzichtet, kann eine solche Reduktion die Semantik verändern.\\
-Geben Sie dafür ein Beispiel an.
+Geben Sie dafür ein Beispiel an.\\
+
+Verzichtet man auf die oben genannte Eigenschaft bedeutet das, dass die Schnittmenge der freien Variablen von $s$ und der gebundenen Variablen von $t$ nicht leer ist. Es gibt also eine Variable die in beiden Termen vorkommt und damit nach Anwendung der $\beta$-Reduktion in einem Term stehen:
+\begin{align*}
+(\lambda x.xyz) z \xrightarrow[\beta]{} \lambda zyz
+\end{align*}
 
 \section*{Aufgabe 3}
 Konstruieren Sie einen $\lambda$-Ausdruck $t$, der keine Normalform besitzt und dessen Reduktion zu immer größeren Ausdrücken führt.\\
