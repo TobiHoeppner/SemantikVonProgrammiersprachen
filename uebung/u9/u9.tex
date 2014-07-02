@@ -132,7 +132,10 @@ Ich weiß allerdings nicht genau, wie das in getyptem Lambdakalkül aussehen mü
 \section*{Aufgabe 4}
 Schreiben Sie je einen getypten $\lambda$-Ausdruck für folgende Aufgaben:
 \begin{compactenum}
-\item Eine symmetrische Funktion soll dreifach auf ein Argument angewendet werden.\\
+\item Eine symmetrische Funktion soll dreifach auf ein Argument angewendet werden.
+\begin{align*}
+	\lambda fx.f(f(f(x)))&& [D \rightarrow D] \rightarrow D \rightarrow D
+\end{align*}
 \item Gegeben sei eine Liste der Länge $4$ von Elementen des Typs $\text{\lstinline!D!}$ und eine Funktion vom Typ $[\text{\lstinline!D!} \rightarrow \text{\lstinline!D!}]$, berechne die Anwendung dieser Funktion auf alle Listenelemente.
 \item Beschreibe den uncurry-Operator im getypten $\lambda$-Kalkül, der angewendet auf eine Funktion vom Typ $[\text{\lstinline!D!}_1 \rightarrow [\text{\lstinline!D!}_2 \rightarrow \text{\lstinline!D!}_3]]$ eine Funktion des Typs $[(\text{\lstinline!D!}_1 \times \text{\lstinline!D!}_2) \rightarrow \text{\lstinline!D!}_3]$ liefert, wobei für alle \lstinline!f!, \lstinline!a! und \lstinline!b!
 \begin{lstlisting}
