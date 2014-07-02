@@ -105,6 +105,11 @@
 \section*{Aufgabe 1}
 Wenn man für die $\alpha$-Reduktion $\lambda x.t \xrightarrow[\alpha]{} \lambda y.\$_y^x\ t$ auf die Bedingung $y \notin \text{\lstinline!Var!}(t)$ verzichtet, kann eine solche Reduktion die Semantik verändern. Geben Sie dafür ein Beispiel an.\\
 
+Die $\alpha$-Konversion funktioniert nur, wenn die Variable noch nicht verwendet wird ($y \notin \text{\lstinline!Var!}(t)$). Wenn man auf diese Eigenschaft verzichtet kann man genauso gut auch gleich das Gegenteil fordern: $y \in \text{\lstinline!Var!}(t)$. Beispiel:
+\begin{align*}
+\lambda x.xy \xrightarrow[\alpha]{}\lambda y.yy
+\end{align*}
+
 \section*{Aufgabe 2}
 Wenn man für die $\beta$-Reduktion
 \begin{align*}
@@ -115,20 +120,20 @@ Geben Sie dafür ein Beispiel an.
 
 \section*{Aufgabe 3}
 Konstruieren Sie einen $\lambda$-Ausdruck $t$, der keine Normalform besitzt und dessen Reduktion zu immer größeren Ausdrücken führt.\\
-\textbf{Idee}:
-\begin{align*}
-\lambda x. x (x) \lambda x. x (x) : D \in A_\lambda für\ alle\ x \in x^D
-\end{align*}
-Sollte eigentlich dazu führen, dass x sich immer wieder selbst aufruft und damit keine Normalform möglich ist.
-
-\textbf{Idee Hinnerk:}
+%\textbf{Idee}:
+%\begin{align*}
+%\lambda x. x (x) \lambda x. x (x) : D \in A_\lambda für\ alle\ x \in \mathcal{X}^D
+%\end{align*}
+%Sollte eigentlich dazu führen, dass x sich immer wieder selbst aufruft und damit keine Normalform möglich ist.
+%
+%\textbf{Idee Hinnerk:}
 Für das ungetypte Lambdakalkül müsste folgendes funktionieren:\\
 \begin{align*}
 	&    (\lambda x.xxx)(\lambda x.xxx)\\
 	\Rightarrow&(\lambda x.xxx)(\lambda x.xxx)(\lambda x.xxx)\\
 \end{align*}
-So sollte auch die Bedingung erfüllt sein, dass die Reduktion den Ausdruck größer macht.\\
-Ich weiß allerdings nicht genau, wie das in getyptem Lambdakalkül aussehen müsste (wobei das ja auch nicht explizit gefragt ist).. ;)
+%So sollte auch die Bedingung erfüllt sein, dass die Reduktion den Ausdruck größer macht.\\
+%Ich weiß allerdings nicht genau, wie das in getyptem Lambdakalkül aussehen müsste (wobei das ja auch nicht explizit gefragt ist).. ;)
 \section*{Aufgabe 4}
 Schreiben Sie je einen getypten $\lambda$-Ausdruck für folgende Aufgaben:
 \begin{compactenum}
@@ -147,7 +152,7 @@ Schreiben Sie je einen getypten $\lambda$-Ausdruck für folgende Aufgaben:
 gelten soll.
 \begin{align*}
 	\lambda f. \lambda T.(f(\pi_1\ T) (\pi_2\ T))&& [D_1 \rightarrow [D_2 \rightarrow D_3] \rightarrow [(D_1\times D_2)\rightarrow D_3]
-\end{align
+\end{align*}
 \end{compactenum}
 
 \end{document}
