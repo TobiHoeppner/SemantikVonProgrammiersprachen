@@ -171,10 +171,28 @@ Schreiben Sie je einen getypten $\lambda$-Ausdruck für folgende Aufgaben:
 \begin{align*}
 	\lambda fx.f(f(f(x)))&& [D \rightarrow D] \rightarrow D \rightarrow D
 \end{align*}
+Alternativ:
+\begin{align*}
+	\lambda x.f(f(f(x)))&& D \rightarrow D
+\end{align*}
+
 \item Gegeben sei eine Liste der Länge $4$ von Elementen des Typs $\text{\lstinline!D!}$ und eine Funktion vom Typ $[\text{\lstinline!D!} \rightarrow \text{\lstinline!D!}]$, berechne die Anwendung dieser Funktion auf alle Listenelemente.
 \begin{align*}
 	\lambda L\ g.<g(\pi_1L);g(\pi_2L);g(\pi_3L);g(\pi_4L)>&& [D] \rightarrow [D\rightarrow D] \rightarrow [D]
 \end{align*}
+
+Lösung von Frau Fehr:
+\begin{align*}
+L = <d_1, d_2, d_3, d_4> \text{ mit } d_i : D\\
+f : [D \rightarrow D]\\
+T = <f d_1, f d_2, f d_3, f d_4> : D \times D \times D \times D\\
+\end{align*}
+Lösung von Paul:
+\begin{align*}
+T: D^* \rightarrow [D \rightarrow D] \rightarrow D^*\\
+\lambda L.\lambda f. (f (\pi_1 L)):(f (\pi_2 L):(f (\pi_3 L):(f (\pi_4 L) : \underline{tl} (\underline{tl} (\underline{tl} (\underline{tl} L))))))\\
+\end{align*}
+
 \item Beschreibe den unschönfinkel-Operator im getypten $\lambda$-Kalkül, der angewendet auf eine Funktion vom Typ $[\text{\lstinline!D!}_1 \rightarrow [\text{\lstinline!D!}_2 \rightarrow \text{\lstinline!D!}_3]]$ eine Funktion des Typs $[(\text{\lstinline!D!}_1 \times \text{\lstinline!D!}_2) \rightarrow \text{\lstinline!D!}_3]$ liefert, wobei für alle \lstinline!f!, \lstinline!a! und \lstinline!b!
 \begin{lstlisting}
 (unschönfinkel f) <a,b> = f a b
