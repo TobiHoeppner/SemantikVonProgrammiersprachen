@@ -124,8 +124,8 @@ T' = \lambda y . \lambda y . (y \ 1)\\
 = & d \rightarrow (d' \rightarrow ([![ y ]!] \rho [d/y] [d'/y]) 1 )\\
 \\
 f(a) = 0, g(a) = 1\\
-([![ T ]!] \rho) (f) (g) = f 1 = 0\\
-([![ T ]!] \rho) (f) (g) = g 1 = 1\\
+([![ T ]!] \rho) (f)\ (g) = & f\ 1 = 0\\
+([![ T ]!] \rho) (f)\ (g) = & g\ 1 = 1\\
 \end{align*}
 
 \section*{Aufgabe 2}
@@ -139,6 +139,13 @@ Geben Sie dafür ein Beispiel an.\\
 Verzichtet man auf die oben genannte Eigenschaft bedeutet das, dass die Schnittmenge der freien Variablen von $s$ und der gebundenen Variablen von $t$ nicht leer ist. Es gibt also eine Variable die in beiden Termen vorkommt und damit nach Anwendung der $\beta$-Reduktion in einem Term stehen:
 \begin{align*}
 (\lambda x.xyz) z \xrightarrow[\beta]{} \lambda zyz
+\end{align*}
+
+\textbf{Lösung aus dem Tut:}
+\begin{align*}
+(\lambda x . \lambda y . (x1)) y : (mathbb{N}_\perp \rightarrow mathbb{N}_\perp) \rightarrow mathbb{N}_\perp\\
+\xrightarrow[\beta]{} \lambda y. (y 1)\\
+\text{nach den Regeln einsetzten sodass man g und f wählen kann.}\\
 \end{align*}
 
 \section*{Aufgabe 3}
