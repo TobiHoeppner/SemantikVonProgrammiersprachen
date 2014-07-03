@@ -1,33 +1,33 @@
 \section{Die Metasprache $\lambda$-Kalkül \tiny (Vorlesung 10 am 03.07.)}
 % höhe Kovention
-\marginnote{\small Randbemerkung: $S = \lambda x y z (x z) yz$ \\ $K = \lambda xy.x$ \\ $I = \lambda x.x$ \\ und Applikation bilden berechenbare Funktionen}[0,5cm]
+\marginnote{\small Randbemerkung: $S = \lambda x y z (x z) yz$ \\ $K = \lambda xy.x$ \\ $I = \lambda x.x$ \\ und Applikation bilden berechenbare Funktionen}[5,5cm]
 
 \subsection{Syntaktischer Zucker in der Metasprache}
 \subsubsection{Kombinatoren (Namen für Ausdrücke)}
 \begin{align*}
-\underline{id} &= \lambda x.x &\text{Familie von Identitätsfunktion des Typs } D \rightarrow D \text{ für alle } D \in D\\
+\underline{id} &= \lambda x.x \quad \text{Familie von Identitätsfunktion des Typs } D \rightarrow D \text{ für alle } D \in D\\
 \underline{curry} &: [(D_1 \times D_2) \rightarrow D_3] \rightarrow [D_1 \rightarrow D_2 \rightarrow D_3]\\
-\underline{curry} &= \lambda f \ x \ y. \ f <x,y> & \text{ Schreibe } \underline{curry} \ f \text{ zur Transformation von } f\\
+\underline{curry} &= \lambda f \ x \ y. \ f <x,y> \text{ Schreibe } \underline{curry} \ f \text{ zur Transformation von } f\\
 \vdots \\
-\text{\underline{Konvention}: Schreibe äußere Abstraktionen nach links, z.B.:}\\
+\text{\underline{Konvention}: } &\quad \text{Schreibe äußere Abstraktionen nach links, z.B.:}\\
 \underline{id} \ x & = x\\
 \underline{curry} \ f \ x \ y &= f<x,y>\\
 \end{align*}
 \subsubsection{Operationen}
 Im Falle der 2-Stelligkeit auch in Infix-Notation.
 \begin{align*}
-\circ &: ([D_2 \rightarrow D_3] \times [D_1 \rightarrow D_2]) \rightarrow [D_1 \rightarrow D_3]\\
-(f \circ g)\ x &= f (g \ x) &\text{alternativ: } \circ = \lambda	 (f,g)x.f(g,x)\\ 
-\bowtie \text{-Operator (gelesen ``vor''), der Fehler weiterreicht und implizit } \underline{curry} \text{ anwendet.}\\
-\text{\underline{1. Fall}} \quad f &: D_1 \rightarrow (D_2 + \{\underline{Fehler}\}_\perp) \text{ und } &g: D_2 \rightarrow (D_3 + \{\underline{Fehler}\}_\perp) \text{ oder } g: D_2 \rightarrow D_3\\
-\text{\underline{2. Fall}} \quad f &: D_1 \rightarrow (D_2 \times \dots \times D_n) + \{\underline{Fehler}\}_\perp \text{ und } & g : D_2 \rightarrow \dots \rightarrow [D_n \rightarrow (D_{n+1} + \{\underline{Fehler}\}_\perp)] \text{ oder } \\
-&& g : D_2 \rightarrow \dots \rightarrow D_n \rightarrow D_{n+1}\\
+\circ: &([D_2 \rightarrow D_3] \times [D_1 \rightarrow D_2]) \rightarrow [D_1 \rightarrow D_3]\\
+& (f \circ g)\ x = f (g \ x) \quad \text{alternativ: } \circ = \lambda	 (f,g)x.f(g,x)\\ 
+\bowtie &\text{-Operator (gelesen ``vor''), der Fehler weiterreicht und implizit } \underline{curry} \text{ anwendet.}\\
+\text{\underline{1. Fall}} \quad f &: D_1 \rightarrow (D_2 + \{\underline{Fehler}\}_\perp) \text{ und } g: D_2 \rightarrow (D_3 + \{\underline{Fehler}\}_\perp) \text{ oder } g: D_2 \rightarrow D_3\\
+\text{\underline{2. Fall}} \quad f &: D_1 \rightarrow (D_2 \times \dots \times D_n) + \{\underline{Fehler}\}_\perp \text{ und }  g : D_2 \rightarrow \dots \rightarrow [D_n \rightarrow (D_{n+1} + \{\underline{Fehler}\}_\perp)] \text{ oder } \\
+& g : D_2 \rightarrow \dots \rightarrow D_n \rightarrow D_{n+1}\\
 \text{zu 1.: } (f \bowtie g) x = & f\ x = \underline{Fehler}, \underline{Fehler}\\
 & f\ x = d, g\ h \\
-\bowtie : [D_1 \rightarrow ( D_2 + \{\underline{Fehler}\}_\perp) ] \times [D_2 \rightarrow (D_3 + \{\underline{Fehler}\}_\perp)] \rightarrow [D_1 \rightarrow D_3 + \{\underline{Fehler}\}_\perp] \\
-\text analog für g : D_2 \rightarrow D_3\\
-\text{zu 2.: } (f \bowtie g) \ x &= f \ x = \underline{Fehler}, \underline{Fehler} ;\\
-& f \ x = <d_2, \dots , d_n > \rightarrow g \ d_2 \dots \d_n
+\bowtie :& [D_1 \rightarrow ( D_2 + \{\underline{Fehler}\}_\perp) ] \times [D_2 \rightarrow (D_3 + \{\underline{Fehler}\}_\perp)] \rightarrow [D_1 \rightarrow D_3 + \{\underline{Fehler}\}_\perp] \\
+\text{analog für } g :& D_2 \rightarrow D_3\\
+\text{zu 2.: } (f \bowtie g) \ x = & f \ x = \underline{Fehler}, \underline{Fehler} ;\\
+& f\ x = < d_2 , \dots , d_n> \rightarrow g \ d_2 \dots d_n \\
 \end{align*}
 \subsubsection{Bedingte Ausdrücke}
 %höhe cond def.
@@ -53,22 +53,22 @@ f \ x = &x = d \rightarrow \dots d \dots, \\
 \end{align*}
 Wenn $f$ nicht substituiert wird auch: 
 \begin{align*}
-f \ d = & \dots d
-f <d_1, d_2> = & \dots d_1 \dots d_2 \dots
+f \ d &= \dots d\\
+f <d_1, d_2> &= \dots d_1 \dots d_2 \dots\\
 \end{align*}
 
 \subsubsection{Rekursionen}
 \begin{align*}
-f &= A &\text{mit } f \in \mathcal{X}^D, A:D \in \mathcal{A}_\lambda \text{ definiert eindeutig ein Element in } D.\\
+f &= A \text{ mit } f \in \mathcal{X}^D, A:D \in \mathcal{A}_\lambda \text{ definiert eindeutig ein Element in } D.\\
 \end{align*}
-wenn $f$ in $A$ \underline{frei} vorkommt ist $f=A$ eine rekursive Gleichung, deren eindeutige Lösung durch $ \underline{fix} \tau $, wobei $ \tau = \lambda f.A$ gegeben ist!\\
+wenn $f$ in $A$ \underline{frei} vorkommt ist $f=A$ eine rekursive Gleichung, deren eindeutige Lösung durch $ \underline{fix}\ \tau $, wobei $ \tau = \lambda f.A$ gegeben ist!\\
 Ordne $f=A$ die Transformation  $\tau = \lambda f.A$ zu. $\tau : D \rightarrow D$.\\
 \begin{align*}
-\underline{fac} n &= n = 0 \rightarrow 1, n * \underline{fac} (n-1); \underline{fac}: \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp\\
+\underline{fac}\ n &= n = 0 \rightarrow 1, n * \underline{fac} (n-1); \underline{fac}: \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp\\
 \tau &= \lambda f n . n = 0 \rightarrow 1, n * f (n-1) \\
-\tau &: [\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp] \rightarrow [\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp] \text{ mit } \underline{fix} \tau : \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp\\
-\text{\underline{Behauptung:}} \underline{fix} \tau &= !\\
-(\underline{fix} \tau) &= \bigsqcup_{\mu \in \mathbb{N}} \tau^\mu (\perp)\\
+\tau &: [\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp] \rightarrow [\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp] \text{ mit } \underline{fix}\ \tau : \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp\\
+\text{\underline{Behauptung:}}\quad \underline{fix}\ \tau &=\ !\\
+(\underline{fix}\ \tau) &= \bigsqcup_{\mu \in \mathbb{N}} \tau^\mu (\perp)\\
 \tau^0 (\perp) &= \lambda n.\perp \\
 \tau^1 (\perp) n &= n = 0 \rightarrow 1, \perp \\
 \tau^2 (\perp) n &= n = 0 \rightarrow 1, n = 1 \rightarrow 1, \perp \\
@@ -86,11 +86,11 @@ Ordne $f=A$ die Transformation  $\tau = \lambda f.A$ zu. $\tau : D \rightarrow D
 \begin{align*}
 \mathcal{T} &: \text{\lstinline!TERM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow ((\text{\lstinline!ZAHL!} \times \text{\lstinline!ZUSTAND!} ) + \{\underline{Fehler}\}_\perp)\\
 \mathcal{B} &: \text{\lstinline!TERM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow ((\text{\lstinline!BOOL!} \times \text{\lstinline!ZUSTAND!} ) + \{\underline{Fehler}\}_\perp)\\
-\mathcal{C} : \text{\lstinline!COM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + \{\underline{Fehler}\}_\perp)\\
-\mathcal{P} : \text{\lstinline!PROG!} \rightarrow \text{\lstinline!EINGABE!} \rightarrow (\text{\lstinline!EINGABE!} + \{\underline{Fehler}\}_\perp)\\
+\mathcal{C} &: \text{\lstinline!COM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + \{\underline{Fehler}\}_\perp)\\
+\mathcal{P} &: \text{\lstinline!PROG!} \rightarrow \text{\lstinline!EINGABE!} \rightarrow (\text{\lstinline!EINGABE!} + \{\underline{Fehler}\}_\perp)\\
 \mathcal{T} [\![ n ]\!] z &= <n,z> & \text{für alle} n \in \text{\lstinline!ZAHL!}\\
-\mathcal{T} [\![ x ]\!] <s,e,a> &= s x = \underline{frei} \rightarrow \underline{Fehler}, <sx, <s,e,a>>\\
-\mathcal{T} [\![ \underline{read} ]\!] <s,e,a> &= \underline{null} e \rightarrow \underline{Fehler}, <\underline{hd} e, <s, \underline{tl} e, a>>\\
+\mathcal{T} [\![ x ]\!] <s,e,a> &= s\ x = \underline{frei} \rightarrow \underline{Fehler}, <s\ x, <s,e,a>>\\
+\mathcal{T} [\![ \underline{read} ]\!] <s,e,a> &= \underline{null}\ e \rightarrow \underline{Fehler}, <\underline{hd}\ e, <s, \underline{tl}\ e, a>>\\
 \mathcal{T} [\![ T_1 + T_2 ]\!]  &= \mathcal{T} [\![ T_1]\!]  \bowtie \lambda n_1.\mathcal{T} [\![ T_2 ]\!]  \bowtie \lambda n_2 z . <n_1 + n_2, z>\\
 \mathcal{C} [\![ C_1, C_2 ]\!]  &= \mathcal{C} [\![ C_1]\!]  \bowtie \mathcal{C} [\![ C_2]\!]  
 \end{align*}
