@@ -112,20 +112,20 @@ Die $\alpha$-Konversion funktioniert nur, wenn die Variable noch nicht verwendet
 
 \textbf{Lösung aus'm Tut:}
 \begin{align*}
-x : \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp, \text{ also } x \in \mathcal{X}^{\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp}\\
-T = \lambda x.\lambday.(x\ 1) : (\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp) \rightarrow (\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp) \rightarrow \mathbb{N}_\perp\\
-T' = \lambda y . \lambda y . (y \ 1)\\
-[![ T ]!] \rho = &d \rightarrow [![ \lambda y . (x 1) ]!] \rho [d/x]\\
-&d \rightarrow (d' \rightarrow [![ x 1 ]!] \rho [d/x][d'/y])\\
-=&d \rightarrow (d' \rightarrow ([![ x ]!] \rho [d/x][d'/y])( [![ x 1 ]!] \rho [d/x][d'/y]))\\
-=&d \rightarrow (d' \rightarrow ([![ x ]!] \rho [d/x][d'/y])( 1 \rho [d/x][d'/y]))\\
-[![ T' ]!] \rho = & d \rightarrow [![ \lambda y . (y 1) ]!] \rho [d/y]\\
-= & d \rightarrow (d' \rightarrow [![ y \ 1 ]!] \rho [d/y][d'/y])\\
-= & d \rightarrow (d' \rightarrow ([![ y ]!] \rho [d/y] [d'/y]) 1 )\\
+x &: \mathbb{N}_\perp \rightarrow \mathbb{N}_\perp, \text{ also } x \in \mathcal{X}^{\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp}\\
+T &= \lambda x.\lambda y.(x\ 1) : (\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp) \rightarrow (\mathbb{N}_\perp \rightarrow \mathbb{N}_\perp) \rightarrow \mathbb{N}_\perp\\
+T' &= \lambda y . \lambda y . (y \ 1)\\
+[\![ T ]\!] \rho = & d \rightarrow [\![ \lambda y . (x 1) ]\!] \rho [d/x]\\
+&d \rightarrow (d' \rightarrow [\![ x 1 ]\!] \rho [d/x][d'/y])\\
+=&d \rightarrow (d' \rightarrow ([\![ x ]\!] \rho [d/x][d'/y])( [\![ x 1 ]\!] \rho [d/x][d'/y]))\\
+=&d \rightarrow (d' \rightarrow ([\![ x ]\!] \rho [d/x][d'/y])( 1 \rho [d/x][d'/y]))\\
+[\![ T' ]\!] \rho = & d \rightarrow [\![ \lambda y . (y 1) ]\!] \rho [d/y]\\
+= & d \rightarrow (d' \rightarrow [\![ y \ 1 ]\!] \rho [d/y][d'/y])\\
+= & d \rightarrow (d' \rightarrow ([\![ y ]\!] \rho [d/y] [d'/y]) 1 )\\
 \\
 f(a) = 0, g(a) = 1\\
-([![ T ]!] \rho) (f)\ (g) = & f\ 1 = 0\\
-([![ T ]!] \rho) (f)\ (g) = & g\ 1 = 1\\
+([\![ T ]\!] \rho) (f)\ (g) &=  f\ 1 = 0\\
+([\![ T ]\!] \rho) (f)\ (g) &=  g\ 1 = 1\\
 \end{align*}
 
 \section*{Aufgabe 2}
