@@ -1,0 +1,134 @@
+\documentclass[ngerman,a4paper]{report}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{MyriadPro}
+\usepackage[scaled]{beramono}
+\newcommand\Small{\fontsize{10.5}{10.5}\selectfont}
+\newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-20}\lsstyle}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{centernot}
+\usepackage{listings}
+\usepackage{paralist}
+%\usepackage{array}
+\usepackage{xcolor}
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{url}
+%\usepackage[verification]{struktex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+%\usepackage{accents}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,automata}
+\tikzset{
+	treenode/.style = {align=center, inner sep=1pt, text centered,font=\sffamily},
+	node/.style = {treenode, font=\sffamily\bfseries, text width=1.5em},
+	cloud/.style = {draw, circle, fill=red!20, node distance=3cm, minimum height=2em},
+	decision/.style = {diamond, draw, fill=blue!20, text width=6em, text badly centered, node distance=3cm, inner sep=0pt},
+	block/.style = {rectangle, draw, fill=green!20, text width=6em, text centered, rounded corners, minimum height=4em},
+	line/.style = {draw, -latex'}
+}
+\usepackage{stmaryrd}
+
+% Code Listing Style
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\lstset{%
+	language=C,
+	basicstyle=\LSTfont,
+	commentstyle=\color{darkgreen},
+	keywordstyle=\color{darkblue}\bfseries,
+	breaklines=true,
+	tabsize=2,
+	xleftmargin=\fboxsep,
+	xrightmargin=-\fboxsep,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	frame=bt,
+	stringstyle=\color{darkred},
+	showstringspaces=false,
+	rulecolor= \color{gray},
+	emph=[1]%
+	{%
+	    then, not%
+	},
+	emphstyle=[1]{\color{darkblue}\bfseries},
+	emph=[2]%
+	{%  Datatypes
+	    %
+	},
+	emphstyle=[2]{\color{darkblue}\bfseries},
+	emph=[3]%
+	{%
+	    %
+	},
+	emphstyle=[3]{\color{darkred}\bfseries},
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+\providecommand{\tabularnewline}{\\}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\makeatletter
+
+\lhead{\textbf{\@title Tutor:} Paul Podlech \\ \@author}
+\chead{}
+\rhead{\@date \\ \thepage \ von \pageref{LastPage} }
+\cfoot{}
+%\cfoot{\small \textbf{Disclaimer:} Einige Lösungen wurden mit einer anderen Übungsgruppe (Jens Fischer, Johannes Dillmann, Tobias Famulla) inhaltlich diskutiert,  eine gewisse Ähnlichkeit der Lösungen ist möglich. Trotzdem sind alle Lösungen selbstständig von den hier genannten Mitgliedern erarbeitet.}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\maketitle}{}
+\newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
+\renewcommand{\familydefault}{\sfdefault}
+
+\author{Florian Ritzel, Hinnerk van Bruinehsen, Tobias Höppner}
+\title{Anonyme Semantiker - Übung 10. }
+\date{Sommersemester 2014}
+\begin{document}
+\maketitle
+\section*{Aufgabe 1}
+Bestimmen Sie die Typen folgender Funktionen:
+\begin{itemize}
+\item[(i)]$\lambda fx.(fx)+1$
+\item[(ii)] $\lambda(x,y)f.fxy$
+\item[(iii)] $\lambda f.(f\lambda y.y)$
+\end{itemize}
+
+\section*{Aufgabe 2}
+Der Faltungsoperator $\underline{lit}$ sei informell bestimmt durch:
+$\underline{lit} f<x_1,\dots,x_n>x_{n+1} = fx_1(fx_2(\dots(fx_n x_{n+1})\dots))$\\
+z.B. $\underline{lit} \ \underline{plusc}<x_1,\dots,x_n>x_{n+1} = x_1 + x_2 + \dots + x_{n+1}$\\
+\begin{itemize}
+\item[(i)] Bestimmen Sie den Typ von $\underline{lit}$
+\item[(ii)] Definieren Sie den Operator $\underline{lit}$ im getypten $\lambda$-Kalkül unter Verwendung der Gleichungsschreibweise (s. S. 102).
+\item[(iii)] Definieren Sie eine Funktion $f$ im getypten $\lambda$-Kalkül, so dass\\
+$
+f<x_1,\dots,x_n>x=\begin{cases}
+\text{wahr, falls } x=x_i \text{ für ein } i\\
+\text{falsch, sonst.}
+\end{cases}
+$
+\item[(iv)] Bearbeiten Sie (i)-(iii) für $\underline{lit'}\ fx_1<x_2,\dots,x_{n+1}>=(\dots(f(fx_1 x_2)x_3)\dots x_{n+1})$ 
+\end{itemize}
+
+\section*{Aufgabe 3}
+Erweitern Sie die Syntax von WHILE um Anweisungen der Form\\
+$\underline{repeat}\ C\ \underline{until}\ B$\\
+und definieren Sie dazu eine geeignete denotationelle Semantik.
+\end{document}
