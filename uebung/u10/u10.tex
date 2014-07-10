@@ -175,4 +175,14 @@ Aus dem Tut:
 Erweitern Sie die Syntax von WHILE um Anweisungen der Form\\
 $\underline{repeat}\ C\ \underline{until}\ B$\\
 und definieren Sie dazu eine geeignete denotationelle Semantik.
+
+\begin{align*}
+	(a)&& \mathcal{C}\llbracket \underline{repeat}\ C_1\ \underline{until}\ B\rrbracket\\
+	&&&= \mathcal{C}\llbracket C_1; \underline{while}\ \underline{not}\ B\ \underline{do}\ C_1\rrbracket\\
+\\
+(b)&&\mathcal{C}\llbracket\underline{repeat}\ C_1\ \underline{until}\ B\rrbracket\\
+   & &&= \mathcal{C} \llbracket C_1\rrbracket\bowtie\mathcal{B}\llbracket B\rrbracket \bowtie cond <\lambda x.x, \mathcal{C}\llbracket C'\rrbracket > b
+\end{align*}
+
+
 \end{document}
