@@ -20,24 +20,24 @@
 	\item[\textbf{Antwort:}] I.A. nein.
 	\item[\textbf{Beispiele:}] (von leicht zu schwer)
 	\begin{align*}
-	f(x) = f(x) + 1 &\quad\text{Keine Lösung im Bereich der totalen Funktionen } \mathrm{N}\rightarrow \mathrm{N}\text{.}\\
-	&\quad\text{Eine Lösung im Bereich der partiellen Fuktionen } \mathrm{N}\rightarrow \mathrm{N}\\
-	&\quad f(x)\text{ ist undefiniert für alle } x \in \mathrm{N}.\\\tag{Beispiel 1}\\
+	f(x) = f(x) + 1 &\quad\text{Keine Lösung im Bereich der totalen Funktionen } \mathbb{N}\rightarrow \mathbb{N}\text{.}\\
+	&\quad\text{Eine Lösung im Bereich der partiellen Fuktionen } \mathbb{N}\rightarrow \mathbb{N}\\
+	&\quad f(x)\text{ ist undefiniert für alle } x \in \mathbb{N}.\\\tag{Beispiel 1}\\
 	\end{align*}
 	\begin{align*}
 	f(x) = 
 	\left\lbrace\begin{array}{l l}
-	&\text{Drei Lösungen über partiellen Funktionen } \mathrm{N} \rightarrow \mathrm{N}:\\
+	&\text{Drei Lösungen über partiellen Funktionen } \mathbb{N} \rightarrow \mathbb{N}:\\
 	0\text{,} \quad\text{falls} f(x)=0 &\text{ a) } n \mapsto 0\\
 	1\text{,} \quad\text{falls} f(x)\neq0 &\text{ b) } n \mapsto 1\\
-	&\text{ c) } f(n) \text{ ist nicht definiert für alle } n \in \mathrm{N}\\
+	&\text{ c) } f(n) \text{ ist nicht definiert für alle } n \in \mathbb{N}\\
 	\end{array}\right.\\\tag{Beispiel 2}\\
 	\end{align*}
 	\begin{align*}
 	f(x) = 
 	\left\lbrace\begin{array}{l l}
 	&\text{Lösungen im Breich der}\\
-	&\text{partiellen Funktionen } \mathrm{N} \times \mathrm{N} \rightarrow \mathrm{N}:\\
+	&\text{partiellen Funktionen } \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}:\\
 	y\text{,} \quad\text{falls} f(x)=0 &\text{a) } (x,y) \mapsto
 		\left\lbrace\begin{array}{l l}
 		y\text{,} \quad\text{falls } x=0\\
@@ -48,12 +48,12 @@
 	&\text{d) } (x,y) \mapsto 
 		\left\lbrace\begin{array}{l l}
 		y\text{,} \quad\text{falls } x=0\\
-		k\text{,} \quad\text{sonst für } k \in \mathrm{N}_+ \text{ bel.}\\ 
+		k\text{,} \quad\text{sonst für } k \in \mathbb{N}_+ \text{ bel.}\\ 
 		\end{array}\right.\\
 	\end{array}\right.\\\tag{Beispiel 3}\\
 	\end{align*}
 	\begin{align*}
-	\text{Sei }\;g: \mathrm{N} &\rightarrow \mathrm{N} \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
+	\text{Sei }\;g: \mathbb{N} &\rightarrow \mathbb{N} \text{ eine idempotente Funktion mit} g(x) \neq 0 \text{, d.h.}\\
 	g(g x) &= g \; x \text{, dann ist}\\
 	(x,y) &\mapsto 
 		\left\lbrace\begin{array}{l l}
@@ -71,12 +71,12 @@ Konstruiere semantische Bereiche so, dass zu jeder rekursiven Gleichung eine \em
 	\item[-] Betrachte eine Approximationsrelation $\sqsubseteq$(weniger definiert als), um unendliche Objekte durch endliche zu approximieren.
 	\item[\textbf{Beispiel}]
 	\begin{align*}
-		\text{Part. Fkt. } \mathrm{N}\rightarrow \mathrm{N}\text{ mit } f \sqsubseteq g \text{ gdw } Graph(f) \leq Graph(g)\\
+		\text{Part. Fkt. } \mathbb{N}\rightarrow \mathbb{N}\text{ mit } f \sqsubseteq g \text{ gdw } Graph(f) \leq Graph(g)\\
 		\text{doppelt } x = 2 * x \text{ wird approximiert von}\\
 		f_{\mathcal{v}}(x)
 		\left\lbrace\begin{array}{l l}
 		2*x\text{,} \quad\text{falls } x<\mathcal{v}\\
-		\text{undefiniert sonst, } \mathcal{v} \in \mathrm{N}\\ 
+		\text{undefiniert sonst, } \mathcal{v} \in \mathbb{N}\\ 
 		\end{array}\right.\\
 	\end{align*}
 \end{compactitem}
@@ -90,7 +90,7 @@ Eine Struktur $\underline{A}=(A,\sqsubseteq_A)$ heißt semantischer Bereich (cpo
 	\item[\textbf{3.}] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\sqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
 \subsubsection*{Beispiel}
 \begin{align*}
-(\mathrm{N}, \leq)\text{ ist cpo? Nein! 1. } \checkmark \text{ 2. } 0 = \perp_\mathrm{N}\checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \mathrm{N}\text{ hat in } \mathrm{N}\text{ keine kleinste obere Schranke!} \times\\
+(\mathbb{N}, \leq)\text{ ist cpo? Nein! 1. } \checkmark \text{ 2. } 0 = \perp_\mathbb{N}\checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \mathbb{N}\text{ hat in } \mathbb{N}\text{ keine kleinste obere Schranke!} \times\\
 \end{align*}
 \subsection{Defintionen (monton, stetig, strikt, [$\rightarrow$])}
 Seien $A$ und $B$ cpo's. 
@@ -104,7 +104,7 @@ Seien $A$ und $B$ cpo's.
 	\item[\textbf{Beweis:}] Sei
 	\begin{align*}
 	&f: A \rightarrow B \text{ stetig und } a_1 \sqsubseteq_A a_2 \in A\\
-	&f(a_1) \sqsubseteq \sqcup\{f(a_1), f(a_2) \} = \sqcup f(\{a_1, a_2\}) = f (\sqcup\{a_1, a_2\}) = f(a_2) \checkmark\\
+	&f(a_1) \sqsubseteq \bigsqcup\{f(a_1), f(a_2) \} = \bigsqcup f(\{a_1, a_2\}) = f (\bigsqcup\{a_1, a_2\}) = f(a_2) \checkmark\\
 	\end{align*}
 \end{compactitem}
 \subsection{Satz: minimaler Fixpunkt (Tarski 1955)}
@@ -113,7 +113,7 @@ Sei
 f: A \rightarrow A \text{ eine stetige Funktion} \\ 
 \text{Es existiert ein minimaler Fixpunkt}\\
 \underline{fix}\; f \text{ in } A \text { und es gilt}\\
-\underline{fix}\; f = \bigsqcup_{\mathcal{v} \in \mathrm{N}} f^\mathcal{v}(\perp)\\
+\underline{fix}\; f = \bigsqcup_{\mathcal{v} \in \mathbb{N}} f^\mathcal{v}(\perp)\\
 \end{align*}
 \textbf{Nachtrag:} Sei $D$ ein cpo und $f:D \rightarrow D$ eine stetige Funktion. Es existiert in $D$ der minimale Fixpunkt, $\underline{fix} f$, von $f$ in $D$.\\
 Es gilt $\underline{fix}\ f = \bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)$.\\
@@ -129,7 +129,8 @@ Beweis:\\
 \perp  &\sqsubseteq p \quad \text{Minimalität von } \perp \\
 f(\perp)  &\sqsubseteq f(p) \quad \text{Lemma: Stetigkeit } \Rightarrow \text{Monotonie}\\
 f(\perp)  &\sqsubseteq f(p) \quad \text{für alle } \mu \in \mathbb{N}\\
-\bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)  &\sqsubseteq p \quad \checkmark \qed \\
+\bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)  &\sqsubseteq p \quad \checkmark \\
+&&\qed \\
 \end{align*}
 \textbf{Ausblick:} Rekursive Gleichungen können als Transformation von stetigen Funktionen betrachtet werden. \emph{Fixpunkt dieser Transformation ist eindeutige Lösung.}
 \subsection{Graphische Illustration von cpo's}
@@ -138,7 +139,7 @@ f(\perp)  &\sqsubseteq f(p) \quad \text{für alle } \mu \in \mathbb{N}\\
 	\item $\sqsubseteq$ wird durch aufwärts gerichtete Kanten dargestellt
 \end{itemize}
 % siehe FOTO1!
-$\mathrm{N}$
+$\mathbb{N}$
 \begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
   thick,main node/.style={font=\sffamily\Large\bfseries}]
   \node[main node] (2) [below of=1] {$\vdots$};
@@ -150,7 +151,7 @@ $\mathrm{N}$
     (3) edge node {} (4)
     (4) edge node {} (5);
 \end{tikzpicture}
-$\mathrm{N} \cup \{\infty\}$
+$\mathbb{N} \cup \{\infty\}$
 \begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
   thick,main node/.style={font=\sffamily\Large\bfseries}]
   \node[main node] (1) {$\infty$};

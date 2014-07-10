@@ -8,14 +8,15 @@ Betrachte fehlerfreien Fall für $C_1;C_2$:\\
 Bisher: $\mathcal{C}[\![ C_1;C_2 ]\!] z = \mathcal{C}[\![ C_2 ]\!](\mathcal{C}[\![ C_1 ]\!]) $\\
 
 \subsection{Continuations (Fortsetzung)}
+\marginnote{\small Die Fortsetzung von $C_1$ ist Zustandstransformation definiert durch die Ausführung der Reste $C_2;\dots;C_n$}[0,5cm]
 (Wadsworth, Strachey 1974)
 %TODO Pfeile sollen hinter dem Semikollon stehen! 
 %TODO Looppfeil bei C_n mit Beschriftung \lambdaz.z ist Fortsetzung von C_n
-\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1.5cm,
   thick,main node/.style={font=\sffamily\Large\bfseries}]
   \node[main node] (1) {$C_1;$};
   \node[main node] (2) [right of=1] {$C_2;$};
-  \node[main node] (3) [right of=2] {$\dots$};
+  \node[main node] (3) [right of=2] {};
   \node[main node] (4) [right of=3] {$\dots;$};
   \node[main node] (5) [right of=4] {$C_n$};
     \path[every node/.style={font=\sffamily\small}]
@@ -23,7 +24,6 @@ Bisher: $\mathcal{C}[\![ C_1;C_2 ]\!] z = \mathcal{C}[\![ C_2 ]\!](\mathcal{C}[\
     (2) edge [bend right=40] node {Forts. v. $C_2$} (5)
     ;
 \end{tikzpicture}
-\marginnote{\smallDie Fortsetzung von $C_1$ ist Zustandstransformation definiert durch die Ausführung der Reste $C_2;\dots;C_n$}[0,5cm]
 
 Jetzt hat $\mathcal{C}[\![ C_i ]\!]c_i\ z$ Zugriff auf die zug. Fortsetzung.\\
 Dann kann $\mathcal{C}[\![ \underline{goto}\ L ]\!]c\ z = C_L \ z$ kürzer $\mathcal{C}[\![ \underline{goto}\ L ]\!]c = C_L$, wobei $C_L$ die Fortsetzung ist, die bei der Marke $L$ beginnt.\\
@@ -32,15 +32,15 @@ Bei $\mathcal{C}[\![ C_1;C_2 ]\!] c = \mathcal{C}[\![ C_1 ]\!](\mathcal{C}[\![ C
 \subsection{Forsetzungssemantik von WHILE}
 Syntaktische Bereihe und semantische Bereiche \lstinline!ZAHL, BOOL, KON, ZUSTAND, SPEICHER, EINGABE, AUSGABE, ...! wie zuvor.\\
 \begin{align*}
-\text{\lstinline!FORTSETZUNG!} &= \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für} \text{\lstinline!COM!}\\
-\text{\lstinline!TERMFORT!} &= \text{\lstinline!ZAHL!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für} \text{\lstinline!TERM!}\\
+\text{\lstinline!FORTSETZUNG!} &= \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für } \text{\lstinline!COM!}\\
+\text{\lstinline!TERMFORT!} &= \text{\lstinline!ZAHL!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für } \text{\lstinline!TERM!}\\
 &= \text{\lstinline!ZAHL!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
-\text{\lstinline!BOOLFORT!} &= \text{\lstinline!BOOL!} \rightarrow \text{\lstinline!FORTSETZUNG!} \text{ für} \text{\lstinline!BT!}\\
+\text{\lstinline!BOOLFORT!} &= \text{\lstinline!BOOL!} \rightarrow \text{\lstinline!FORTSETZUNG!} \text{ für } \text{\lstinline!BT!}\\
 \end{align*}
 Schreibe die \underline{Typen} für die Semantikfunktionen auf.
 \begin{align*}
 \mathcal{C}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!FORTSETZUNG!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \\
-\text{(\emph{kurz})} \mathcal{C}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!FORTSETZUNG!} \rightarrow \text{\lstinline!FORTSETZUNG!} \\
+\text{(\emph{kurz})}\ \mathcal{C}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!FORTSETZUNG!} \rightarrow \text{\lstinline!FORTSETZUNG!} \\
 \mathcal{T}: & \text{\lstinline!TERM!} \rightarrow \text{\lstinline!TERMFORT!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
 \mathcal{B}: & \text{\lstinline!BT!} \rightarrow \text{\lstinline!BOOLFORT!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
 \end{align*}

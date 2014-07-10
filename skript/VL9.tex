@@ -72,10 +72,10 @@ f <4, 7, \underline{hd}<3>, 8, 2> \underline{plus} 5 &\rightarrow \underline{plu
 \end{align*}
 
 \subsection{$\lambda$-Kalkül (Semantische Reduktionsregeln)}
-$Fr : \mathcal{A}_\lambda \rightarrow \mathcal{X}, Geb.: \mathcal{A}_\lambda \rightarrow \mathcal{X}, Var : \mathcal{A}_\lambda \rightarrow \mathcal{X}$ 
+$\text{\lstinline!Fr!} : \mathcal{A}_\lambda \rightarrow \mathcal{X}, \text{\lstinline!Geb!}: \mathcal{A}_\lambda \rightarrow \mathcal{X}, \text{\lstinline!Var!} : \mathcal{A}_\lambda \rightarrow \mathcal{X}$ 
 \begin{align*}
 &\xrightarrow{\alpha} \text{ Variablenumbenennung } \lambda x.t \xrightarrow{\alpha} \lambda y. \$^x_y t \text{, wobei } \$ \text{ Substitutionsoperator}\\
-&\xrightarrow{\beta}	\text{ Ersetzung formaler Parameter } (\lambda x.t) a \xrightarrow{\beta}	\$^x_a t \text{, falls } Fr(a) Geb(t) = \varnothing\\
-&\xrightarrow{\gamma} \text{ Wertreduktion, } \underline{plus} 4\; 3 \xrightarrow{\gamma} 7 \\
-&\text{Extensionalität: } \lambda x.(t\;x) \xrightarrow{\eta} t, x \notin Fr(t)\\ 
+&\xrightarrow{\beta}	\text{ Ersetzung formaler Parameter } (\lambda x.t) a \xrightarrow{\beta}	\$^x_a t \text{, falls } \text{\lstinline!Fr!}(a) \text{\lstinline!Geb!}(t) = \varnothing\\
+&\xrightarrow{\gamma} \text{ Wertreduktion, } \underline{plus}\ 4\; 3 \xrightarrow{\gamma} 7 \\
+&\text{Extensionalität: } \lambda x.(t\;x) \xrightarrow{\eta} t, x \notin \text{\lstinline!Fr!}(t)\\ 
 \end{align*}
