@@ -108,32 +108,32 @@ Bestimmen Sie die Typen folgender Funktionen:
 \item[(i)]$\lambda fx.(fx)+1$\\
 Lösung aus dem Tutorium:
 \begin{align*}
-1: \mathbb{Z}_\perp\\
-+: [\mathbb{Z}_\perp \times \mathbb{Z}_\perp \rightarrow \mathbb{Z}_\perp]\\
-x: D\\
-f: [D \rightarrow \mathbb{Z}_\perp]\\
+	1:& \mathbb{Z}_\perp\\
+	+:& [\mathbb{Z}_\perp \times \mathbb{Z}_\perp \rightarrow \mathbb{Z}_\perp]\\
+	x:& D\\
+	f:& [D \rightarrow \mathbb{Z}_\perp]\\
 \end{align*}
 alternativ, allgemeiner
 \begin{align*}
-1: D_1\\
-+: [D_2 \times D_1 \rightarrow D_3]\\
-f: [D_4 \rightarrow D_2]\\
-x: D_4\\
+	1:& D_1\\
+	+:& [D_2 \times D_1 \rightarrow D_3]\\
+	f:& [D_4 \rightarrow D_2]\\
+	x:& D_4\\
 \end{align*}
 \item[(ii)] $\lambda(x,y)f.fxy$\\
 Lösung aus dem Tutorium:
 \begin{align*}
-x : D_1\\
-y : D_2\\
-f : D_1 \rightarrow D_2 \rightarrow D_3\\
-: (D_1 \times D_2) \rightarrow D \rightarrow D_3\\
+	x :& D_1\\
+	y :& D_2\\
+	f :& D_1 \rightarrow D_2 \rightarrow D_3\\
+	:& (D_1 \times D_2) \rightarrow D \rightarrow D_3\\
 \end{align*}
 \item[(iii)] $\lambda f.(f\lambda y.y)$
 Lösung aus dem Tutorium:
 \begin{align*}
-y : D_1\\
-id := \lambda y.y : D_1 \rightarrow D_1\\
-f : [D_1 \rightarrow D_1] \rightarrow D_2\\
+	y :& D_1\\
+	id :&= \lambda y.y : D_1 \rightarrow D_1\\
+	f :& [D_1 \rightarrow D_1] \rightarrow D_2\\
 \end{align*}
 \end{itemize}
 
@@ -150,8 +150,8 @@ Aus dem Tut:
 \item[(ii)] Definieren Sie den Operator $\underline{lit}$ im getypten $\lambda$-Kalkül unter Verwendung der Gleichungsschreibweise (s. S. 102).\\
 Aus dem Tut:
 \begin{align*}
-(a) \underline{lit} := \lambda	 f L x. (L = <> \rightarrow x), f (\underline{hd}\ L) (\underline{lit}\ f(\underline{tl}\ x))\\
-(b) \underline{lit}	 f L x := L = <> \rightarrow x, f (\underline{hd}\ L) (\underline{lit}\ f(\underline{tl}\ x))\\
+	(a)&& \underline{lit} &:= \lambda	 f L x. (L = <> \rightarrow x), f (\underline{hd}\ L) (\underline{lit}\ f(\underline{tl}\ x))\\
+	(b)&& \underline{lit}	 f L x &:= L = <> \rightarrow x, f (\underline{hd}\ L) (\underline{lit}\ f(\underline{tl}\ x))\\
 \end{align*}
 \item[(iii)] Definieren Sie eine Funktion $f$ im getypten $\lambda$-Kalkül, so dass\\
 $
@@ -162,11 +162,11 @@ f<x_1,\dots,x_n>x=\begin{cases}
 $\\
 Aus dem Tut:
 \begin{align*}
-f : D_1^* \rightarrow D_1 \rightarrow \text{\lstinline!BOOL!}\\
-\underline{eq} : D_1 \rightarrow D_1 \rightarrow \text{\lstinline!BOOL!}\\
-\underline{eq}\ d_1 \ d_2 = \begin{cases} \underline{true}, &\text{falls } d_1 = d_2 \\ \underline{false}, &\text{sonst}
+	f :& D_1^* \rightarrow D_1 \rightarrow \text{\lstinline!BOOL!}\\
+	\underline{eq} :& D_1 \rightarrow D_1 \rightarrow \text{\lstinline!BOOL!}\\
+				 &\underline{eq}\ d_1 \ d_2 = \begin{cases} \underline{true}, &\text{falls } d_1 = d_2 \\ \underline{false}, &\text{sonst}
 \end{cases}\\
-f := \lambda L\ d.\underline{lit}(\lambda x. \underline{or} (\underline{eq}\ d\ x)) L \underline{false}\\
+&f := \lambda L\ d.\underline{lit}(\lambda x. \underline{or} (\underline{eq}\ d\ x)) L \underline{false}\\
 \end{align*}
 \item[(iv)] Bearbeiten Sie (i)-(iii) für $\underline{lit'}\ fx_1<x_2,\dots,x_{n+1}>=(f\dots(f(fx_1 x_2)x_3)\dots x_{n+1})$
 \end{itemize}
