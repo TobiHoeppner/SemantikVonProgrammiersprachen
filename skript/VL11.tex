@@ -1,3 +1,74 @@
-\section{SOME BAD ASS STUFF TODAY \tiny (Vorlesung 11 am 10.07.)}
+\section{Fortsetzungssemantik \tiny (Vorlesung 11 am 10.07.)}
 % höhe Kovention
-%\marginnote{\small }[5,5cm]
+\marginnote{\small KLAUSUR am 17.7. 8-10 Uhr, Raum 005, kein Material!}[0,5cm]
+\subsection{Problem}
+Sprunganweisungen der Form $\underline{goto}\ L$ oder andere irreguläre Programmfortsetzungen.\\
+\textbf{Idee:} $P = C_1;C_2;C_3;\dots;C_n$\\
+Betrachte fehlerfreien Fall für $C_1;C_2$:\\
+Bisher: $\mathcal{C}[\![ C_1;C_2 ]\!] z = \mathcal{C}[\![ C_2 ]\!](\mathcal{C}[\![ C_1 ]\!]) $\\
+
+\subsection{Continuations (Fortsetzung)}
+(Wadsworth, Strachey 1974)
+%TODO Pfeile sollen hinter dem Semikollon stehen! 
+%TODO Looppfeil bei C_n mit Beschriftung \lambdaz.z ist Fortsetzung von C_n
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1cm,
+  thick,main node/.style={font=\sffamily\Large\bfseries}]
+  \node[main node] (1) {$C_1;$};
+  \node[main node] (2) [right of=1] {$C_2;$};
+  \node[main node] (3) [right of=2] {$\dots$};
+  \node[main node] (4) [right of=3] {$\dots;$};
+  \node[main node] (5) [right of=4] {$C_n$};
+    \path[every node/.style={font=\sffamily\small}]
+    (1) edge [bend right=60] node {Forts. v. $C_1$} (5)
+    (2) edge [bend right=40] node {Forts. v. $C_2$} (5)
+    ;
+\end{tikzpicture}
+\marginnote{\smallDie Fortsetzung von $C_1$ ist Zustandstransformation definiert durch die Ausführung der Reste $C_2;\dots;C_n$}[0,5cm]
+
+Jetzt hat $\mathcal{C}[\![ C_i ]\!]c_i\ z$ Zugriff auf die zug. Fortsetzung.\\
+Dann kann $\mathcal{C}[\![ \underline{goto}\ L ]\!]c\ z = C_L \ z$ kürzer $\mathcal{C}[\![ \underline{goto}\ L ]\!]c = C_L$, wobei $C_L$ die Fortsetzung ist, die bei der Marke $L$ beginnt.\\
+Bei $\mathcal{C}[\![ C_1;C_2 ]\!] c = \mathcal{C}[\![ C_1 ]\!](\mathcal{C}[\![ C_2 ]\!] \ c) $\\
+
+\subsection{Forsetzungssemantik von WHILE}
+Syntaktische Bereihe und semantische Bereiche \lstinline!ZAHL, BOOL, KON, ZUSTAND, SPEICHER, EINGABE, AUSGABE, ...! wie zuvor.\\
+\begin{align*}
+\text{\lstinline!FORTSETZUNG!} &= \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für} \text{\lstinline!COM!}\\
+\text{\lstinline!TERMFORT!} &= \text{\lstinline!ZAHL!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \text{ für} \text{\lstinline!TERM!}\\
+&= \text{\lstinline!ZAHL!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
+\text{\lstinline!BOOLFORT!} &= \text{\lstinline!BOOL!} \rightarrow \text{\lstinline!FORTSETZUNG!} \text{ für} \text{\lstinline!BT!}\\
+\end{align*}
+Schreibe die \underline{Typen} für die Semantikfunktionen auf.
+\begin{align*}
+\mathcal{C}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!FORTSETZUNG!} \rightarrow (\text{\lstinline!ZUSTAND!} + {\underline{Fehler}_\perp}) \\
+\text{(\emph{kurz})} \mathcal{C}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!FORTSETZUNG!} \rightarrow \text{\lstinline!FORTSETZUNG!} \\
+\mathcal{T}: & \text{\lstinline!TERM!} \rightarrow \text{\lstinline!TERMFORT!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
+\mathcal{B}: & \text{\lstinline!BT!} \rightarrow \text{\lstinline!BOOLFORT!} \rightarrow \text{\lstinline!FORTSETZUNG!}\\
+\end{align*}
+semantische Klauseln:
+\begin{align*}
+\mathcal{T}[\![ n ]\!] k = & k \ n\\
+\mathcal{T}[\![ x ]\!] k <s,e,a> = & sx = \underline{frei} \rightarrow \underline{Fehler}, k(sx)<s,e,a>\\
+\mathcal{T}[\![ \underline{read} ]\!] k <s,e,a> = & e \neq <> \rightarrow (\underline{is}_{\text{\lstinline!ZAHL!}} (\underline{hd}\ e) <s, \underline{tl}\ e, a>), \underline{Fehler}\\
+\mathcal{T}[\![ T_1 + T_2 ]\!] k = & \mathcal{T}[\![ T_1 ]\!] \lambda n_1. \mathcal{T}[\![ T_2 ]\!] \lambda	n_2 z.k(n_1 + n_2) | \text{Semantik über } \mathbb{Z}_\perp\\
+= & \mathcal{T}[\![ T_1 ]\!] \lambda n_1. \mathcal{T}[\![ T_2 ]\!] \lambda	n_2 . \min > (n_1 + n_2) \lor \max < (n_1 + n_2) \rightarrow \underline{Fehler}, k (n_1+n_2) z\\
+\\
+\mathcal{C}[\![ \underline{skip} ]\!] = & \underline{id} \quad \text{alternativ} \quad \mathcal{C}[\![ \underline{skip} ]\!] c = c\\
+\mathcal{C}[\![ I:=T ]\!] c = &\mathcal{T}[\![ T ]\!] \lambda n(s,e,a).c<s[n/I],e,a>\\
+\mathcal{C}[\![ \underline{output}\ T ]\!] c = & \mathcal{T}[\![ T ]\!] \lambda n(s,e,a).c<s,e,a.n>\\
+\mathcal{C}[\![ C_1;C_2 ]\!] c = & \mathcal{C}[\![ C_1 ]\!] \circ \mathcal{C}[\![ C_2 ]\!]\\
+\mathcal{C}[\![ \underline{if}\ B \ \underline{then} \ C_1 \ \underline{else} \ C_2 ]\!]  = & \mathcal{B}[\![ B ]\!] (\underline{cond}<\mathcal{C}[\![ C_1 ]\!],\mathcal{C}[\![ C_2 ]\!]  >)\\
+\mathcal{C}[\![ \underline{while}\ B \underline{do} \ C ]\!] = & \mathcal{B}[\![ B ]\!] (\underline{cond}<\mathcal{C}[\![ C ]\!] \circ \mathcal{C}[\![ \underline{while}\ B \underline{do} \ C ]\!], \underline{id}>)\\
+\end{align*}
+\subsection{Beispiel}
+\begin{align*}
+P = \underbrace{x = \underline{read};}_{C_1}\underbrace{\underline{if}\ x>0 \ \underline{then}\ \underbrace{\underline{output}\ 1}_{C_3}\ \underline{else}\ \underbrace{\underline{output}\ (-1)}_{C_4}}_{C_2}\\
+\end{align*}
+\begin{align*}
+\mathcal{P}: & \text{\lstinline!COM!} \rightarrow \text{\lstinline!EINGABE!} \rightarrow (\text{\lstinline!AUSGABE!} + {\underline{Fehler}_\perp}) \\
+\mathcal{P}[\![ P ]\!] e = & (\mathcal{C}[\![ P ]\!] (\lambda z.z) \bowtie \pi_3) <s_0,e, \epsilon>\\
+\mathcal{C}[\![ P ]\!]\ c_0 \ z_0 = & \mathcal{C}[\![ C_1 ]\!] \underbrace{ (\mathcal{C}[\![ C_2 ]\!] c_0)}_{C_1}\ z_0 \quad \text{mit } z_0 = <s_0, <-24>,\epsilon>\\
+=& \mathcal{T}[\![ \underline{read} ]\!] \underbrace{(\lambda n (s,e,a).c_1<s[n/x],e,a>)}_{k_1} z_0\\
+=& k_1 (-24) <s_0,<>,\epsilon>\\
+=& c_1 <s_0[-24/x,\epsilon,\epsilon]>\\
+\vdots\\
+\end{align*}
