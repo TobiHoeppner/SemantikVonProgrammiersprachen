@@ -21,7 +21,7 @@
 	\item[\textbf{Beispiele:}] (von leicht zu schwer)
 	\begin{align*}
 	f(x) = f(x) + 1 &\quad\text{Keine Lösung im Bereich der totalen Funktionen } \mathbb{N}\rightarrow \mathbb{N}\text{.}\\
-	&\quad\text{Eine Lösung im Bereich der partiellen Fuktionen } \mathbb{N}\rightarrow \mathbb{N}\\
+	&\quad\text{Eine Lösung im Bereich der partiellen Funktionen } \mathbb{N}\rightarrow \mathbb{N}\\
 	&\quad f(x)\text{ ist undefiniert für alle } x \in \mathbb{N}.\\\tag{Beispiel 1}\\
 	\end{align*}
 	\begin{align*}
@@ -87,7 +87,7 @@ Eine Struktur $\underline{A}=(A,\sqsubseteq_A)$ heißt semantischer Bereich (cpo
 \begin{compactitem}
 	\item[\textbf{1.}] $\sqsubseteq_A$ ist eine Halbordnung auf A (reflexiv, transitiv, antisymmetrisch)
 	\item[\textbf{2.}] Es gibt bezüglich $\sqsubseteq_A$ ein minimales Element $\perp_A$ in $A$, d.h. $\perp_A \sqsubseteq a$, für alle $a \in A$
-	\item[\textbf{3.}] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\sqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
+	\item[\textbf{3.}] Zu jeder Kette $K \leq A$ existiert eine kleinste obere Schranke $\bigsqcup K$ in A, wobei $K$ Kette ist, wenn zu je zwei $k_1, k_2 \in K$ gilt: $k_1\sqsubseteq_A k_2$ oder $k_2 \sqsubseteq_A k_1$.
 \subsubsection*{Beispiel}
 \begin{align*}
 (\mathbb{N}, \leq)\text{ ist cpo? Nein! 1. } \checkmark \text{ 2. } 0 = \perp_\mathbb{N}\checkmark \text{3. } \{x | x \text{ ist gerade}\} \text{ist Kette in } \mathbb{N}\text{ hat in } \mathbb{N}\text{ keine kleinste obere Schranke!} \times\\
@@ -118,14 +118,15 @@ f: A \rightarrow A \text{ eine stetige Funktion} \\
 \textbf{Nachtrag:} Sei $D$ ein cpo und $f:D \rightarrow D$ eine stetige Funktion. Es existiert in $D$ der minimale Fixpunkt, $\underline{fix} f$, von $f$ in $D$.\\
 Es gilt $\underline{fix}\ f = \bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)$.\\
 % höhe von 1. im Beweis
-\marginnote{\small Nebenbemerkung: $\{ f^{\mu} (\perp) | \mu \in \mathbb{N}\}$ ist Kette in $D$. Begründung: $\perp, f(\perp), f^2(\perp),\dots, \perp \sqsubseteq f(\perp),f(\perp) \sqsubseteq f^2(\perp),f^2(\perp) \sqsubseteq f^3(\perp), \dots$ Minimalität von $\perp$}[0,5cm]
+\marginnote{\small Nebenbemerkung: $\{ f^{\mu} (\perp) | \mu \in \mathbb{N}\}$ ist Kette in $D$. Begründung: \\$\perp, f(\perp), f^2(\perp),\dots, \perp \sqsubseteq f(\perp),f(\perp) \sqsubseteq f^2(\perp),f^2(\perp) \sqsubseteq f^3(\perp), \dots$ Minimalität von $\perp$}[0,5cm]
 Beweis:\\
 \begin{align*}
-\text{1.)} f(\bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)) &= \bigsqcup_{\mu \in \mathbb{N}} f^{\mu +1 }(\perp) \text{wg. Stetigkeit}\\
+\text{1.)} \\
+f(\bigsqcup_{\mu \in \mathbb{N}} f^\mu (\perp)) &= \bigsqcup_{\mu \in \mathbb{N}} f^{\mu +1 }(\perp)\ \text{wg. Stetigkeit}\\
 &= \bigsqcup_{\mu \in \mathbb{N}} f^{\mu}(\perp)\\
 \text{Also ist} \bigsqcup_{\mu \in \mathbb{N}} f^{\mu}(\perp) \text{ ein Fixpunkt von } f.\\
 \\
-\text{2.) (Minimalität) Sei} p \in D \text{ mit } f(p) = P\\
+\text{2.) (Minimalität) Sei}\ p \in D \text{ mit } f(p) = P\\
 \perp  &\sqsubseteq p \quad \text{Minimalität von } \perp \\
 f(\perp)  &\sqsubseteq f(p) \quad \text{Lemma: Stetigkeit } \Rightarrow \text{Monotonie}\\
 f(\perp)  &\sqsubseteq f(p) \quad \text{für alle } \mu \in \mathbb{N}\\

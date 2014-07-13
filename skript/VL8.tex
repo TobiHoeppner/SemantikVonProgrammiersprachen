@@ -113,7 +113,7 @@ Seien: $ D_1, ... , D_n  $ cpo's\\
 
 \begin{align*}
 D &= D_1 + ... + D_n \text{ ist wie folgt erklärt.}\\
-D &= (\{(d,i) | d \in D_i, i \leq i \leq n\}, \sqsubseteq_D ) \cup \{\perp_D\}, \sqsubseteq_D) mit (d,i) \sqsubseteq_D (e,j) \text{ gdw. } i = j \text{ und } \perp_D \sqsubseteq (d,i) \text{ für alle ...}\\
+D &= (\{(d,i) | d \in D_i, 1 \leq i \leq n\}, \sqsubseteq_D ) \cup \{\perp_D\}, \sqsubseteq_D) \text{ mit } (d,i) \sqsubseteq_D (e,j) \text{ gdw. } i = j \text{ und } \perp_D \sqsubseteq (d,i) \text{ für alle ...}\\
 \end{align*}
 \subsection{endliche Folgen}
 Sei $\underline{D}=(D,\sqsubseteq_D)$ ein cpo.
@@ -127,7 +127,7 @@ Sei $\underline{D}=(D,\sqsubseteq_D)$ ein cpo.
 & K:= \{ <>,<1>,<1,1>,<1,1,1>,... \} \text{ Kette in } D^* \\
 &\bigsqcup K = <1,1,1,...> \text{ unendliche Folgen in } D^W\\
 \text{Ende der Vorüberlegung}&\\
-<d_i | 1 \leq i \leq n > \sqsubseteq_{D^*} <d'_i | 1 \leq i \leq n > &\\
+<d_i | 1 \leq i \leq n > \sqsubseteq_{D^*} <d'_i | 1 \leq i \leq m > &\\
 \text{gdw. } n = m \text{ und } d_i \sqsubseteq_D d'_i \text{ für alle } 1 \leq i \leq n & \\
 \perp_{D^*} \sqsubseteq_{D^*} \text{ für jede Folge } \in D^* &\\
 \\
@@ -146,5 +146,5 @@ f &\sqsubseteq_{D} g \text{ gdw. } f(d) \sqsubseteq_{D_2} g(d) \text{ für alle 
 \end{align*}
 $D$ ist cpo!\\
 \subsection{Ausblick}
-Konstruktionen rekrusiver Domains ist möglich. Wenn $D$ eine cpo-Variable, dann löst sich eine Gleichung der Form $D = \tau [D, B_1,...,B_r]$ lösen. $\tau$ über $\times, +, *, ^w, \rightarrow $, cpo's $B_i$\\ 
+Konstruktionen rekrusiver Domains ist möglich. Wenn $D$ eine cpo-Variable, dann löst sich eine Gleichung der Form $D = \tau [D, B_1,...,B_r]$ lösen. $\tau$ über $\times, +, *, ^\omega, \rightarrow $, cpo's $B_i$\\ 
 Kanonische Operationen, wie Projektionen, Injektionen, Test auf leere Liste, ..., sind stetig.\\
