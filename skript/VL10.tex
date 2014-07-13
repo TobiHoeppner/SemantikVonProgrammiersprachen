@@ -88,7 +88,7 @@ Ordne $f=A$ die Transformation  $\tau = \lambda f.A$ zu. $\tau : D \rightarrow D
 \mathcal{B} &: \text{\lstinline!TERM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow ((\text{\lstinline!BOOL!} \times \text{\lstinline!ZUSTAND!} ) + \{\underline{Fehler}\}_\perp)\\
 \mathcal{C} &: \text{\lstinline!COM!} \rightarrow \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} + \{\underline{Fehler}\}_\perp)\\
 \mathcal{P} &: \text{\lstinline!PROG!} \rightarrow \text{\lstinline!EINGABE!} \rightarrow (\text{\lstinline!EINGABE!} + \{\underline{Fehler}\}_\perp)\\
-\mathcal{T} [\![ n ]\!] z &= <n,z> & \text{für alle} n \in \text{\lstinline!ZAHL!}\\
+\mathcal{T} [\![ n ]\!] z &= <n,z> & \text{für alle } n \in \text{\lstinline!ZAHL!}\\
 \mathcal{T} [\![ x ]\!] <s,e,a> &= s\ x = \underline{frei} \rightarrow \underline{Fehler}, <s\ x, <s,e,a>>\\
 \mathcal{T} [\![ \underline{read} ]\!] <s,e,a> &= \underline{null}\ e \rightarrow \underline{Fehler}, <\underline{hd}\ e, <s, \underline{tl}\ e, a>>\\
 \mathcal{T} [\![ T_1 + T_2 ]\!]  &= \mathcal{T} [\![ T_1]\!]  \bowtie \lambda n_1.\mathcal{T} [\![ T_2 ]\!]  \bowtie \lambda n_2 z . <n_1 + n_2, z>\\

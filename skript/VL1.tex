@@ -76,7 +76,7 @@ BOP::= < | > | = | !> | !< | !=
 // Terme TERM
 T::= Z  |  I  |  T$_1$ OP T$_2$ | READ, für T$_1$,T$_2$ in TERM
 // boolesche Terme BT
-B::= W | T$_1$ BOP T$_2$ | read | not B
+B::= W | T$_1$ BOP T$_2$ | READ | not B
 // Befehle (Zustandstransformation) COM
 C::= skip | I := T | C$_1$; C | if B then C$_1$ else C$_2$ | while B do C |  output T | output B
 	\end{lstlisting}

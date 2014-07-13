@@ -96,10 +96,10 @@ Semantik eines Terms $T$ zu geg. Speicher $S$ und Eingabe $E$ ist die Spitze des
 		\item Kontrollkeller
 		\item Zustand der abstrakten Maschine hat Komponenten
 			\begin{compactitem}
-				\item Wertekeller $W$ ($\in ZAHL^*$)
-				\item Speicher $S$ ($S \in [ID \rightarrow ZAHL]$)
-				\item Kontrollkeller $K$ ($ \in (AST \cup OP)^*$)
-				\item Eingabe $E$ ($\in ZAHL^*$)
+				\item Wertekeller $W$ ($\in \text{\lstinline!ZAHL!}^*$)
+				\item Speicher $S$ ($S \in [ID \rightarrow \text{\lstinline!ZAHL!}]$)
+				\item Kontrollkeller $K$ ($ \in (\text{\lstinline!AST!} \cup \text{\lstinline!OP!})^*$)
+				\item Eingabe $E$ ($\in \text{\lstinline!ZAHL!}^*$)
 			\end{compactitem}
 	\end{compactitem}
 		Zur Formalisierung der Semantik über die abstrakte Maschine mit dem Zustandsraum Z durch Angabe von:
@@ -115,11 +115,11 @@ Semantik eines Terms $T$ zu geg. Speicher $S$ und Eingabe $E$ ist die Spitze des
 					\begin{align*}
 						&\Delta <W|S|n.K|E> &= &<n.W|S|K|E> \text{für alle } n \in ZAHL, W,S,E \text{ wie oben.}\\
 						&\Delta <W|S|x.K|E> &= &<s(x).W|S|K|E> \text{für alle } x \in ID\\
-						&\Delta <W|S|read.K|n.E> &= &<n.W|S|K|E> \text{für alle } n \in ZAHL\\
-						&\Delta <W|S|T_1 OP T_2.K|E> &= &<W|S|T_1.T_2.OP.K|E> \\
-						&\Delta <n_2.n_1.W|S|OP.K|E> &= &<n_1 OP n_2.W|S|K|E> n_1, n_2 \in ZAHL \text{ falls } n_1 OP n_2 \text{ definiert ist.}\\
+						&\Delta <W|S|\text{\lstinline!READ!}.K|n.E> &= &<n.W|S|K|E> \text{für alle } n \in ZAHL\\
+						&\Delta <W|S|T_1 OP T_2.K|E> &= &<W|S|T_1.T_2.\text{\lstinline!OP!}.K|E> \\
+						&\Delta <n_2.n_1.W|S|OP.K|E> &= &<n_1\ \text{\lstinline!OP!}\ n_2.W|S|K|E> n_1, n_2 \in ZAHL \text{ falls } n_1\ \text{\lstinline!OP!}\ n_2 \text{ definiert ist.}\\
 					\end{align*}
-				\item[\textbf{(iii)}] Die Semantik eines (beliebigen) Terms $T$ im Bezug auf einem Speicher $S$ und eine Eingabe $E$ ist $n \in ZAHL$, wenn $\Delta^k Z_{T,S,E} = <n.\epsilon|S|\epsilon|E'>$ für beliebige $E' \in ZAHL^*$, undefiniert sonst!\\ 		
+				\item[\textbf{(iii)}] Die Semantik eines (beliebigen) Terms $T$ im Bezug auf einem Speicher $S$ und eine Eingabe $E$ ist $n \in \text{\lstinline!ZAHL!}$, wenn $\Delta^k Z_{T,S,E} = <n.\epsilon|S|\epsilon|E'>$ für beliebige $E' \in \text{\lstinline!ZAHL!}^*$, undefiniert sonst!\\ 		
 			\end{compactitem}		
 \end{compactitem}
 
