@@ -19,11 +19,16 @@
 
 \subsection{Denotationelle Semantik}
 	\begin{compactitem}
-		\item[-] \textbf{Syntaktische Kategorien} von WHILE: TERM, BT, COM, PROG
-		\item[-] Hilfsbereiche:\\
-		ZUSTAND = SPEICHER $\times$ EINGABE $\times$ AUSGABE mit SPEICHER = ID $\rightarrow$ ZAHL $\cup \{\underline{frei}\}$, \\EINGABE = KON$^*$ und AUSGABE = KON$^*$
+		\item[-] \textbf{Syntaktische Kategorien} von WHILE: \lstinline!TERM, BT, COM, PROG!
+		\item[-] Hilfsbereiche:
+\begin{align*}
+\text{\lstinline!ZUSTAND!} &= \text{\lstinline!SPEICHER!}  \times \text{\lstinline!EINGABE!} \times \text{\lstinline!AUSGABE!} \quad \text{ mit } \text{\lstinline!SPEICHER!} &= \text{\lstinline!ID!} \rightarrow \text{\lstinline!ZAHL!} \cup \{\underline{frei}\} \\
+& &\text{\lstinline!EINGABE!} = \text{\lstinline!KON!}^* \\
+& &\text{\lstinline!AUSGABE!} = \text{\lstinline!KON!}^*\\
+\end{align*}
+		%ZUSTAND = SPEICHER $\times$ EINGABE $\times$ AUSGABE mit SPEICHER = ID $\rightarrow$ ZAHL $\cup \{\underline{frei}\}$, \\EINGABE = KON$^*$ und AUSGABE = KON$^*$
 		\item[\textbf{1.}] $\mathcal{T}:$TERM$\rightarrow \underline{\underline{B_T}}$\\
-		$B_T :=$ZAHL???\\
+		$B_T :=$\lstinline!ZAHL!???\\
 		\fbox{\parbox[b]{\textwidth*4/5}{
 		% versuchen als kleinen Einschub auf Höhe B.1. zu ordnen
 			\underline{Exkurs: \textbf{Curry-Isomorphie}} \\
@@ -37,9 +42,11 @@
 			%$(A \times B \rightarrow C) \cong A \rightarrow (B \rightarrow C)$\\
 			\textbf{curry}: $f\;a\; b = f(a,b)$\\
 			\textbf{uncurry}: $g\;(a,b) = g\;a\;b$\\
-			$B_T := $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((ZAHL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
-			$\mathcal{B}:$ BT $\rightarrow $ SPEICHER $\rightarrow$ EINGABE $\rightarrow$ ((BOOL $\times$ Eingabe) $\cup \{\underline{Fehler} \}$ )\\
-			$\mathcal{C}:$ COM $\rightarrow $ $\underbrace{ \text{ZUSTAND} \rightarrow \text{ZUSTAND }\cup \{\underline{Fehler} \}\text{ )}}_{B_C}$\\
+			\begin{align*}
+			B_T &:= \text{\lstinline!SPEICHER!}\rightarrow\text{\lstinline!EINGABE!} \rightarrow (( \text{\lstinline!ZAHL!} \times\text{\lstinline!EINGABE!})\cup \{\underline{Fehler} \} )\\
+			\mathcal{B}&: \text{\lstinline!BT!} \rightarrow \text{\lstinline!SPEICHER!}\rightarrow \text{\lstinline!EINGABE!} \rightarrow (( \text{\lstinline!BOOL!}\times \text{\lstinline!EINGABE!} )\cup \{\underline{Fehler} \} )\\
+			\mathcal{C}&: \text{\lstinline!COM!} \rightarrow \underbrace{ \text{\lstinline!ZUSTAND!} \rightarrow (\text{\lstinline!ZUSTAND!} \cup \{\underline{Fehler} \} ) }_{B_C}\\
+			\end{align*}
 		% geschwungene Klammer mit $B_C$unter ZUSTAND -> (...)
 		}}
 		\item[\textbf{2.}] Induktive Definition über dem Aufbau
@@ -49,21 +56,21 @@
 \marginnote{\small$z = (s,e,a)$}[12,5cm]
 		\begin{align*}
 		\mathcal{T}
-[\![n]\!]\;s\;e &= (n,e) \quad\text{ für alle } n \in \text{ZAHL}\\
+[\![n]\!]\;s\;e &= (n,e) \quad\text{ für alle } n \in \text{\lstinline!ZAHL!}\\
 		\mathcal{T}
 [\![x]\!]\;s\;e &= \left\lbrace\begin{array}{l l} (n,e)\text{,}\quad\text{falls } s\;x = n\\
-		\underline{\text{Fehler}}\text{,}\quad\text{falls } s\;x = \underline{frei } \text{ für alle } x \in \text{ID} \end{array}\right.\\		
+		\underline{\text{Fehler}}\text{,}\quad\text{falls } s\;x = \underline{frei } \text{ für alle } x \in \text{\lstinline!ID!} \end{array}\right.\\		
 		\mathcal{T}
 [\![\underline{read}]\!]\;s\;e &= \left\lbrace\begin{array}{l l} (n,e')\text{,}\quad\text{falls } e = n.e'\\
-		\underline{\text{Fehler}}\text{,}\quad\text{falls } e = \mathcal{E} \text{ oder } e = b.e' \text{ mit } b \in \text{BOOL} \end{array}\right.\\
+		\underline{\text{Fehler}}\text{,}\quad\text{falls } e = \mathcal{E} \text{ oder } e = b.e' \text{ mit } b \in \text{\lstinline!BOOL!} \end{array}\right.\\
 		\mathcal{T}
 [\![\underline{T_1 \; \underline{OP}\; T_2}]\!]\;s\;e &= \left\lbrace\begin{array}{l l} (n,e'')\text{,}\quad\text{falls } &\mathcal{T} 
 [\![T_1]\!] s e = (n_1,e') \text{ und} \\  &\mathcal{T} 
-[\![T_2]\!] s e' = (n_2,e'') \text{ und }\\ &\underline{n_1\;\underline{OP}\;n_2} = n \in \text{ZAHL}\\
+[\![T_2]\!] s e' = (n_2,e'') \text{ und }\\ &\underline{n_1\;\underline{OP}\;n_2} = n \in \text{\lstinline!ZAHL!}\\
 		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.\\
 		\\
 		\mathcal{B}
-[\![w]\!]\;s\;e &= (w,e) \quad\text{für alle } w \in \text{BOOL}\\
+[\![w]\!]\;s\;e &= (w,e) \quad\text{für alle } w \in \text{\lstinline!BOOL!}\\
 		\mathcal{B}
 [\![\underline{not}B]\!]\;s\;e &=\left\lbrace\begin{array}{l l} (b,e')\text{,}\quad\text{falls } \mathcal{B}
 [\![B]\!]s e = (w, e') \text{ und } b = \lnot w\\
@@ -71,11 +78,11 @@
 		\mathcal{B}
 [\![T_1\;\underline{BOP}\;T_2]\!]\;s\;e &=\left\lbrace\begin{array}{l l} (b,e'')\text{,}\quad\text{falls } &\mathcal{T} 
 [\![T_1]\!] s e = (n_1,e') \text{ und} \\  &\mathcal{T} 
-[\![T_2]\!] s e' = (n_2,e'') \text{ und } \\ &\underline{n_1\;\underline{BOP}\;n_2} = b \in \text{BOOL}\\
+[\![T_2]\!] s e' = (n_2,e'') \text{ und } \\ &\underline{n_1\;\underline{BOP}\;n_2} = b \in \text{\lstinline!BOOL!}\\
 		\underline{\text{Fehler}}\text{,}\quad\text{sonst}\end{array}\right.\\
 		\mathcal{B}
-[\![\underline{read}]\!]\;s\;e &=\left\lbrace\begin{array}{l l} (b,e')\text{,}\quad\text{falls } e = b.e' \text{ mit } b \in \text{BOOL}\\
-		\underline{\text{Fehler}}\text{,}\quad\text{falls } e = \mathcal{E} \text{ oder } e = n.e' \text{ mit } n \in \text{ZAHL}\end{array}\right.\\
+[\![\underline{read}]\!]\;s\;e &=\left\lbrace\begin{array}{l l} (b,e')\text{,}\quad\text{falls } e = b.e' \text{ mit } b \in \text{\lstinline!BOOL!}\\
+		\underline{\text{Fehler}}\text{,}\quad\text{falls } e = \mathcal{E} \text{ oder } e = n.e' \text{ mit } n \in \text{\lstinline!ZAHL!}\end{array}\right.\\
 		\\
 		\mathcal{C}
 [\![\underline{skip}]\!]\;z &= z\\
@@ -94,7 +101,7 @@
 		\mathcal{C}
 [\![C_1;C_2]\!]\;z &= \left\lbrace\begin{array}{l l} \mathcal{C} 
 [\![C_2]\!] z', \mathcal{C} 
-[\![C_1]\!] z = z' \quad\text{ mit } z' \in \text{ZUSTAND}\\
+[\![C_1]\!] z = z' \quad\text{ mit } z' \in \text{\lstinline!ZUSTAND!}\\
 		\underline{\text{Fehler}}\text{,}\quad\text{sonst} \end{array}\right.\\
 		\mathcal{C}
 [\![\underline{if}\;B \underline{then}\;C_1\;\underline{else}\;C_2]\!]\;(s,e,a) &= \left\lbrace\begin{array}{l l} \mathcal{C} 

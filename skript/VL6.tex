@@ -61,7 +61,7 @@ C&::= \underline{skip}\; |\; \underline{read}\; I\; |\; I:=T\; |\; \underline{ou
 	\item[\textbf{3.}]
 	\begin{align}
 	\frac{\{Q\}C_1\{S\},\{S\}C_2\{R\}}{\{Q\}C_1,C_2\{R\}}\tag{A.5}\\
-	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}B\underline{then}C_1\underline{else}C_2\{R\}}\tag{A.6}\\
+	\frac{\{Q\land B\}C_1\{R\},\{Q\land \lnot B\}C_2\{R\}}{\{Q\}\underline{if}\;B\;\underline{then}\;C_1\;\underline{else}\;C_2\{R\}}\tag{A.6}\\
 	\frac{\{Q\land B\}C\{Q\}}{\{Q\}\underline{while}\;B\;\underline{do}\;C\{Q\land \lnot B\}}\tag{A.7}\\
 	\notag
 	\end{align}

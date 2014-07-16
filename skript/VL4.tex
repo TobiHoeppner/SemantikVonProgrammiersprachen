@@ -30,17 +30,17 @@ anderes Beispiel: $\lambda$-Kalkül. $(\lambda x.M) A \xrightarrow{\beta}  \$ M$
 
 \subsection{Reduktionssemantik der Sprache WHILE}
 Zustandsraum: $\mathcal{Z} = \rho \times \mathcal{E} \times \mathcal{A}$ Speicher, Ein- und Ausgabe.
-$\rho = [ID \rightarrow \text{ZAHL} \cup \{\text{\underline{frei}}\}], \mathcal{E}=\text{KON}^*, \mathcal{A}=\text{KON}^*$\\
-$\Rightarrow$ Reduktionsrelation über (TERM $\cup$ BT $\cup$ COM) $\times \mathcal{Z}$\\
+$\rho = [ID \rightarrow \text{\lstinline!ZAHL!} \cup \{\text{\underline{frei}}\}], \mathcal{E}=\text{\lstinline!KON!}^*, \mathcal{A}=\text{\lstinline!KON!}^*$\\
+$\Rightarrow$ Reduktionsrelation über (\lstinline!TERM! $\cup$ \lstinline!BT! $\cup$ \lstinline!COM!) $\times \mathcal{Z}$\\
 Induktiv über den Aufbau der Syntax:
 \begin{enumerate}
-	\item \textbf{Terme}: Keine Reduktionsregel für $(n,z)$, d.h. Normalform für $n \in$ ZAHL
+	\item \textbf{Terme}: Keine Reduktionsregel für $(n,z)$, d.h. Normalform für $n \in$ \lstinline!ZAHL!
 	\begin{compactitem}
-		\item[\textbf{a}] $(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}$ für $x \in ID$, $(s,e,a) \in \mathcal{Z}$
-		\item[\textbf{b}] $\underline{\text{read}} \Rightarrow (n, (s,e,a)), \text{ falls } n \in$ ZAHL.
+		\item[\textbf{a}] $(x,(s,e,a)) \Rightarrow (s(x), (s,e,a))\text{, falls }s(x) \neq \text{\underline{frei}}$ für $x \in \text{\lstinline!ID!}$, $(s,e,a) \in \mathcal{Z}$
+		\item[\textbf{b}] $\underline{\text{read}} \Rightarrow (n, (s,e,a)), \text{ falls } n \in$ \lstinline!ZAHL!.
 		\item[\textbf{c}] $(T_1\;\underline{OP}\;T_2, z) \Rightarrow (n\;\underline{OP}\;T_2, z')$, falls $(T_1, z) \xRightarrow{*}(n,z')$
 		\item[\textbf{d}] $(n\;\underline{OP}\;T_1, z) \Rightarrow (n\;\underline{OP}\;m, z')$, falls $(T, z) \xRightarrow{*}(m,z')$
-		\item[\textbf{e}] $(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z')$, falls $\underline{n\;\underline{OP}\;m} \in$ ZAHL.
+		\item[\textbf{e}] $(n\;\underline{OP}\;n, z) \Rightarrow (\underline{n\;\underline{OP}\;m}, z')$, falls $\underline{n\;\underline{OP}\;m} \in$ \lstinline!ZAHL!.
 	\end{compactitem}	
 	\item \textbf{BT} analog.
 	\item \textbf{COM}: keine Reduktionsregel für $\underline{skip}$ (Normalform)
@@ -56,8 +56,8 @@ Induktiv über den Aufbau der Syntax:
 	\end{compactitem}
 \end{enumerate}
 \subsection{Reduktionssemantik (schematisch)}
-$\underline{eval}(P)(E)=\left\lbrace\begin{array}{l l} A\text{,}&\text{falls } (P,(S_0,E,\mathcal{E}))\xRightarrow{*}(\underline{skip},(S,E',A))\text{ mit bel. } S \in \rho \text{ und } E', A \in \text{KON}^*\\
-\text{\underline{Fehler}}\text{,}&\text{falls }  (P,(S_0, E, \mathcal{E}))\xRightarrow{*}(C,(S,E',A)) \text{ mit bel. } C \in \text{ COM und } E', A \in \text{KON}^*\\& \text{ und } C \neq \underline{skip} \text{ und } (C, (S, E', A))\text{ lässt sich nicht mehr mit } \Rightarrow \text{reduzieren}\\
+$\underline{eval}(P)(E)=\left\lbrace\begin{array}{l l} A\text{,}&\text{falls } (P,(S_0,E,\mathcal{E}))\xRightarrow{*}(\underline{skip},(S,E',A))\text{ mit bel. } S \in \rho \text{ und } E', A \in \text{\lstinline!KON!}^*\\
+\text{\underline{Fehler}}\text{,}&\text{falls }  (P,(S_0, E, \mathcal{E}))\xRightarrow{*}(C,(S,E',A)) \text{ mit bel. } C \in \text{ \lstinline!COM! und } E', A \in \text{\lstinline!KON!}^*\\& \text{ und } C \neq \underline{skip} \text{ und } (C, (S, E', A))\text{ lässt sich nicht mehr mit } \Rightarrow \text{reduzieren}\\
 \text{undefiniert,}&\text{ sonst.}\\
 \end{array}\right.$\\
 \textbf{Satz:} $\mathcal{O} = \underline{eval}$ (extensional)\\
